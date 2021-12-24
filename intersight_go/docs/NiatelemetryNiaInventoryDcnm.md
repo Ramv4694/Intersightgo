@@ -6,14 +6,20 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClassId** | **string** | The fully-qualified name of the instantiated, concrete type. This property is used as a discriminator to identify the type of the payload when marshaling and unmarshaling data. | [default to "niatelemetry.NiaInventoryDcnm"]
 **ObjectType** | **string** | The fully-qualified name of the instantiated, concrete type. The value should be the same as the &#39;ClassId&#39; property. | [default to "niatelemetry.NiaInventoryDcnm"]
+**ControllerHealth** | Pointer to **int64** | Health of controller on DCNM. | [optional] 
 **Dev** | Pointer to **bool** | Returns the value of the dev Field. | [optional] 
 **EpldImageCount** | Pointer to **int64** | Number of EPLD images uploaded to DCNM. | [optional] 
+**GoldenImageDetails** | Pointer to [**[]NiatelemetryImageDetail**](NiatelemetryImageDetail.md) |  | [optional] 
 **HaEnabled** | Pointer to **bool** | Returns the value of the haEnabled field. | [optional] 
 **HaReplicationStatus** | Pointer to **string** | Returns the value of the haReplicationStatus field. | [optional] 
 **Install** | Pointer to **string** | Returns the value of the install field. | [optional] 
+**InstallationType** | Pointer to **string** | Installation type of controller on DCNM. | [optional] 
+**InstallationTypeDescription** | Pointer to **string** | Installation type description of controller on DCNM. | [optional] 
 **IsIsnConfigured** | Pointer to **bool** | Returns true if ISN is configured. | [optional] 
 **IsMediaController** | Pointer to **bool** | Returns the value of the isMediaController field. | [optional] 
 **IsSmartLicenseEnabled** | Pointer to **bool** | Returns true if the Smart license is enabled and is in use. | [optional] 
+**Mode** | Pointer to **string** | Mode of controller on DCNM. | [optional] 
+**NetworkInfo** | Pointer to [**NullableNiatelemetryNetworkInfo**](niatelemetry.NetworkInfo.md) |  | [optional] 
 **NumFabrics** | Pointer to **int64** | Returns total number of fabrics in DCNM set-up. | [optional] 
 **NumFabricsInMsd** | Pointer to **int64** | Returns the number of fabrics in msd. | [optional] 
 **NumIngressReplicationFabrics** | Pointer to **int64** | Returns the number of fabrics that have ingress replication type. | [optional] 
@@ -23,11 +29,12 @@ Name | Type | Description | Notes
 **NumTrmEnabledCount** | Pointer to **int64** | Returns the number of links where TRM is enabled. | [optional] 
 **NumUpgUsers** | Pointer to **int64** | Number of users who have upgrade privileges excluding the admin. | [optional] 
 **NxosImageCount** | Pointer to **int64** | Number of NXOS images uploaded to DCNM. | [optional] 
+**OutofbandIp** | Pointer to **string** | Out of band IP of controller on DCNM. | [optional] 
 **Serial** | Pointer to **string** | Serial number of device being inventoried. The serial number is unique per device. | [optional] 
 **SiteName** | Pointer to **string** | Name of fabric domain of the controller. | [optional] 
 **UnderlayPeeringActiveLinksCount** | Pointer to **int64** | Returns the number of underlay peering active links. | [optional] 
 **UpgJobCount** | Pointer to **int64** | Number of upgrade jobs configured on DCNM. | [optional] 
-**UpgStatus** | Pointer to **string** | Upgrade status of jobs created on DCNM. | [optional] 
+**UpgStatus** | Pointer to [**[]NiatelemetryJobDetail**](NiatelemetryJobDetail.md) |  | [optional] 
 **Version** | Pointer to **string** | Returns the value of the version field. | [optional] 
 **RegisteredDevice** | Pointer to [**AssetDeviceRegistrationRelationship**](asset.DeviceRegistration.Relationship.md) |  | [optional] 
 
@@ -90,6 +97,31 @@ and a boolean to check if the value has been set.
 SetObjectType sets ObjectType field to given value.
 
 
+### GetControllerHealth
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetControllerHealth() int64`
+
+GetControllerHealth returns the ControllerHealth field if non-nil, zero value otherwise.
+
+### GetControllerHealthOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetControllerHealthOk() (*int64, bool)`
+
+GetControllerHealthOk returns a tuple with the ControllerHealth field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetControllerHealth
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetControllerHealth(v int64)`
+
+SetControllerHealth sets ControllerHealth field to given value.
+
+### HasControllerHealth
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasControllerHealth() bool`
+
+HasControllerHealth returns a boolean if a field has been set.
+
 ### GetDev
 
 `func (o *NiatelemetryNiaInventoryDcnm) GetDev() bool`
@@ -140,6 +172,41 @@ SetEpldImageCount sets EpldImageCount field to given value.
 
 HasEpldImageCount returns a boolean if a field has been set.
 
+### GetGoldenImageDetails
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetGoldenImageDetails() []NiatelemetryImageDetail`
+
+GetGoldenImageDetails returns the GoldenImageDetails field if non-nil, zero value otherwise.
+
+### GetGoldenImageDetailsOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetGoldenImageDetailsOk() (*[]NiatelemetryImageDetail, bool)`
+
+GetGoldenImageDetailsOk returns a tuple with the GoldenImageDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoldenImageDetails
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetGoldenImageDetails(v []NiatelemetryImageDetail)`
+
+SetGoldenImageDetails sets GoldenImageDetails field to given value.
+
+### HasGoldenImageDetails
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasGoldenImageDetails() bool`
+
+HasGoldenImageDetails returns a boolean if a field has been set.
+
+### SetGoldenImageDetailsNil
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetGoldenImageDetailsNil(b bool)`
+
+ SetGoldenImageDetailsNil sets the value for GoldenImageDetails to be an explicit nil
+
+### UnsetGoldenImageDetails
+`func (o *NiatelemetryNiaInventoryDcnm) UnsetGoldenImageDetails()`
+
+UnsetGoldenImageDetails ensures that no value is present for GoldenImageDetails, not even an explicit nil
 ### GetHaEnabled
 
 `func (o *NiatelemetryNiaInventoryDcnm) GetHaEnabled() bool`
@@ -214,6 +281,56 @@ SetInstall sets Install field to given value.
 `func (o *NiatelemetryNiaInventoryDcnm) HasInstall() bool`
 
 HasInstall returns a boolean if a field has been set.
+
+### GetInstallationType
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetInstallationType() string`
+
+GetInstallationType returns the InstallationType field if non-nil, zero value otherwise.
+
+### GetInstallationTypeOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetInstallationTypeOk() (*string, bool)`
+
+GetInstallationTypeOk returns a tuple with the InstallationType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstallationType
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetInstallationType(v string)`
+
+SetInstallationType sets InstallationType field to given value.
+
+### HasInstallationType
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasInstallationType() bool`
+
+HasInstallationType returns a boolean if a field has been set.
+
+### GetInstallationTypeDescription
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetInstallationTypeDescription() string`
+
+GetInstallationTypeDescription returns the InstallationTypeDescription field if non-nil, zero value otherwise.
+
+### GetInstallationTypeDescriptionOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetInstallationTypeDescriptionOk() (*string, bool)`
+
+GetInstallationTypeDescriptionOk returns a tuple with the InstallationTypeDescription field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstallationTypeDescription
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetInstallationTypeDescription(v string)`
+
+SetInstallationTypeDescription sets InstallationTypeDescription field to given value.
+
+### HasInstallationTypeDescription
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasInstallationTypeDescription() bool`
+
+HasInstallationTypeDescription returns a boolean if a field has been set.
 
 ### GetIsIsnConfigured
 
@@ -290,6 +407,66 @@ SetIsSmartLicenseEnabled sets IsSmartLicenseEnabled field to given value.
 
 HasIsSmartLicenseEnabled returns a boolean if a field has been set.
 
+### GetMode
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetMode() string`
+
+GetMode returns the Mode field if non-nil, zero value otherwise.
+
+### GetModeOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetModeOk() (*string, bool)`
+
+GetModeOk returns a tuple with the Mode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMode
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetMode(v string)`
+
+SetMode sets Mode field to given value.
+
+### HasMode
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasMode() bool`
+
+HasMode returns a boolean if a field has been set.
+
+### GetNetworkInfo
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetNetworkInfo() NiatelemetryNetworkInfo`
+
+GetNetworkInfo returns the NetworkInfo field if non-nil, zero value otherwise.
+
+### GetNetworkInfoOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetNetworkInfoOk() (*NiatelemetryNetworkInfo, bool)`
+
+GetNetworkInfoOk returns a tuple with the NetworkInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkInfo
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetNetworkInfo(v NiatelemetryNetworkInfo)`
+
+SetNetworkInfo sets NetworkInfo field to given value.
+
+### HasNetworkInfo
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasNetworkInfo() bool`
+
+HasNetworkInfo returns a boolean if a field has been set.
+
+### SetNetworkInfoNil
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetNetworkInfoNil(b bool)`
+
+ SetNetworkInfoNil sets the value for NetworkInfo to be an explicit nil
+
+### UnsetNetworkInfo
+`func (o *NiatelemetryNiaInventoryDcnm) UnsetNetworkInfo()`
+
+UnsetNetworkInfo ensures that no value is present for NetworkInfo, not even an explicit nil
 ### GetNumFabrics
 
 `func (o *NiatelemetryNiaInventoryDcnm) GetNumFabrics() int64`
@@ -515,6 +692,31 @@ SetNxosImageCount sets NxosImageCount field to given value.
 
 HasNxosImageCount returns a boolean if a field has been set.
 
+### GetOutofbandIp
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetOutofbandIp() string`
+
+GetOutofbandIp returns the OutofbandIp field if non-nil, zero value otherwise.
+
+### GetOutofbandIpOk
+
+`func (o *NiatelemetryNiaInventoryDcnm) GetOutofbandIpOk() (*string, bool)`
+
+GetOutofbandIpOk returns a tuple with the OutofbandIp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOutofbandIp
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetOutofbandIp(v string)`
+
+SetOutofbandIp sets OutofbandIp field to given value.
+
+### HasOutofbandIp
+
+`func (o *NiatelemetryNiaInventoryDcnm) HasOutofbandIp() bool`
+
+HasOutofbandIp returns a boolean if a field has been set.
+
 ### GetSerial
 
 `func (o *NiatelemetryNiaInventoryDcnm) GetSerial() string`
@@ -617,20 +819,20 @@ HasUpgJobCount returns a boolean if a field has been set.
 
 ### GetUpgStatus
 
-`func (o *NiatelemetryNiaInventoryDcnm) GetUpgStatus() string`
+`func (o *NiatelemetryNiaInventoryDcnm) GetUpgStatus() []NiatelemetryJobDetail`
 
 GetUpgStatus returns the UpgStatus field if non-nil, zero value otherwise.
 
 ### GetUpgStatusOk
 
-`func (o *NiatelemetryNiaInventoryDcnm) GetUpgStatusOk() (*string, bool)`
+`func (o *NiatelemetryNiaInventoryDcnm) GetUpgStatusOk() (*[]NiatelemetryJobDetail, bool)`
 
 GetUpgStatusOk returns a tuple with the UpgStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUpgStatus
 
-`func (o *NiatelemetryNiaInventoryDcnm) SetUpgStatus(v string)`
+`func (o *NiatelemetryNiaInventoryDcnm) SetUpgStatus(v []NiatelemetryJobDetail)`
 
 SetUpgStatus sets UpgStatus field to given value.
 
@@ -640,6 +842,16 @@ SetUpgStatus sets UpgStatus field to given value.
 
 HasUpgStatus returns a boolean if a field has been set.
 
+### SetUpgStatusNil
+
+`func (o *NiatelemetryNiaInventoryDcnm) SetUpgStatusNil(b bool)`
+
+ SetUpgStatusNil sets the value for UpgStatus to be an explicit nil
+
+### UnsetUpgStatus
+`func (o *NiatelemetryNiaInventoryDcnm) UnsetUpgStatus()`
+
+UnsetUpgStatus ensures that no value is present for UpgStatus, not even an explicit nil
 ### GetVersion
 
 `func (o *NiatelemetryNiaInventoryDcnm) GetVersion() string`

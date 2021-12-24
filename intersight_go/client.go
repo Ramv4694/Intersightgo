@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -41,7 +41,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Cisco Intersight API v1.0.9-4809
+// APIClient manages communication with the Cisco Intersight API v0.0.1-37430
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -52,6 +52,8 @@ type APIClient struct {
 	AaaApi *AaaApiService
 
 	AccessApi *AccessApiService
+
+	AcmeApi *AcmeApiService
 
 	AdapterApi *AdapterApiService
 
@@ -80,6 +82,8 @@ type APIClient struct {
 	CondApi *CondApiService
 
 	ConnectorpackApi *ConnectorpackApiService
+
+	ConvergedinfraApi *ConvergedinfraApiService
 
 	CrdApi *CrdApiService
 
@@ -153,6 +157,8 @@ type APIClient struct {
 
 	NtpApi *NtpApiService
 
+	OauthApi *OauthApiService
+
 	OprsApi *OprsApiService
 
 	OrganizationApi *OrganizationApiService
@@ -217,6 +223,8 @@ type APIClient struct {
 
 	TerraformApi *TerraformApiService
 
+	TestcryptApi *TestcryptApiService
+
 	ThermalApi *ThermalApiService
 
 	TopApi *TopApiService
@@ -258,6 +266,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	// API Services
 	c.AaaApi = (*AaaApiService)(&c.common)
 	c.AccessApi = (*AccessApiService)(&c.common)
+	c.AcmeApi = (*AcmeApiService)(&c.common)
 	c.AdapterApi = (*AdapterApiService)(&c.common)
 	c.ApplianceApi = (*ApplianceApiService)(&c.common)
 	c.AssetApi = (*AssetApiService)(&c.common)
@@ -272,6 +281,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ComputeApi = (*ComputeApiService)(&c.common)
 	c.CondApi = (*CondApiService)(&c.common)
 	c.ConnectorpackApi = (*ConnectorpackApiService)(&c.common)
+	c.ConvergedinfraApi = (*ConvergedinfraApiService)(&c.common)
 	c.CrdApi = (*CrdApiService)(&c.common)
 	c.DeviceconnectorApi = (*DeviceconnectorApiService)(&c.common)
 	c.EquipmentApi = (*EquipmentApiService)(&c.common)
@@ -308,6 +318,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NiatelemetryApi = (*NiatelemetryApiService)(&c.common)
 	c.NotificationApi = (*NotificationApiService)(&c.common)
 	c.NtpApi = (*NtpApiService)(&c.common)
+	c.OauthApi = (*OauthApiService)(&c.common)
 	c.OprsApi = (*OprsApiService)(&c.common)
 	c.OrganizationApi = (*OrganizationApiService)(&c.common)
 	c.OsApi = (*OsApiService)(&c.common)
@@ -340,6 +351,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.TelemetryApi = (*TelemetryApiService)(&c.common)
 	c.TerminalApi = (*TerminalApiService)(&c.common)
 	c.TerraformApi = (*TerraformApiService)(&c.common)
+	c.TestcryptApi = (*TestcryptApiService)(&c.common)
 	c.ThermalApi = (*ThermalApiService)(&c.common)
 	c.TopApi = (*TopApiService)(&c.common)
 	c.UcsdApi = (*UcsdApiService)(&c.common)
@@ -439,6 +451,7 @@ func parameterToJson(obj interface{}) (string, error) {
 	}
 	return string(jsonBuf), err
 }
+
 
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
@@ -659,9 +672,9 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		return nil
 	}
 	if jsonCheck.MatchString(contentType) {
-		if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { // oneOf, anyOf schemas
-			if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { // make sure it has UnmarshalJSON defined
-				if err = unmarshalObj.UnmarshalJSON(b); err != nil {
+		if actualObj, ok := v.(interface{GetActualInstance() interface{}}); ok { // oneOf, anyOf schemas
+			if unmarshalObj, ok := actualObj.(interface{UnmarshalJSON([]byte) error}); ok { // make sure it has UnmarshalJSON defined
+				if err = unmarshalObj.UnmarshalJSON(b); err!= nil {
 					return err
 				}
 			} else {

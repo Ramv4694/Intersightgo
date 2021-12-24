@@ -1,6 +1,6 @@
 # \KubernetesApi
 
-All URIs are relative to *https://intersight.com*
+All URIs are relative to *https://qa.starshipcloud.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

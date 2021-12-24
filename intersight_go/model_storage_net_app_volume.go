@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -25,25 +25,32 @@ type StorageNetAppVolume struct {
 	// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property.
 	ObjectType string `json:"ObjectType"`
 	// The autosize mode for NetApp Volume. Modes can be off or grow or grow_shrink. * `off` - The volume will not grow or shrink in size in response to the amount of used space. * `grow` - The volume will automatically grow when used space in the volume is above the grow threshold. * `grow_shrink` - The volume will grow or shrink in size in response to the amount of used space.
-	AutosizeMode *string `json:"AutosizeMode,omitempty"`
-	// Name of the Export Policy associated with the volume.
+	AutosizeMode          *string                                 `json:"AutosizeMode,omitempty"`
+	AvgPerformanceMetrics *StorageNetAppPerformanceMetricsAverage `json:"AvgPerformanceMetrics,omitempty"`
+	// The name of the Export Policy.
 	ExportPolicyName *string `json:"ExportPolicyName,omitempty"`
-	// Name of the snapshot policy.
+	// Unique identifier of NetApp Volume across data center.
+	Key *string `json:"Key,omitempty"`
+	// The name of the Snapshot Policy.
 	SnapshotPolicyName *string `json:"SnapshotPolicyName,omitempty"`
-	// Uuid of the snapshot policy.
+	// The UUID of the Snapshot Policy.
 	SnapshotPolicyUuid *string `json:"SnapshotPolicyUuid,omitempty"`
-	// The total space used by snapshot copies in the volume represented in bytes.
-	SnapshotUtilizedCapacity *int64 `json:"SnapshotUtilizedCapacity,omitempty"`
+	// The space that has been set aside as a reserve for Snapshot copy usage represented as a percent.
+	SnapshotReservePercent *int64 `json:"SnapshotReservePercent,omitempty"`
+	// The total space used by Snapshot copies in the volume represented in bytes.
+	SnapshotUsed *float64 `json:"SnapshotUsed,omitempty"`
 	// The current state of a NetApp volume. * `offline` - Read and write access to the volume is not allowed. * `online` - Read and write access to the volume is allowed. * `error` - Storage volume state of error type. * `mixed` - The constituents of a FlexGroup volume are not all in the same state.
 	State *string `json:"State,omitempty"`
-	// NetApp volume type. The volume type can be Read-write or Data-protection, Load-sharing, or Data-cache. * `data-protection` - Prevents modification of the data on the Volume. * `read-write` - Data on the Volume can be modified. * `load-sharing` - Load Sharing.
+	// NetApp volume type. The volume type can be Read-write, Data-protection, or Load-sharing. * `data-protection` - Prevents modification of the data on the Volume. * `read-write` - Data on the Volume can be modified. * `load-sharing` - The volume type is Load Sharing DP.
 	Type *string `json:"Type,omitempty"`
-	// UUID of NetApp Volume.
+	// Universally unique identifier of a NetApp Volume.
 	Uuid  *string                           `json:"Uuid,omitempty"`
 	Array *StorageNetAppClusterRelationship `json:"Array,omitempty"`
 	// An array of relationships to storageNetAppAggregate resources.
-	DiskPool             []StorageNetAppAggregateRelationship `json:"DiskPool,omitempty"`
-	Tenant               *StorageNetAppStorageVmRelationship  `json:"Tenant,omitempty"`
+	DiskPool []StorageNetAppAggregateRelationship `json:"DiskPool,omitempty"`
+	// An array of relationships to storageNetAppVolumeEvent resources.
+	Events               []StorageNetAppVolumeEventRelationship `json:"Events,omitempty"`
+	Tenant               *StorageNetAppStorageVmRelationship    `json:"Tenant,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -164,6 +171,38 @@ func (o *StorageNetAppVolume) SetAutosizeMode(v string) {
 	o.AutosizeMode = &v
 }
 
+// GetAvgPerformanceMetrics returns the AvgPerformanceMetrics field value if set, zero value otherwise.
+func (o *StorageNetAppVolume) GetAvgPerformanceMetrics() StorageNetAppPerformanceMetricsAverage {
+	if o == nil || o.AvgPerformanceMetrics == nil {
+		var ret StorageNetAppPerformanceMetricsAverage
+		return ret
+	}
+	return *o.AvgPerformanceMetrics
+}
+
+// GetAvgPerformanceMetricsOk returns a tuple with the AvgPerformanceMetrics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppVolume) GetAvgPerformanceMetricsOk() (*StorageNetAppPerformanceMetricsAverage, bool) {
+	if o == nil || o.AvgPerformanceMetrics == nil {
+		return nil, false
+	}
+	return o.AvgPerformanceMetrics, true
+}
+
+// HasAvgPerformanceMetrics returns a boolean if a field has been set.
+func (o *StorageNetAppVolume) HasAvgPerformanceMetrics() bool {
+	if o != nil && o.AvgPerformanceMetrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgPerformanceMetrics gets a reference to the given StorageNetAppPerformanceMetricsAverage and assigns it to the AvgPerformanceMetrics field.
+func (o *StorageNetAppVolume) SetAvgPerformanceMetrics(v StorageNetAppPerformanceMetricsAverage) {
+	o.AvgPerformanceMetrics = &v
+}
+
 // GetExportPolicyName returns the ExportPolicyName field value if set, zero value otherwise.
 func (o *StorageNetAppVolume) GetExportPolicyName() string {
 	if o == nil || o.ExportPolicyName == nil {
@@ -194,6 +233,38 @@ func (o *StorageNetAppVolume) HasExportPolicyName() bool {
 // SetExportPolicyName gets a reference to the given string and assigns it to the ExportPolicyName field.
 func (o *StorageNetAppVolume) SetExportPolicyName(v string) {
 	o.ExportPolicyName = &v
+}
+
+// GetKey returns the Key field value if set, zero value otherwise.
+func (o *StorageNetAppVolume) GetKey() string {
+	if o == nil || o.Key == nil {
+		var ret string
+		return ret
+	}
+	return *o.Key
+}
+
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppVolume) GetKeyOk() (*string, bool) {
+	if o == nil || o.Key == nil {
+		return nil, false
+	}
+	return o.Key, true
+}
+
+// HasKey returns a boolean if a field has been set.
+func (o *StorageNetAppVolume) HasKey() bool {
+	if o != nil && o.Key != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKey gets a reference to the given string and assigns it to the Key field.
+func (o *StorageNetAppVolume) SetKey(v string) {
+	o.Key = &v
 }
 
 // GetSnapshotPolicyName returns the SnapshotPolicyName field value if set, zero value otherwise.
@@ -260,36 +331,68 @@ func (o *StorageNetAppVolume) SetSnapshotPolicyUuid(v string) {
 	o.SnapshotPolicyUuid = &v
 }
 
-// GetSnapshotUtilizedCapacity returns the SnapshotUtilizedCapacity field value if set, zero value otherwise.
-func (o *StorageNetAppVolume) GetSnapshotUtilizedCapacity() int64 {
-	if o == nil || o.SnapshotUtilizedCapacity == nil {
+// GetSnapshotReservePercent returns the SnapshotReservePercent field value if set, zero value otherwise.
+func (o *StorageNetAppVolume) GetSnapshotReservePercent() int64 {
+	if o == nil || o.SnapshotReservePercent == nil {
 		var ret int64
 		return ret
 	}
-	return *o.SnapshotUtilizedCapacity
+	return *o.SnapshotReservePercent
 }
 
-// GetSnapshotUtilizedCapacityOk returns a tuple with the SnapshotUtilizedCapacity field value if set, nil otherwise
+// GetSnapshotReservePercentOk returns a tuple with the SnapshotReservePercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StorageNetAppVolume) GetSnapshotUtilizedCapacityOk() (*int64, bool) {
-	if o == nil || o.SnapshotUtilizedCapacity == nil {
+func (o *StorageNetAppVolume) GetSnapshotReservePercentOk() (*int64, bool) {
+	if o == nil || o.SnapshotReservePercent == nil {
 		return nil, false
 	}
-	return o.SnapshotUtilizedCapacity, true
+	return o.SnapshotReservePercent, true
 }
 
-// HasSnapshotUtilizedCapacity returns a boolean if a field has been set.
-func (o *StorageNetAppVolume) HasSnapshotUtilizedCapacity() bool {
-	if o != nil && o.SnapshotUtilizedCapacity != nil {
+// HasSnapshotReservePercent returns a boolean if a field has been set.
+func (o *StorageNetAppVolume) HasSnapshotReservePercent() bool {
+	if o != nil && o.SnapshotReservePercent != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSnapshotUtilizedCapacity gets a reference to the given int64 and assigns it to the SnapshotUtilizedCapacity field.
-func (o *StorageNetAppVolume) SetSnapshotUtilizedCapacity(v int64) {
-	o.SnapshotUtilizedCapacity = &v
+// SetSnapshotReservePercent gets a reference to the given int64 and assigns it to the SnapshotReservePercent field.
+func (o *StorageNetAppVolume) SetSnapshotReservePercent(v int64) {
+	o.SnapshotReservePercent = &v
+}
+
+// GetSnapshotUsed returns the SnapshotUsed field value if set, zero value otherwise.
+func (o *StorageNetAppVolume) GetSnapshotUsed() float64 {
+	if o == nil || o.SnapshotUsed == nil {
+		var ret float64
+		return ret
+	}
+	return *o.SnapshotUsed
+}
+
+// GetSnapshotUsedOk returns a tuple with the SnapshotUsed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppVolume) GetSnapshotUsedOk() (*float64, bool) {
+	if o == nil || o.SnapshotUsed == nil {
+		return nil, false
+	}
+	return o.SnapshotUsed, true
+}
+
+// HasSnapshotUsed returns a boolean if a field has been set.
+func (o *StorageNetAppVolume) HasSnapshotUsed() bool {
+	if o != nil && o.SnapshotUsed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSnapshotUsed gets a reference to the given float64 and assigns it to the SnapshotUsed field.
+func (o *StorageNetAppVolume) SetSnapshotUsed(v float64) {
+	o.SnapshotUsed = &v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -453,6 +556,39 @@ func (o *StorageNetAppVolume) SetDiskPool(v []StorageNetAppAggregateRelationship
 	o.DiskPool = v
 }
 
+// GetEvents returns the Events field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StorageNetAppVolume) GetEvents() []StorageNetAppVolumeEventRelationship {
+	if o == nil {
+		var ret []StorageNetAppVolumeEventRelationship
+		return ret
+	}
+	return o.Events
+}
+
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StorageNetAppVolume) GetEventsOk() (*[]StorageNetAppVolumeEventRelationship, bool) {
+	if o == nil || o.Events == nil {
+		return nil, false
+	}
+	return &o.Events, true
+}
+
+// HasEvents returns a boolean if a field has been set.
+func (o *StorageNetAppVolume) HasEvents() bool {
+	if o != nil && o.Events != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvents gets a reference to the given []StorageNetAppVolumeEventRelationship and assigns it to the Events field.
+func (o *StorageNetAppVolume) SetEvents(v []StorageNetAppVolumeEventRelationship) {
+	o.Events = v
+}
+
 // GetTenant returns the Tenant field value if set, zero value otherwise.
 func (o *StorageNetAppVolume) GetTenant() StorageNetAppStorageVmRelationship {
 	if o == nil || o.Tenant == nil {
@@ -504,8 +640,14 @@ func (o StorageNetAppVolume) MarshalJSON() ([]byte, error) {
 	if o.AutosizeMode != nil {
 		toSerialize["AutosizeMode"] = o.AutosizeMode
 	}
+	if o.AvgPerformanceMetrics != nil {
+		toSerialize["AvgPerformanceMetrics"] = o.AvgPerformanceMetrics
+	}
 	if o.ExportPolicyName != nil {
 		toSerialize["ExportPolicyName"] = o.ExportPolicyName
+	}
+	if o.Key != nil {
+		toSerialize["Key"] = o.Key
 	}
 	if o.SnapshotPolicyName != nil {
 		toSerialize["SnapshotPolicyName"] = o.SnapshotPolicyName
@@ -513,8 +655,11 @@ func (o StorageNetAppVolume) MarshalJSON() ([]byte, error) {
 	if o.SnapshotPolicyUuid != nil {
 		toSerialize["SnapshotPolicyUuid"] = o.SnapshotPolicyUuid
 	}
-	if o.SnapshotUtilizedCapacity != nil {
-		toSerialize["SnapshotUtilizedCapacity"] = o.SnapshotUtilizedCapacity
+	if o.SnapshotReservePercent != nil {
+		toSerialize["SnapshotReservePercent"] = o.SnapshotReservePercent
+	}
+	if o.SnapshotUsed != nil {
+		toSerialize["SnapshotUsed"] = o.SnapshotUsed
 	}
 	if o.State != nil {
 		toSerialize["State"] = o.State
@@ -530,6 +675,9 @@ func (o StorageNetAppVolume) MarshalJSON() ([]byte, error) {
 	}
 	if o.DiskPool != nil {
 		toSerialize["DiskPool"] = o.DiskPool
+	}
+	if o.Events != nil {
+		toSerialize["Events"] = o.Events
 	}
 	if o.Tenant != nil {
 		toSerialize["Tenant"] = o.Tenant
@@ -549,25 +697,32 @@ func (o *StorageNetAppVolume) UnmarshalJSON(bytes []byte) (err error) {
 		// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property.
 		ObjectType string `json:"ObjectType"`
 		// The autosize mode for NetApp Volume. Modes can be off or grow or grow_shrink. * `off` - The volume will not grow or shrink in size in response to the amount of used space. * `grow` - The volume will automatically grow when used space in the volume is above the grow threshold. * `grow_shrink` - The volume will grow or shrink in size in response to the amount of used space.
-		AutosizeMode *string `json:"AutosizeMode,omitempty"`
-		// Name of the Export Policy associated with the volume.
+		AutosizeMode          *string                                 `json:"AutosizeMode,omitempty"`
+		AvgPerformanceMetrics *StorageNetAppPerformanceMetricsAverage `json:"AvgPerformanceMetrics,omitempty"`
+		// The name of the Export Policy.
 		ExportPolicyName *string `json:"ExportPolicyName,omitempty"`
-		// Name of the snapshot policy.
+		// Unique identifier of NetApp Volume across data center.
+		Key *string `json:"Key,omitempty"`
+		// The name of the Snapshot Policy.
 		SnapshotPolicyName *string `json:"SnapshotPolicyName,omitempty"`
-		// Uuid of the snapshot policy.
+		// The UUID of the Snapshot Policy.
 		SnapshotPolicyUuid *string `json:"SnapshotPolicyUuid,omitempty"`
-		// The total space used by snapshot copies in the volume represented in bytes.
-		SnapshotUtilizedCapacity *int64 `json:"SnapshotUtilizedCapacity,omitempty"`
+		// The space that has been set aside as a reserve for Snapshot copy usage represented as a percent.
+		SnapshotReservePercent *int64 `json:"SnapshotReservePercent,omitempty"`
+		// The total space used by Snapshot copies in the volume represented in bytes.
+		SnapshotUsed *float64 `json:"SnapshotUsed,omitempty"`
 		// The current state of a NetApp volume. * `offline` - Read and write access to the volume is not allowed. * `online` - Read and write access to the volume is allowed. * `error` - Storage volume state of error type. * `mixed` - The constituents of a FlexGroup volume are not all in the same state.
 		State *string `json:"State,omitempty"`
-		// NetApp volume type. The volume type can be Read-write or Data-protection, Load-sharing, or Data-cache. * `data-protection` - Prevents modification of the data on the Volume. * `read-write` - Data on the Volume can be modified. * `load-sharing` - Load Sharing.
+		// NetApp volume type. The volume type can be Read-write, Data-protection, or Load-sharing. * `data-protection` - Prevents modification of the data on the Volume. * `read-write` - Data on the Volume can be modified. * `load-sharing` - The volume type is Load Sharing DP.
 		Type *string `json:"Type,omitempty"`
-		// UUID of NetApp Volume.
+		// Universally unique identifier of a NetApp Volume.
 		Uuid  *string                           `json:"Uuid,omitempty"`
 		Array *StorageNetAppClusterRelationship `json:"Array,omitempty"`
 		// An array of relationships to storageNetAppAggregate resources.
 		DiskPool []StorageNetAppAggregateRelationship `json:"DiskPool,omitempty"`
-		Tenant   *StorageNetAppStorageVmRelationship  `json:"Tenant,omitempty"`
+		// An array of relationships to storageNetAppVolumeEvent resources.
+		Events []StorageNetAppVolumeEventRelationship `json:"Events,omitempty"`
+		Tenant *StorageNetAppStorageVmRelationship    `json:"Tenant,omitempty"`
 	}
 
 	varStorageNetAppVolumeWithoutEmbeddedStruct := StorageNetAppVolumeWithoutEmbeddedStruct{}
@@ -578,15 +733,19 @@ func (o *StorageNetAppVolume) UnmarshalJSON(bytes []byte) (err error) {
 		varStorageNetAppVolume.ClassId = varStorageNetAppVolumeWithoutEmbeddedStruct.ClassId
 		varStorageNetAppVolume.ObjectType = varStorageNetAppVolumeWithoutEmbeddedStruct.ObjectType
 		varStorageNetAppVolume.AutosizeMode = varStorageNetAppVolumeWithoutEmbeddedStruct.AutosizeMode
+		varStorageNetAppVolume.AvgPerformanceMetrics = varStorageNetAppVolumeWithoutEmbeddedStruct.AvgPerformanceMetrics
 		varStorageNetAppVolume.ExportPolicyName = varStorageNetAppVolumeWithoutEmbeddedStruct.ExportPolicyName
+		varStorageNetAppVolume.Key = varStorageNetAppVolumeWithoutEmbeddedStruct.Key
 		varStorageNetAppVolume.SnapshotPolicyName = varStorageNetAppVolumeWithoutEmbeddedStruct.SnapshotPolicyName
 		varStorageNetAppVolume.SnapshotPolicyUuid = varStorageNetAppVolumeWithoutEmbeddedStruct.SnapshotPolicyUuid
-		varStorageNetAppVolume.SnapshotUtilizedCapacity = varStorageNetAppVolumeWithoutEmbeddedStruct.SnapshotUtilizedCapacity
+		varStorageNetAppVolume.SnapshotReservePercent = varStorageNetAppVolumeWithoutEmbeddedStruct.SnapshotReservePercent
+		varStorageNetAppVolume.SnapshotUsed = varStorageNetAppVolumeWithoutEmbeddedStruct.SnapshotUsed
 		varStorageNetAppVolume.State = varStorageNetAppVolumeWithoutEmbeddedStruct.State
 		varStorageNetAppVolume.Type = varStorageNetAppVolumeWithoutEmbeddedStruct.Type
 		varStorageNetAppVolume.Uuid = varStorageNetAppVolumeWithoutEmbeddedStruct.Uuid
 		varStorageNetAppVolume.Array = varStorageNetAppVolumeWithoutEmbeddedStruct.Array
 		varStorageNetAppVolume.DiskPool = varStorageNetAppVolumeWithoutEmbeddedStruct.DiskPool
+		varStorageNetAppVolume.Events = varStorageNetAppVolumeWithoutEmbeddedStruct.Events
 		varStorageNetAppVolume.Tenant = varStorageNetAppVolumeWithoutEmbeddedStruct.Tenant
 		*o = StorageNetAppVolume(varStorageNetAppVolume)
 	} else {
@@ -608,15 +767,19 @@ func (o *StorageNetAppVolume) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "ClassId")
 		delete(additionalProperties, "ObjectType")
 		delete(additionalProperties, "AutosizeMode")
+		delete(additionalProperties, "AvgPerformanceMetrics")
 		delete(additionalProperties, "ExportPolicyName")
+		delete(additionalProperties, "Key")
 		delete(additionalProperties, "SnapshotPolicyName")
 		delete(additionalProperties, "SnapshotPolicyUuid")
-		delete(additionalProperties, "SnapshotUtilizedCapacity")
+		delete(additionalProperties, "SnapshotReservePercent")
+		delete(additionalProperties, "SnapshotUsed")
 		delete(additionalProperties, "State")
 		delete(additionalProperties, "Type")
 		delete(additionalProperties, "Uuid")
 		delete(additionalProperties, "Array")
 		delete(additionalProperties, "DiskPool")
+		delete(additionalProperties, "Events")
 		delete(additionalProperties, "Tenant")
 
 		// remove fields from embedded structs

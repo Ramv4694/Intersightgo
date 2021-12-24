@@ -7,9 +7,10 @@ Name | Type | Description | Notes
 **ClassId** | **string** | The fully-qualified name of the instantiated, concrete type. This property is used as a discriminator to identify the type of the payload when marshaling and unmarshaling data. | [default to "storage.NetAppFcInterface"]
 **ObjectType** | **string** | The fully-qualified name of the instantiated, concrete type. The value should be the same as the &#39;ClassId&#39; property. | [default to "storage.NetAppFcInterface"]
 **Enabled** | Pointer to **string** | FC interface is enabled or not. | [optional] [readonly] 
-**State** | Pointer to **string** | State of the FC interface. * &#x60;down&#x60; - An inactive port is listed as Down. * &#x60;up&#x60; - An active port is listed as Up. * &#x60;present&#x60; - An active port is listed as present. | [optional] [readonly] [default to "down"]
+**State** | Pointer to **string** | The state of the FC interface. * &#x60;down&#x60; - An inactive port is listed as Down. * &#x60;up&#x60; - An active port is listed as Up. * &#x60;present&#x60; - An active port is listed as present. | [optional] [readonly] [default to "down"]
 **Uuid** | Pointer to **string** | Uuid of  NetApp FC Interface. | [optional] [readonly] 
 **ArrayController** | Pointer to [**StorageNetAppNodeRelationship**](storage.NetAppNode.Relationship.md) |  | [optional] 
+**Events** | Pointer to [**[]StorageNetAppFcInterfaceEventRelationship**](StorageNetAppFcInterfaceEventRelationship.md) | An array of relationships to storageNetAppFcInterfaceEvent resources. | [optional] [readonly] 
 **PhysicalPort** | Pointer to [**StorageNetAppFcPortRelationship**](storage.NetAppFcPort.Relationship.md) |  | [optional] 
 **Tenant** | Pointer to [**StorageNetAppStorageVmRelationship**](storage.NetAppStorageVm.Relationship.md) |  | [optional] 
 
@@ -172,6 +173,41 @@ SetArrayController sets ArrayController field to given value.
 
 HasArrayController returns a boolean if a field has been set.
 
+### GetEvents
+
+`func (o *StorageNetAppFcInterface) GetEvents() []StorageNetAppFcInterfaceEventRelationship`
+
+GetEvents returns the Events field if non-nil, zero value otherwise.
+
+### GetEventsOk
+
+`func (o *StorageNetAppFcInterface) GetEventsOk() (*[]StorageNetAppFcInterfaceEventRelationship, bool)`
+
+GetEventsOk returns a tuple with the Events field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEvents
+
+`func (o *StorageNetAppFcInterface) SetEvents(v []StorageNetAppFcInterfaceEventRelationship)`
+
+SetEvents sets Events field to given value.
+
+### HasEvents
+
+`func (o *StorageNetAppFcInterface) HasEvents() bool`
+
+HasEvents returns a boolean if a field has been set.
+
+### SetEventsNil
+
+`func (o *StorageNetAppFcInterface) SetEventsNil(b bool)`
+
+ SetEventsNil sets the value for Events to be an explicit nil
+
+### UnsetEvents
+`func (o *StorageNetAppFcInterface) UnsetEvents()`
+
+UnsetEvents ensures that no value is present for Events, not even an explicit nil
 ### GetPhysicalPort
 
 `func (o *StorageNetAppFcInterface) GetPhysicalPort() StorageNetAppFcPortRelationship`

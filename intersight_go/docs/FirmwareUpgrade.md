@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **ClassId** | **string** | The fully-qualified name of the instantiated, concrete type. This property is used as a discriminator to identify the type of the payload when marshaling and unmarshaling data. | [default to "firmware.Upgrade"]
 **ObjectType** | **string** | The fully-qualified name of the instantiated, concrete type. The value should be the same as the &#39;ClassId&#39; property. | [default to "firmware.Upgrade"]
 **ExcludeComponentList** | Pointer to **[]string** |  | [optional] 
+**ExcludeComponentPidList** | Pointer to [**NullableFirmwareExcludeComponentPidListType**](firmware.ExcludeComponentPidListType.md) |  | [optional] 
 **Device** | Pointer to [**AssetDeviceRegistrationRelationship**](asset.DeviceRegistration.Relationship.md) |  | [optional] 
 **Server** | Pointer to [**ComputePhysicalRelationship**](compute.Physical.Relationship.md) |  | [optional] 
 
@@ -104,6 +105,41 @@ HasExcludeComponentList returns a boolean if a field has been set.
 `func (o *FirmwareUpgrade) UnsetExcludeComponentList()`
 
 UnsetExcludeComponentList ensures that no value is present for ExcludeComponentList, not even an explicit nil
+### GetExcludeComponentPidList
+
+`func (o *FirmwareUpgrade) GetExcludeComponentPidList() FirmwareExcludeComponentPidListType`
+
+GetExcludeComponentPidList returns the ExcludeComponentPidList field if non-nil, zero value otherwise.
+
+### GetExcludeComponentPidListOk
+
+`func (o *FirmwareUpgrade) GetExcludeComponentPidListOk() (*FirmwareExcludeComponentPidListType, bool)`
+
+GetExcludeComponentPidListOk returns a tuple with the ExcludeComponentPidList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludeComponentPidList
+
+`func (o *FirmwareUpgrade) SetExcludeComponentPidList(v FirmwareExcludeComponentPidListType)`
+
+SetExcludeComponentPidList sets ExcludeComponentPidList field to given value.
+
+### HasExcludeComponentPidList
+
+`func (o *FirmwareUpgrade) HasExcludeComponentPidList() bool`
+
+HasExcludeComponentPidList returns a boolean if a field has been set.
+
+### SetExcludeComponentPidListNil
+
+`func (o *FirmwareUpgrade) SetExcludeComponentPidListNil(b bool)`
+
+ SetExcludeComponentPidListNil sets the value for ExcludeComponentPidList to be an explicit nil
+
+### UnsetExcludeComponentPidList
+`func (o *FirmwareUpgrade) UnsetExcludeComponentPidList()`
+
+UnsetExcludeComponentPidList ensures that no value is present for ExcludeComponentPidList, not even an explicit nil
 ### GetDevice
 
 `func (o *FirmwareUpgrade) GetDevice() AssetDeviceRegistrationRelationship`

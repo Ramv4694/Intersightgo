@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -26,18 +26,21 @@ type ComputeServerSettingAllOf struct {
 	// User configured power state of the server. * `Policy` - Power state is set to the default value in the policy. * `PowerOn` - Power state of the server is set to On. * `PowerOff` - Power state is the server set to Off. * `PowerCycle` - Power state the server is reset. * `HardReset` - Power state the server is hard reset. * `Shutdown` - Operating system on the server is shut down. * `Reboot` - Power state of IMC is rebooted.
 	AdminPowerState    *string                                      `json:"AdminPowerState,omitempty"`
 	CertificatesAction NullableCertificatemanagementCertificateBase `json:"CertificatesAction,omitempty"`
-	// The allowed actions on the CMOS Reset. * `Ready` - CMOS Reset operation is allowed to be done on the server in this state. * `Pending` - This indicates that the previous CMOS Reset operation on this server has not completed due to a pending power cycle. CMOS Reset operation cannot be done on the server when in this state. * `Reset` - The value that the UI/API needs to provide to trigger a CMOS Reset operation on a server.
+	// The allowed actions on the CMOS Reset. * `Ready` - CMOS Reset operation is allowed to be done on the server in this state. * `Pending` - The identifier to state that the previous CMOS Reset operation on this server has not completed due to a pending power cycle. CMOS Reset operation cannot be done on the server when in this state. * `Reset` - The value that the UI/API needs to provide to trigger a CMOS Reset operation on a server.
 	CmosReset *string `json:"CmosReset,omitempty"`
 	// The configured state of these settings in the target server. The value is any one of Applied, Applying, Failed. Applied - This state denotes that the settings are applied successfully in the target server. Applying - This state denotes that the settings are being applied in the target server. Failed - This state denotes that the settings could not be applied in the target server. * `Applied` - User configured settings are in applied state. * `Applying` - User settings are being applied on the target server. * `Failed` - User configured settings could not be applied.
 	ConfigState *string `json:"ConfigState,omitempty"`
 	// The allowed actions on the Front Panel Lock. * `Unlock` - Front Panel of the server is set to Unlocked state. * `Lock` - Front Panel of the server is set to Locked state.
 	FrontPanelLockState *string `json:"FrontPanelLockState,omitempty"`
+	// The allowed actions on the vKVM Reset. * `Ready` - Reset vKVM operation is allowed to be done on the server in this state. * `Reset` - The value that the UI/API needs to provide to trigger a Reset vKVM operation on a server.
+	KvmReset *string `json:"KvmReset,omitempty"`
 	// The property used to identify the name of the server it is associated with.
 	Name *string `json:"Name,omitempty"`
 	// The name of the device chosen by user for configuring One-Time Boot device.
 	OneTimeBootDevice             *string                                      `json:"OneTimeBootDevice,omitempty"`
 	PersistentMemoryOperation     NullableComputePersistentMemoryOperation     `json:"PersistentMemoryOperation,omitempty"`
 	ServerConfig                  NullableComputeServerConfig                  `json:"ServerConfig,omitempty"`
+	ServerOpStatus                []ComputeServerOpStatus                      `json:"ServerOpStatus,omitempty"`
 	StorageControllerOperation    NullableComputeStorageControllerOperation    `json:"StorageControllerOperation,omitempty"`
 	StoragePhysicalDriveOperation NullableComputeStoragePhysicalDriveOperation `json:"StoragePhysicalDriveOperation,omitempty"`
 	StorageVirtualDriveOperation  NullableComputeStorageVirtualDriveOperation  `json:"StorageVirtualDriveOperation,omitempty"`
@@ -68,6 +71,8 @@ func NewComputeServerSettingAllOf(classId string, objectType string) *ComputeSer
 	this.ConfigState = &configState
 	var frontPanelLockState string = "Unlock"
 	this.FrontPanelLockState = &frontPanelLockState
+	var kvmReset string = "Ready"
+	this.KvmReset = &kvmReset
 	return &this
 }
 
@@ -90,6 +95,8 @@ func NewComputeServerSettingAllOfWithDefaults() *ComputeServerSettingAllOf {
 	this.ConfigState = &configState
 	var frontPanelLockState string = "Unlock"
 	this.FrontPanelLockState = &frontPanelLockState
+	var kvmReset string = "Ready"
+	this.KvmReset = &kvmReset
 	return &this
 }
 
@@ -344,6 +351,38 @@ func (o *ComputeServerSettingAllOf) SetFrontPanelLockState(v string) {
 	o.FrontPanelLockState = &v
 }
 
+// GetKvmReset returns the KvmReset field value if set, zero value otherwise.
+func (o *ComputeServerSettingAllOf) GetKvmReset() string {
+	if o == nil || o.KvmReset == nil {
+		var ret string
+		return ret
+	}
+	return *o.KvmReset
+}
+
+// GetKvmResetOk returns a tuple with the KvmReset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ComputeServerSettingAllOf) GetKvmResetOk() (*string, bool) {
+	if o == nil || o.KvmReset == nil {
+		return nil, false
+	}
+	return o.KvmReset, true
+}
+
+// HasKvmReset returns a boolean if a field has been set.
+func (o *ComputeServerSettingAllOf) HasKvmReset() bool {
+	if o != nil && o.KvmReset != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKvmReset gets a reference to the given string and assigns it to the KvmReset field.
+func (o *ComputeServerSettingAllOf) SetKvmReset(v string) {
+	o.KvmReset = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ComputeServerSettingAllOf) GetName() string {
 	if o == nil || o.Name == nil {
@@ -492,6 +531,39 @@ func (o *ComputeServerSettingAllOf) SetServerConfigNil() {
 // UnsetServerConfig ensures that no value is present for ServerConfig, not even an explicit nil
 func (o *ComputeServerSettingAllOf) UnsetServerConfig() {
 	o.ServerConfig.Unset()
+}
+
+// GetServerOpStatus returns the ServerOpStatus field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ComputeServerSettingAllOf) GetServerOpStatus() []ComputeServerOpStatus {
+	if o == nil {
+		var ret []ComputeServerOpStatus
+		return ret
+	}
+	return o.ServerOpStatus
+}
+
+// GetServerOpStatusOk returns a tuple with the ServerOpStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ComputeServerSettingAllOf) GetServerOpStatusOk() (*[]ComputeServerOpStatus, bool) {
+	if o == nil || o.ServerOpStatus == nil {
+		return nil, false
+	}
+	return &o.ServerOpStatus, true
+}
+
+// HasServerOpStatus returns a boolean if a field has been set.
+func (o *ComputeServerSettingAllOf) HasServerOpStatus() bool {
+	if o != nil && o.ServerOpStatus != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetServerOpStatus gets a reference to the given []ComputeServerOpStatus and assigns it to the ServerOpStatus field.
+func (o *ComputeServerSettingAllOf) SetServerOpStatus(v []ComputeServerOpStatus) {
+	o.ServerOpStatus = v
 }
 
 // GetStorageControllerOperation returns the StorageControllerOperation field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -777,6 +849,9 @@ func (o ComputeServerSettingAllOf) MarshalJSON() ([]byte, error) {
 	if o.FrontPanelLockState != nil {
 		toSerialize["FrontPanelLockState"] = o.FrontPanelLockState
 	}
+	if o.KvmReset != nil {
+		toSerialize["KvmReset"] = o.KvmReset
+	}
 	if o.Name != nil {
 		toSerialize["Name"] = o.Name
 	}
@@ -788,6 +863,9 @@ func (o ComputeServerSettingAllOf) MarshalJSON() ([]byte, error) {
 	}
 	if o.ServerConfig.IsSet() {
 		toSerialize["ServerConfig"] = o.ServerConfig.Get()
+	}
+	if o.ServerOpStatus != nil {
+		toSerialize["ServerOpStatus"] = o.ServerOpStatus
 	}
 	if o.StorageControllerOperation.IsSet() {
 		toSerialize["StorageControllerOperation"] = o.StorageControllerOperation.Get()
@@ -836,10 +914,12 @@ func (o *ComputeServerSettingAllOf) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "CmosReset")
 		delete(additionalProperties, "ConfigState")
 		delete(additionalProperties, "FrontPanelLockState")
+		delete(additionalProperties, "KvmReset")
 		delete(additionalProperties, "Name")
 		delete(additionalProperties, "OneTimeBootDevice")
 		delete(additionalProperties, "PersistentMemoryOperation")
 		delete(additionalProperties, "ServerConfig")
+		delete(additionalProperties, "ServerOpStatus")
 		delete(additionalProperties, "StorageControllerOperation")
 		delete(additionalProperties, "StoragePhysicalDriveOperation")
 		delete(additionalProperties, "StorageVirtualDriveOperation")
