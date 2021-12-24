@@ -11,25 +11,43 @@ Name | Type | Description | Notes
 **BgwInterfaceUpCount** | Pointer to **int64** | Count number of active interfaces on border gateways. | [optional] 
 **BorderGatewaySpineCount** | Pointer to **int64** | Count number of border gateway spines in the fabric inventory. | [optional] 
 **BorderLeafCount** | Pointer to **int64** | Count number of border leafs in the fabric inventory. | [optional] 
+**CloudsecAutoconfig** | Pointer to **bool** | Cloudsec autoconfig details on the fabric. | [optional] 
 **DciSubnetRange** | Pointer to **string** | Returns the dci subnet range. | [optional] 
 **DciSubnetTargetMask** | Pointer to **string** | Returns the dci subnet target mask. | [optional] 
 **DcnmtrackerEnabled** | Pointer to **bool** | Returns the value of the dcnmtrackerEnabled field. | [optional] 
 **EbgpEvpnLinkUpCount** | Pointer to **int64** | Count number of ebgp evpn active interfaces. | [optional] 
 **FabricId** | Pointer to **string** | Uniquely identifies a fabric. | [optional] 
 **FabricName** | Pointer to **string** | Returns the value of the Name of a fabric. | [optional] 
+**FabricParent** | Pointer to **string** | Parent of the fabric on DCNM. | [optional] 
+**FabricTechnology** | Pointer to **string** | Fabric Technology details on the fabric. | [optional] 
 **IsBgwPresent** | Pointer to **bool** | Checks if border gateway is present in the fabric inventory. | [optional] 
+**IsEnableNxapiHttp** | Pointer to **bool** | Check if NXAPI HTTP is enable or not on the fabric. | [optional] 
+**IsEnableRealTimeBackup** | Pointer to **bool** | Check if real time backup is enable or not on the fabric. | [optional] 
 **IsNgoamEnabled** | Pointer to **bool** | Returns if ngoam is enabled. | [optional] 
 **IsScheduledBackUpEnabled** | Pointer to **bool** | Returns if the scheduled backup is enabled. | [optional] 
 **LeafCount** | Pointer to **int64** | Returns total number of leafs in the fabric. | [optional] 
+**LinkStateRouting** | Pointer to **string** | Link state routing details on the fabric. | [optional] 
 **LogicalLinks** | Pointer to [**[]NiatelemetryLogicalLink**](NiatelemetryLogicalLink.md) |  | [optional] 
+**NetworkDeploymentCount** | Pointer to **int64** | No of networks deployed on a fabric. | [optional] 
+**NetworkDeploymentStatus** | Pointer to [**[]NiatelemetryDeploymentStatus**](NiatelemetryDeploymentStatus.md) |  | [optional] 
+**NtpServerIpList** | Pointer to **string** | NTP server IP List on the fabric. | [optional] 
 **NxosVniBwSitesCount** | Pointer to **int64** | Returns the count of vnis between sites. | [optional] 
 **NxosVrfBwSitesCount** | Pointer to **int64** | Returns the count of vrfs between sites. | [optional] 
 **NxosVrfCount** | Pointer to **int64** | Returns the value of the nxosVrfCount field. | [optional] 
+**ReplicationMode** | Pointer to **string** | Replication mode details on the fabric. | [optional] 
+**RpMode** | Pointer to **string** | RP Mode details on the fabric. | [optional] 
 **Serial** | Pointer to **string** | Serial number of device being inventoried. The serial number is unique per device. | [optional] 
 **SiteName** | Pointer to **string** | Name of fabric domain of the controller. | [optional] 
+**SoftwareImage** | Pointer to **string** | Software image details on the fabric. | [optional] 
 **SpineCount** | Pointer to **int64** | Returns total number of spines in the fabric. | [optional] 
+**SyslogServerIpList** | Pointer to **string** | Syslog server IP list on DCNM. | [optional] 
+**SyslogSev** | Pointer to **string** | Syslog sev details on the fabric. | [optional] 
+**TemplateName** | Pointer to **string** | Template name of the fabric on DCNM. | [optional] 
 **VlanVniMappings** | Pointer to **string** | VLAN to VNI mappings configured in the DCNM. | [optional] 
 **VniIpCount** | Pointer to **int64** | Count number of IP addresses configured in the DCNM networks. | [optional] 
+**VpcDetails** | Pointer to [**[]NiatelemetryVpcDetails**](NiatelemetryVpcDetails.md) |  | [optional] 
+**VrfDeploymentCount** | Pointer to **int64** | No of vrfs deployed on a fabric. | [optional] 
+**VrfDeploymentStatus** | Pointer to [**[]NiatelemetryDeploymentStatus**](NiatelemetryDeploymentStatus.md) |  | [optional] 
 **RegisteredDevice** | Pointer to [**AssetDeviceRegistrationRelationship**](asset.DeviceRegistration.Relationship.md) |  | [optional] 
 
 ## Methods
@@ -216,6 +234,31 @@ SetBorderLeafCount sets BorderLeafCount field to given value.
 
 HasBorderLeafCount returns a boolean if a field has been set.
 
+### GetCloudsecAutoconfig
+
+`func (o *NiatelemetryNiaInventoryFabric) GetCloudsecAutoconfig() bool`
+
+GetCloudsecAutoconfig returns the CloudsecAutoconfig field if non-nil, zero value otherwise.
+
+### GetCloudsecAutoconfigOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetCloudsecAutoconfigOk() (*bool, bool)`
+
+GetCloudsecAutoconfigOk returns a tuple with the CloudsecAutoconfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCloudsecAutoconfig
+
+`func (o *NiatelemetryNiaInventoryFabric) SetCloudsecAutoconfig(v bool)`
+
+SetCloudsecAutoconfig sets CloudsecAutoconfig field to given value.
+
+### HasCloudsecAutoconfig
+
+`func (o *NiatelemetryNiaInventoryFabric) HasCloudsecAutoconfig() bool`
+
+HasCloudsecAutoconfig returns a boolean if a field has been set.
+
 ### GetDciSubnetRange
 
 `func (o *NiatelemetryNiaInventoryFabric) GetDciSubnetRange() string`
@@ -366,6 +409,56 @@ SetFabricName sets FabricName field to given value.
 
 HasFabricName returns a boolean if a field has been set.
 
+### GetFabricParent
+
+`func (o *NiatelemetryNiaInventoryFabric) GetFabricParent() string`
+
+GetFabricParent returns the FabricParent field if non-nil, zero value otherwise.
+
+### GetFabricParentOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetFabricParentOk() (*string, bool)`
+
+GetFabricParentOk returns a tuple with the FabricParent field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricParent
+
+`func (o *NiatelemetryNiaInventoryFabric) SetFabricParent(v string)`
+
+SetFabricParent sets FabricParent field to given value.
+
+### HasFabricParent
+
+`func (o *NiatelemetryNiaInventoryFabric) HasFabricParent() bool`
+
+HasFabricParent returns a boolean if a field has been set.
+
+### GetFabricTechnology
+
+`func (o *NiatelemetryNiaInventoryFabric) GetFabricTechnology() string`
+
+GetFabricTechnology returns the FabricTechnology field if non-nil, zero value otherwise.
+
+### GetFabricTechnologyOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetFabricTechnologyOk() (*string, bool)`
+
+GetFabricTechnologyOk returns a tuple with the FabricTechnology field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFabricTechnology
+
+`func (o *NiatelemetryNiaInventoryFabric) SetFabricTechnology(v string)`
+
+SetFabricTechnology sets FabricTechnology field to given value.
+
+### HasFabricTechnology
+
+`func (o *NiatelemetryNiaInventoryFabric) HasFabricTechnology() bool`
+
+HasFabricTechnology returns a boolean if a field has been set.
+
 ### GetIsBgwPresent
 
 `func (o *NiatelemetryNiaInventoryFabric) GetIsBgwPresent() bool`
@@ -390,6 +483,56 @@ SetIsBgwPresent sets IsBgwPresent field to given value.
 `func (o *NiatelemetryNiaInventoryFabric) HasIsBgwPresent() bool`
 
 HasIsBgwPresent returns a boolean if a field has been set.
+
+### GetIsEnableNxapiHttp
+
+`func (o *NiatelemetryNiaInventoryFabric) GetIsEnableNxapiHttp() bool`
+
+GetIsEnableNxapiHttp returns the IsEnableNxapiHttp field if non-nil, zero value otherwise.
+
+### GetIsEnableNxapiHttpOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetIsEnableNxapiHttpOk() (*bool, bool)`
+
+GetIsEnableNxapiHttpOk returns a tuple with the IsEnableNxapiHttp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEnableNxapiHttp
+
+`func (o *NiatelemetryNiaInventoryFabric) SetIsEnableNxapiHttp(v bool)`
+
+SetIsEnableNxapiHttp sets IsEnableNxapiHttp field to given value.
+
+### HasIsEnableNxapiHttp
+
+`func (o *NiatelemetryNiaInventoryFabric) HasIsEnableNxapiHttp() bool`
+
+HasIsEnableNxapiHttp returns a boolean if a field has been set.
+
+### GetIsEnableRealTimeBackup
+
+`func (o *NiatelemetryNiaInventoryFabric) GetIsEnableRealTimeBackup() bool`
+
+GetIsEnableRealTimeBackup returns the IsEnableRealTimeBackup field if non-nil, zero value otherwise.
+
+### GetIsEnableRealTimeBackupOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetIsEnableRealTimeBackupOk() (*bool, bool)`
+
+GetIsEnableRealTimeBackupOk returns a tuple with the IsEnableRealTimeBackup field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsEnableRealTimeBackup
+
+`func (o *NiatelemetryNiaInventoryFabric) SetIsEnableRealTimeBackup(v bool)`
+
+SetIsEnableRealTimeBackup sets IsEnableRealTimeBackup field to given value.
+
+### HasIsEnableRealTimeBackup
+
+`func (o *NiatelemetryNiaInventoryFabric) HasIsEnableRealTimeBackup() bool`
+
+HasIsEnableRealTimeBackup returns a boolean if a field has been set.
 
 ### GetIsNgoamEnabled
 
@@ -466,6 +609,31 @@ SetLeafCount sets LeafCount field to given value.
 
 HasLeafCount returns a boolean if a field has been set.
 
+### GetLinkStateRouting
+
+`func (o *NiatelemetryNiaInventoryFabric) GetLinkStateRouting() string`
+
+GetLinkStateRouting returns the LinkStateRouting field if non-nil, zero value otherwise.
+
+### GetLinkStateRoutingOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetLinkStateRoutingOk() (*string, bool)`
+
+GetLinkStateRoutingOk returns a tuple with the LinkStateRouting field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkStateRouting
+
+`func (o *NiatelemetryNiaInventoryFabric) SetLinkStateRouting(v string)`
+
+SetLinkStateRouting sets LinkStateRouting field to given value.
+
+### HasLinkStateRouting
+
+`func (o *NiatelemetryNiaInventoryFabric) HasLinkStateRouting() bool`
+
+HasLinkStateRouting returns a boolean if a field has been set.
+
 ### GetLogicalLinks
 
 `func (o *NiatelemetryNiaInventoryFabric) GetLogicalLinks() []NiatelemetryLogicalLink`
@@ -501,6 +669,91 @@ HasLogicalLinks returns a boolean if a field has been set.
 `func (o *NiatelemetryNiaInventoryFabric) UnsetLogicalLinks()`
 
 UnsetLogicalLinks ensures that no value is present for LogicalLinks, not even an explicit nil
+### GetNetworkDeploymentCount
+
+`func (o *NiatelemetryNiaInventoryFabric) GetNetworkDeploymentCount() int64`
+
+GetNetworkDeploymentCount returns the NetworkDeploymentCount field if non-nil, zero value otherwise.
+
+### GetNetworkDeploymentCountOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetNetworkDeploymentCountOk() (*int64, bool)`
+
+GetNetworkDeploymentCountOk returns a tuple with the NetworkDeploymentCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeploymentCount
+
+`func (o *NiatelemetryNiaInventoryFabric) SetNetworkDeploymentCount(v int64)`
+
+SetNetworkDeploymentCount sets NetworkDeploymentCount field to given value.
+
+### HasNetworkDeploymentCount
+
+`func (o *NiatelemetryNiaInventoryFabric) HasNetworkDeploymentCount() bool`
+
+HasNetworkDeploymentCount returns a boolean if a field has been set.
+
+### GetNetworkDeploymentStatus
+
+`func (o *NiatelemetryNiaInventoryFabric) GetNetworkDeploymentStatus() []NiatelemetryDeploymentStatus`
+
+GetNetworkDeploymentStatus returns the NetworkDeploymentStatus field if non-nil, zero value otherwise.
+
+### GetNetworkDeploymentStatusOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetNetworkDeploymentStatusOk() (*[]NiatelemetryDeploymentStatus, bool)`
+
+GetNetworkDeploymentStatusOk returns a tuple with the NetworkDeploymentStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNetworkDeploymentStatus
+
+`func (o *NiatelemetryNiaInventoryFabric) SetNetworkDeploymentStatus(v []NiatelemetryDeploymentStatus)`
+
+SetNetworkDeploymentStatus sets NetworkDeploymentStatus field to given value.
+
+### HasNetworkDeploymentStatus
+
+`func (o *NiatelemetryNiaInventoryFabric) HasNetworkDeploymentStatus() bool`
+
+HasNetworkDeploymentStatus returns a boolean if a field has been set.
+
+### SetNetworkDeploymentStatusNil
+
+`func (o *NiatelemetryNiaInventoryFabric) SetNetworkDeploymentStatusNil(b bool)`
+
+ SetNetworkDeploymentStatusNil sets the value for NetworkDeploymentStatus to be an explicit nil
+
+### UnsetNetworkDeploymentStatus
+`func (o *NiatelemetryNiaInventoryFabric) UnsetNetworkDeploymentStatus()`
+
+UnsetNetworkDeploymentStatus ensures that no value is present for NetworkDeploymentStatus, not even an explicit nil
+### GetNtpServerIpList
+
+`func (o *NiatelemetryNiaInventoryFabric) GetNtpServerIpList() string`
+
+GetNtpServerIpList returns the NtpServerIpList field if non-nil, zero value otherwise.
+
+### GetNtpServerIpListOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetNtpServerIpListOk() (*string, bool)`
+
+GetNtpServerIpListOk returns a tuple with the NtpServerIpList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNtpServerIpList
+
+`func (o *NiatelemetryNiaInventoryFabric) SetNtpServerIpList(v string)`
+
+SetNtpServerIpList sets NtpServerIpList field to given value.
+
+### HasNtpServerIpList
+
+`func (o *NiatelemetryNiaInventoryFabric) HasNtpServerIpList() bool`
+
+HasNtpServerIpList returns a boolean if a field has been set.
+
 ### GetNxosVniBwSitesCount
 
 `func (o *NiatelemetryNiaInventoryFabric) GetNxosVniBwSitesCount() int64`
@@ -576,6 +829,56 @@ SetNxosVrfCount sets NxosVrfCount field to given value.
 
 HasNxosVrfCount returns a boolean if a field has been set.
 
+### GetReplicationMode
+
+`func (o *NiatelemetryNiaInventoryFabric) GetReplicationMode() string`
+
+GetReplicationMode returns the ReplicationMode field if non-nil, zero value otherwise.
+
+### GetReplicationModeOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetReplicationModeOk() (*string, bool)`
+
+GetReplicationModeOk returns a tuple with the ReplicationMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReplicationMode
+
+`func (o *NiatelemetryNiaInventoryFabric) SetReplicationMode(v string)`
+
+SetReplicationMode sets ReplicationMode field to given value.
+
+### HasReplicationMode
+
+`func (o *NiatelemetryNiaInventoryFabric) HasReplicationMode() bool`
+
+HasReplicationMode returns a boolean if a field has been set.
+
+### GetRpMode
+
+`func (o *NiatelemetryNiaInventoryFabric) GetRpMode() string`
+
+GetRpMode returns the RpMode field if non-nil, zero value otherwise.
+
+### GetRpModeOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetRpModeOk() (*string, bool)`
+
+GetRpModeOk returns a tuple with the RpMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRpMode
+
+`func (o *NiatelemetryNiaInventoryFabric) SetRpMode(v string)`
+
+SetRpMode sets RpMode field to given value.
+
+### HasRpMode
+
+`func (o *NiatelemetryNiaInventoryFabric) HasRpMode() bool`
+
+HasRpMode returns a boolean if a field has been set.
+
 ### GetSerial
 
 `func (o *NiatelemetryNiaInventoryFabric) GetSerial() string`
@@ -626,6 +929,31 @@ SetSiteName sets SiteName field to given value.
 
 HasSiteName returns a boolean if a field has been set.
 
+### GetSoftwareImage
+
+`func (o *NiatelemetryNiaInventoryFabric) GetSoftwareImage() string`
+
+GetSoftwareImage returns the SoftwareImage field if non-nil, zero value otherwise.
+
+### GetSoftwareImageOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetSoftwareImageOk() (*string, bool)`
+
+GetSoftwareImageOk returns a tuple with the SoftwareImage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSoftwareImage
+
+`func (o *NiatelemetryNiaInventoryFabric) SetSoftwareImage(v string)`
+
+SetSoftwareImage sets SoftwareImage field to given value.
+
+### HasSoftwareImage
+
+`func (o *NiatelemetryNiaInventoryFabric) HasSoftwareImage() bool`
+
+HasSoftwareImage returns a boolean if a field has been set.
+
 ### GetSpineCount
 
 `func (o *NiatelemetryNiaInventoryFabric) GetSpineCount() int64`
@@ -650,6 +978,81 @@ SetSpineCount sets SpineCount field to given value.
 `func (o *NiatelemetryNiaInventoryFabric) HasSpineCount() bool`
 
 HasSpineCount returns a boolean if a field has been set.
+
+### GetSyslogServerIpList
+
+`func (o *NiatelemetryNiaInventoryFabric) GetSyslogServerIpList() string`
+
+GetSyslogServerIpList returns the SyslogServerIpList field if non-nil, zero value otherwise.
+
+### GetSyslogServerIpListOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetSyslogServerIpListOk() (*string, bool)`
+
+GetSyslogServerIpListOk returns a tuple with the SyslogServerIpList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSyslogServerIpList
+
+`func (o *NiatelemetryNiaInventoryFabric) SetSyslogServerIpList(v string)`
+
+SetSyslogServerIpList sets SyslogServerIpList field to given value.
+
+### HasSyslogServerIpList
+
+`func (o *NiatelemetryNiaInventoryFabric) HasSyslogServerIpList() bool`
+
+HasSyslogServerIpList returns a boolean if a field has been set.
+
+### GetSyslogSev
+
+`func (o *NiatelemetryNiaInventoryFabric) GetSyslogSev() string`
+
+GetSyslogSev returns the SyslogSev field if non-nil, zero value otherwise.
+
+### GetSyslogSevOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetSyslogSevOk() (*string, bool)`
+
+GetSyslogSevOk returns a tuple with the SyslogSev field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSyslogSev
+
+`func (o *NiatelemetryNiaInventoryFabric) SetSyslogSev(v string)`
+
+SetSyslogSev sets SyslogSev field to given value.
+
+### HasSyslogSev
+
+`func (o *NiatelemetryNiaInventoryFabric) HasSyslogSev() bool`
+
+HasSyslogSev returns a boolean if a field has been set.
+
+### GetTemplateName
+
+`func (o *NiatelemetryNiaInventoryFabric) GetTemplateName() string`
+
+GetTemplateName returns the TemplateName field if non-nil, zero value otherwise.
+
+### GetTemplateNameOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetTemplateNameOk() (*string, bool)`
+
+GetTemplateNameOk returns a tuple with the TemplateName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTemplateName
+
+`func (o *NiatelemetryNiaInventoryFabric) SetTemplateName(v string)`
+
+SetTemplateName sets TemplateName field to given value.
+
+### HasTemplateName
+
+`func (o *NiatelemetryNiaInventoryFabric) HasTemplateName() bool`
+
+HasTemplateName returns a boolean if a field has been set.
 
 ### GetVlanVniMappings
 
@@ -701,6 +1104,101 @@ SetVniIpCount sets VniIpCount field to given value.
 
 HasVniIpCount returns a boolean if a field has been set.
 
+### GetVpcDetails
+
+`func (o *NiatelemetryNiaInventoryFabric) GetVpcDetails() []NiatelemetryVpcDetails`
+
+GetVpcDetails returns the VpcDetails field if non-nil, zero value otherwise.
+
+### GetVpcDetailsOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetVpcDetailsOk() (*[]NiatelemetryVpcDetails, bool)`
+
+GetVpcDetailsOk returns a tuple with the VpcDetails field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVpcDetails
+
+`func (o *NiatelemetryNiaInventoryFabric) SetVpcDetails(v []NiatelemetryVpcDetails)`
+
+SetVpcDetails sets VpcDetails field to given value.
+
+### HasVpcDetails
+
+`func (o *NiatelemetryNiaInventoryFabric) HasVpcDetails() bool`
+
+HasVpcDetails returns a boolean if a field has been set.
+
+### SetVpcDetailsNil
+
+`func (o *NiatelemetryNiaInventoryFabric) SetVpcDetailsNil(b bool)`
+
+ SetVpcDetailsNil sets the value for VpcDetails to be an explicit nil
+
+### UnsetVpcDetails
+`func (o *NiatelemetryNiaInventoryFabric) UnsetVpcDetails()`
+
+UnsetVpcDetails ensures that no value is present for VpcDetails, not even an explicit nil
+### GetVrfDeploymentCount
+
+`func (o *NiatelemetryNiaInventoryFabric) GetVrfDeploymentCount() int64`
+
+GetVrfDeploymentCount returns the VrfDeploymentCount field if non-nil, zero value otherwise.
+
+### GetVrfDeploymentCountOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetVrfDeploymentCountOk() (*int64, bool)`
+
+GetVrfDeploymentCountOk returns a tuple with the VrfDeploymentCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrfDeploymentCount
+
+`func (o *NiatelemetryNiaInventoryFabric) SetVrfDeploymentCount(v int64)`
+
+SetVrfDeploymentCount sets VrfDeploymentCount field to given value.
+
+### HasVrfDeploymentCount
+
+`func (o *NiatelemetryNiaInventoryFabric) HasVrfDeploymentCount() bool`
+
+HasVrfDeploymentCount returns a boolean if a field has been set.
+
+### GetVrfDeploymentStatus
+
+`func (o *NiatelemetryNiaInventoryFabric) GetVrfDeploymentStatus() []NiatelemetryDeploymentStatus`
+
+GetVrfDeploymentStatus returns the VrfDeploymentStatus field if non-nil, zero value otherwise.
+
+### GetVrfDeploymentStatusOk
+
+`func (o *NiatelemetryNiaInventoryFabric) GetVrfDeploymentStatusOk() (*[]NiatelemetryDeploymentStatus, bool)`
+
+GetVrfDeploymentStatusOk returns a tuple with the VrfDeploymentStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVrfDeploymentStatus
+
+`func (o *NiatelemetryNiaInventoryFabric) SetVrfDeploymentStatus(v []NiatelemetryDeploymentStatus)`
+
+SetVrfDeploymentStatus sets VrfDeploymentStatus field to given value.
+
+### HasVrfDeploymentStatus
+
+`func (o *NiatelemetryNiaInventoryFabric) HasVrfDeploymentStatus() bool`
+
+HasVrfDeploymentStatus returns a boolean if a field has been set.
+
+### SetVrfDeploymentStatusNil
+
+`func (o *NiatelemetryNiaInventoryFabric) SetVrfDeploymentStatusNil(b bool)`
+
+ SetVrfDeploymentStatusNil sets the value for VrfDeploymentStatus to be an explicit nil
+
+### UnsetVrfDeploymentStatus
+`func (o *NiatelemetryNiaInventoryFabric) UnsetVrfDeploymentStatus()`
+
+UnsetVrfDeploymentStatus ensures that no value is present for VrfDeploymentStatus, not even an explicit nil
 ### GetRegisteredDevice
 
 `func (o *NiatelemetryNiaInventoryFabric) GetRegisteredDevice() AssetDeviceRegistrationRelationship`

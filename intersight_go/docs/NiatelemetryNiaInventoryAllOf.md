@@ -34,6 +34,7 @@ Name | Type | Description | Notes
 **MacsecTotalCount** | Pointer to **int64** | Number of total Macsec configured interfaces for all nodes. | [optional] 
 **Memory** | Pointer to **int64** | Memory usage of device being inventoried. This determines the percentage of memory resources used. | [optional] 
 **NodeId** | Pointer to **string** | The ID of the device being inventoried. | [optional] 
+**NxosBgpEvpn** | Pointer to [**NullableNiatelemetryNxosBgpEvpn**](niatelemetry.NxosBgpEvpn.md) |  | [optional] 
 **NxosBgpMvpn** | Pointer to [**NullableNiatelemetryNxosBgpMvpn**](niatelemetry.NxosBgpMvpn.md) |  | [optional] 
 **NxosBootflashDetails** | Pointer to [**NullableNiatelemetryBootflashDetails**](niatelemetry.BootflashDetails.md) |  | [optional] 
 **NxosDciInterfaceStatus** | Pointer to **string** | Returns the status of dci interface configured. | [optional] 
@@ -57,6 +58,7 @@ Name | Type | Description | Notes
 **SoftwareDownload** | Pointer to **string** | Last software downloaded of device being inventoried. This determines if software download API was used. | [optional] 
 **SystemUpTime** | Pointer to **string** | The amount of time that the device being inventoried been up. | [optional] 
 **Version** | Pointer to **string** | Software version of device being inventoried. The various software version values for each device are available on cisco.com. | [optional] 
+**VniStatus** | Pointer to [**[]NiatelemetryVniStatus**](NiatelemetryVniStatus.md) |  | [optional] 
 **LicenseState** | Pointer to [**NiatelemetryNiaLicenseStateRelationship**](niatelemetry.NiaLicenseState.Relationship.md) |  | [optional] 
 **RegisteredDevice** | Pointer to [**AssetDeviceRegistrationRelationship**](asset.DeviceRegistration.Relationship.md) |  | [optional] 
 
@@ -839,6 +841,41 @@ SetNodeId sets NodeId field to given value.
 
 HasNodeId returns a boolean if a field has been set.
 
+### GetNxosBgpEvpn
+
+`func (o *NiatelemetryNiaInventoryAllOf) GetNxosBgpEvpn() NiatelemetryNxosBgpEvpn`
+
+GetNxosBgpEvpn returns the NxosBgpEvpn field if non-nil, zero value otherwise.
+
+### GetNxosBgpEvpnOk
+
+`func (o *NiatelemetryNiaInventoryAllOf) GetNxosBgpEvpnOk() (*NiatelemetryNxosBgpEvpn, bool)`
+
+GetNxosBgpEvpnOk returns a tuple with the NxosBgpEvpn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNxosBgpEvpn
+
+`func (o *NiatelemetryNiaInventoryAllOf) SetNxosBgpEvpn(v NiatelemetryNxosBgpEvpn)`
+
+SetNxosBgpEvpn sets NxosBgpEvpn field to given value.
+
+### HasNxosBgpEvpn
+
+`func (o *NiatelemetryNiaInventoryAllOf) HasNxosBgpEvpn() bool`
+
+HasNxosBgpEvpn returns a boolean if a field has been set.
+
+### SetNxosBgpEvpnNil
+
+`func (o *NiatelemetryNiaInventoryAllOf) SetNxosBgpEvpnNil(b bool)`
+
+ SetNxosBgpEvpnNil sets the value for NxosBgpEvpn to be an explicit nil
+
+### UnsetNxosBgpEvpn
+`func (o *NiatelemetryNiaInventoryAllOf) UnsetNxosBgpEvpn()`
+
+UnsetNxosBgpEvpn ensures that no value is present for NxosBgpEvpn, not even an explicit nil
 ### GetNxosBgpMvpn
 
 `func (o *NiatelemetryNiaInventoryAllOf) GetNxosBgpMvpn() NiatelemetryNxosBgpMvpn`
@@ -1474,6 +1511,41 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
+### GetVniStatus
+
+`func (o *NiatelemetryNiaInventoryAllOf) GetVniStatus() []NiatelemetryVniStatus`
+
+GetVniStatus returns the VniStatus field if non-nil, zero value otherwise.
+
+### GetVniStatusOk
+
+`func (o *NiatelemetryNiaInventoryAllOf) GetVniStatusOk() (*[]NiatelemetryVniStatus, bool)`
+
+GetVniStatusOk returns a tuple with the VniStatus field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetVniStatus
+
+`func (o *NiatelemetryNiaInventoryAllOf) SetVniStatus(v []NiatelemetryVniStatus)`
+
+SetVniStatus sets VniStatus field to given value.
+
+### HasVniStatus
+
+`func (o *NiatelemetryNiaInventoryAllOf) HasVniStatus() bool`
+
+HasVniStatus returns a boolean if a field has been set.
+
+### SetVniStatusNil
+
+`func (o *NiatelemetryNiaInventoryAllOf) SetVniStatusNil(b bool)`
+
+ SetVniStatusNil sets the value for VniStatus to be an explicit nil
+
+### UnsetVniStatus
+`func (o *NiatelemetryNiaInventoryAllOf) UnsetVniStatus()`
+
+UnsetVniStatus ensures that no value is present for VniStatus, not even an explicit nil
 ### GetLicenseState
 
 `func (o *NiatelemetryNiaInventoryAllOf) GetLicenseState() NiatelemetryNiaLicenseStateRelationship`

@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -22,12 +22,14 @@ type KubernetesNetworkInterfaceAllOf struct {
 	// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property. The enum values provides the list of concrete types that can be instantiated from this abstract type.
 	ObjectType string   `json:"ObjectType"`
 	Addresses  []string `json:"Addresses,omitempty"`
-	// The Network Gateway for the Network Interface.
-	Gateway *string `json:"Gateway,omitempty"`
+	// Deprecated. This will add a default route as long as the first default route in Routes is not different. If is different, Gateway will be replaced with that default route. If there is no default Route and this is set, then Routes will be updated with the first entry as a default with this default gateway. If there is only one default Route and this gateway becomes empty, then the default routes will all be removed. Do not set if using Ip Pools, as the gateway is configured in the pool. This will be removed in the future.
+	Gateway     *string                `json:"Gateway,omitempty"`
+	IpV4Configs []KubernetesIpV4Config `json:"IpV4Configs,omitempty"`
 	// The MTU to assign to this Network Interface.
 	Mtu *int64 `json:"Mtu,omitempty"`
 	// Name for this network interface.
-	Name                 *string `json:"Name,omitempty"`
+	Name                 *string           `json:"Name,omitempty"`
+	Routes               []KubernetesRoute `json:"Routes,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -165,6 +167,39 @@ func (o *KubernetesNetworkInterfaceAllOf) SetGateway(v string) {
 	o.Gateway = &v
 }
 
+// GetIpV4Configs returns the IpV4Configs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *KubernetesNetworkInterfaceAllOf) GetIpV4Configs() []KubernetesIpV4Config {
+	if o == nil {
+		var ret []KubernetesIpV4Config
+		return ret
+	}
+	return o.IpV4Configs
+}
+
+// GetIpV4ConfigsOk returns a tuple with the IpV4Configs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KubernetesNetworkInterfaceAllOf) GetIpV4ConfigsOk() (*[]KubernetesIpV4Config, bool) {
+	if o == nil || o.IpV4Configs == nil {
+		return nil, false
+	}
+	return &o.IpV4Configs, true
+}
+
+// HasIpV4Configs returns a boolean if a field has been set.
+func (o *KubernetesNetworkInterfaceAllOf) HasIpV4Configs() bool {
+	if o != nil && o.IpV4Configs != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIpV4Configs gets a reference to the given []KubernetesIpV4Config and assigns it to the IpV4Configs field.
+func (o *KubernetesNetworkInterfaceAllOf) SetIpV4Configs(v []KubernetesIpV4Config) {
+	o.IpV4Configs = v
+}
+
 // GetMtu returns the Mtu field value if set, zero value otherwise.
 func (o *KubernetesNetworkInterfaceAllOf) GetMtu() int64 {
 	if o == nil || o.Mtu == nil {
@@ -229,6 +264,39 @@ func (o *KubernetesNetworkInterfaceAllOf) SetName(v string) {
 	o.Name = &v
 }
 
+// GetRoutes returns the Routes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *KubernetesNetworkInterfaceAllOf) GetRoutes() []KubernetesRoute {
+	if o == nil {
+		var ret []KubernetesRoute
+		return ret
+	}
+	return o.Routes
+}
+
+// GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *KubernetesNetworkInterfaceAllOf) GetRoutesOk() (*[]KubernetesRoute, bool) {
+	if o == nil || o.Routes == nil {
+		return nil, false
+	}
+	return &o.Routes, true
+}
+
+// HasRoutes returns a boolean if a field has been set.
+func (o *KubernetesNetworkInterfaceAllOf) HasRoutes() bool {
+	if o != nil && o.Routes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRoutes gets a reference to the given []KubernetesRoute and assigns it to the Routes field.
+func (o *KubernetesNetworkInterfaceAllOf) SetRoutes(v []KubernetesRoute) {
+	o.Routes = v
+}
+
 func (o KubernetesNetworkInterfaceAllOf) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -243,11 +311,17 @@ func (o KubernetesNetworkInterfaceAllOf) MarshalJSON() ([]byte, error) {
 	if o.Gateway != nil {
 		toSerialize["Gateway"] = o.Gateway
 	}
+	if o.IpV4Configs != nil {
+		toSerialize["IpV4Configs"] = o.IpV4Configs
+	}
 	if o.Mtu != nil {
 		toSerialize["Mtu"] = o.Mtu
 	}
 	if o.Name != nil {
 		toSerialize["Name"] = o.Name
+	}
+	if o.Routes != nil {
+		toSerialize["Routes"] = o.Routes
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -271,8 +345,10 @@ func (o *KubernetesNetworkInterfaceAllOf) UnmarshalJSON(bytes []byte) (err error
 		delete(additionalProperties, "ObjectType")
 		delete(additionalProperties, "Addresses")
 		delete(additionalProperties, "Gateway")
+		delete(additionalProperties, "IpV4Configs")
 		delete(additionalProperties, "Mtu")
 		delete(additionalProperties, "Name")
+		delete(additionalProperties, "Routes")
 		o.AdditionalProperties = additionalProperties
 	}
 

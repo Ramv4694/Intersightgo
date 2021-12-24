@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -80,10 +80,11 @@ const (
 )
 
 var supportedSigningSchemes = map[string]bool{
-	HttpSigningSchemeHs2019:    true,
+	HttpSigningSchemeHs2019: true,
 	HttpSigningSchemeRsaSha512: true,
 	HttpSigningSchemeRsaSha256: true,
 }
+
 
 // HttpSignatureAuth provides HTTP signature authentication to a request passed
 // via context using ContextHttpSignatureAuth.
@@ -109,20 +110,20 @@ var supportedSigningSchemes = map[string]bool{
 // 2. Set the 'Digest' header in the request body.
 // 3. Include the 'Digest' header and value in the HTTP signature.
 type HttpSignatureAuth struct {
-	KeyId          string // A key identifier.
-	PrivateKeyPath string // The path to the private key.
-	Passphrase     string // The passphrase to decrypt the private key, if the key is encrypted.
-	SigningScheme  string // The signature scheme, when signing HTTP requests. Supported value is 'hs2019'.
+	KeyId             string            // A key identifier.
+	PrivateKeyPath    string            // The path to the private key.
+	Passphrase        string            // The passphrase to decrypt the private key, if the key is encrypted.
+	SigningScheme     string            // The signature scheme, when signing HTTP requests. Supported value is 'hs2019'.
 	// The signature algorithm, when signing HTTP requests.
 	// Supported values are RSASSA-PKCS1-v1_5, RSASSA-PSS.
-	SigningAlgorithm string
-	SignedHeaders    []string // A list of HTTP headers included when generating the signature for the message.
+	SigningAlgorithm  string
+	SignedHeaders     []string          // A list of HTTP headers included when generating the signature for the message.
 	// SignatureMaxValidity specifies the maximum duration of the signature validity.
 	// The value is used to set the '(expires)' signature parameter in the HTTP request.
 	// '(expires)' is set to '(created)' plus the value of the SignatureMaxValidity field.
 	// To specify the '(expires)' signature parameter, set 'SignatureMaxValidity' and add '(expires)' to 'SignedHeaders'.
 	SignatureMaxValidity time.Duration
-	privateKey           crypto.PrivateKey // The private key used to sign HTTP requests.
+	privateKey        crypto.PrivateKey // The private key used to sign HTTP requests.
 }
 
 // SetPrivateKey accepts a private key string and sets it.
@@ -275,7 +276,7 @@ func SignRequest(
 	}
 	if auth.SignatureMaxValidity > 0 {
 		e := now.Add(auth.SignatureMaxValidity)
-		expiresUnix = float64(e.Unix()) + float64(e.Nanosecond())/float64(time.Second)
+		expiresUnix = float64(e.Unix()) + float64(e.Nanosecond()) / float64(time.Second)
 	}
 	// Determine the cryptographic hash to be used for the signature and the body digest.
 	switch auth.SigningScheme {
@@ -408,7 +409,7 @@ func SignRequest(
 	case *ecdsa.PrivateKey:
 		signature, err = key.Sign(rand.Reader, d, h)
 	case ed25519.PrivateKey: // requires go 1.13
-		signature, err = key.Sign(rand.Reader, msg, crypto.Hash(0))
+	  signature, err = key.Sign(rand.Reader, msg, crypto.Hash(0))
 	default:
 		return fmt.Errorf("Unsupported private key")
 	}

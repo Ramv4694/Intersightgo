@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -466,180 +466,6 @@ func (a *HyperflexApiService) CreateHyperflexCapabilityInfoExecute(r ApiCreateHy
 	}
 	// body params
 	localVarPostBody = r.hyperflexCapabilityInfo
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiCreateHyperflexCiscoHypervisorManagerRequest struct {
-	ctx                             _context.Context
-	ApiService                      *HyperflexApiService
-	hyperflexCiscoHypervisorManager *HyperflexCiscoHypervisorManager
-	ifMatch                         *string
-	ifNoneMatch                     *string
-}
-
-func (r ApiCreateHyperflexCiscoHypervisorManagerRequest) HyperflexCiscoHypervisorManager(hyperflexCiscoHypervisorManager HyperflexCiscoHypervisorManager) ApiCreateHyperflexCiscoHypervisorManagerRequest {
-	r.hyperflexCiscoHypervisorManager = &hyperflexCiscoHypervisorManager
-	return r
-}
-func (r ApiCreateHyperflexCiscoHypervisorManagerRequest) IfMatch(ifMatch string) ApiCreateHyperflexCiscoHypervisorManagerRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-func (r ApiCreateHyperflexCiscoHypervisorManagerRequest) IfNoneMatch(ifNoneMatch string) ApiCreateHyperflexCiscoHypervisorManagerRequest {
-	r.ifNoneMatch = &ifNoneMatch
-	return r
-}
-
-func (r ApiCreateHyperflexCiscoHypervisorManagerRequest) Execute() (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	return r.ApiService.CreateHyperflexCiscoHypervisorManagerExecute(r)
-}
-
-/*
- * CreateHyperflexCiscoHypervisorManager Create a 'hyperflex.CiscoHypervisorManager' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateHyperflexCiscoHypervisorManagerRequest
- */
-func (a *HyperflexApiService) CreateHyperflexCiscoHypervisorManager(ctx _context.Context) ApiCreateHyperflexCiscoHypervisorManagerRequest {
-	return ApiCreateHyperflexCiscoHypervisorManagerRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexCiscoHypervisorManager
- */
-func (a *HyperflexApiService) CreateHyperflexCiscoHypervisorManagerExecute(r ApiCreateHyperflexCiscoHypervisorManagerRequest) (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexCiscoHypervisorManager
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.CreateHyperflexCiscoHypervisorManager")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/CiscoHypervisorManagers"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexCiscoHypervisorManager == nil {
-		return localVarReturnValue, nil, reportError("hyperflexCiscoHypervisorManager is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	if r.ifNoneMatch != nil {
-		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexCiscoHypervisorManager
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -2986,180 +2812,6 @@ func (a *HyperflexApiService) CreateHyperflexHealthCheckPackageChecksumExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiCreateHyperflexHxapDatacenterRequest struct {
-	ctx                     _context.Context
-	ApiService              *HyperflexApiService
-	hyperflexHxapDatacenter *HyperflexHxapDatacenter
-	ifMatch                 *string
-	ifNoneMatch             *string
-}
-
-func (r ApiCreateHyperflexHxapDatacenterRequest) HyperflexHxapDatacenter(hyperflexHxapDatacenter HyperflexHxapDatacenter) ApiCreateHyperflexHxapDatacenterRequest {
-	r.hyperflexHxapDatacenter = &hyperflexHxapDatacenter
-	return r
-}
-func (r ApiCreateHyperflexHxapDatacenterRequest) IfMatch(ifMatch string) ApiCreateHyperflexHxapDatacenterRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-func (r ApiCreateHyperflexHxapDatacenterRequest) IfNoneMatch(ifNoneMatch string) ApiCreateHyperflexHxapDatacenterRequest {
-	r.ifNoneMatch = &ifNoneMatch
-	return r
-}
-
-func (r ApiCreateHyperflexHxapDatacenterRequest) Execute() (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	return r.ApiService.CreateHyperflexHxapDatacenterExecute(r)
-}
-
-/*
- * CreateHyperflexHxapDatacenter Create a 'hyperflex.HxapDatacenter' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiCreateHyperflexHxapDatacenterRequest
- */
-func (a *HyperflexApiService) CreateHyperflexHxapDatacenter(ctx _context.Context) ApiCreateHyperflexHxapDatacenterRequest {
-	return ApiCreateHyperflexHxapDatacenterRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDatacenter
- */
-func (a *HyperflexApiService) CreateHyperflexHxapDatacenterExecute(r ApiCreateHyperflexHxapDatacenterRequest) (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDatacenter
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.CreateHyperflexHxapDatacenter")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDatacenters"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapDatacenter == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapDatacenter is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	if r.ifNoneMatch != nil {
-		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapDatacenter
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiCreateHyperflexHxdpVersionRequest struct {
 	ctx                  _context.Context
 	ApiService           *HyperflexApiService
@@ -4468,6 +4120,180 @@ func (a *HyperflexApiService) CreateHyperflexServerModelExecute(r ApiCreateHyper
 	}
 	// body params
 	localVarPostBody = r.hyperflexServerModel
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateHyperflexServiceAuthTokenRequest struct {
+	ctx                       _context.Context
+	ApiService                *HyperflexApiService
+	hyperflexServiceAuthToken *HyperflexServiceAuthToken
+	ifMatch                   *string
+	ifNoneMatch               *string
+}
+
+func (r ApiCreateHyperflexServiceAuthTokenRequest) HyperflexServiceAuthToken(hyperflexServiceAuthToken HyperflexServiceAuthToken) ApiCreateHyperflexServiceAuthTokenRequest {
+	r.hyperflexServiceAuthToken = &hyperflexServiceAuthToken
+	return r
+}
+func (r ApiCreateHyperflexServiceAuthTokenRequest) IfMatch(ifMatch string) ApiCreateHyperflexServiceAuthTokenRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+func (r ApiCreateHyperflexServiceAuthTokenRequest) IfNoneMatch(ifNoneMatch string) ApiCreateHyperflexServiceAuthTokenRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+func (r ApiCreateHyperflexServiceAuthTokenRequest) Execute() (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	return r.ApiService.CreateHyperflexServiceAuthTokenExecute(r)
+}
+
+/*
+ * CreateHyperflexServiceAuthToken Create a 'hyperflex.ServiceAuthToken' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiCreateHyperflexServiceAuthTokenRequest
+ */
+func (a *HyperflexApiService) CreateHyperflexServiceAuthToken(ctx _context.Context) ApiCreateHyperflexServiceAuthTokenRequest {
+	return ApiCreateHyperflexServiceAuthTokenRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexServiceAuthToken
+ */
+func (a *HyperflexApiService) CreateHyperflexServiceAuthTokenExecute(r ApiCreateHyperflexServiceAuthTokenRequest) (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexServiceAuthToken
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.CreateHyperflexServiceAuthToken")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ServiceAuthTokens"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexServiceAuthToken == nil {
+		return localVarReturnValue, nil, reportError("hyperflexServiceAuthToken is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexServiceAuthToken
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6398,6 +6224,146 @@ func (a *HyperflexApiService) DeleteHyperflexAutoSupportPolicyExecute(r ApiDelet
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteHyperflexBackupClusterRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiDeleteHyperflexBackupClusterRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteHyperflexBackupClusterExecute(r)
+}
+
+/*
+ * DeleteHyperflexBackupCluster Delete a 'hyperflex.BackupCluster' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiDeleteHyperflexBackupClusterRequest
+ */
+func (a *HyperflexApiService) DeleteHyperflexBackupCluster(ctx _context.Context, moid string) ApiDeleteHyperflexBackupClusterRequest {
+	return ApiDeleteHyperflexBackupClusterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *HyperflexApiService) DeleteHyperflexBackupClusterExecute(r ApiDeleteHyperflexBackupClusterRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexBackupCluster")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/BackupClusters/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiDeleteHyperflexCapabilityInfoRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -6720,6 +6686,146 @@ func (a *HyperflexApiService) DeleteHyperflexClusterBackupPolicyDeploymentExecut
 	}
 
 	localVarPath := localBasePath + "/api/v1/hyperflex/ClusterBackupPolicyDeployments/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiDeleteHyperflexClusterBackupPolicyInventoryRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiDeleteHyperflexClusterBackupPolicyInventoryRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteHyperflexClusterBackupPolicyInventoryExecute(r)
+}
+
+/*
+ * DeleteHyperflexClusterBackupPolicyInventory Delete a 'hyperflex.ClusterBackupPolicyInventory' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiDeleteHyperflexClusterBackupPolicyInventoryRequest
+ */
+func (a *HyperflexApiService) DeleteHyperflexClusterBackupPolicyInventory(ctx _context.Context, moid string) ApiDeleteHyperflexClusterBackupPolicyInventoryRequest {
+	return ApiDeleteHyperflexClusterBackupPolicyInventoryRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *HyperflexApiService) DeleteHyperflexClusterBackupPolicyInventoryExecute(r ApiDeleteHyperflexClusterBackupPolicyInventoryRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexClusterBackupPolicyInventory")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ClusterBackupPolicyInventories/{Moid}"
 	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -8358,426 +8464,6 @@ func (a *HyperflexApiService) DeleteHyperflexHealthCheckPackageChecksumExecute(r
 	return localVarHTTPResponse, nil
 }
 
-type ApiDeleteHyperflexHxapClusterRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiDeleteHyperflexHxapClusterRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteHyperflexHxapClusterExecute(r)
-}
-
-/*
- * DeleteHyperflexHxapCluster Delete a 'hyperflex.HxapCluster' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiDeleteHyperflexHxapClusterRequest
- */
-func (a *HyperflexApiService) DeleteHyperflexHxapCluster(ctx _context.Context, moid string) ApiDeleteHyperflexHxapClusterRequest {
-	return ApiDeleteHyperflexHxapClusterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- */
-func (a *HyperflexApiService) DeleteHyperflexHxapClusterExecute(r ApiDeleteHyperflexHxapClusterRequest) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexHxapCluster")
-	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapClusters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiDeleteHyperflexHxapDatacenterRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiDeleteHyperflexHxapDatacenterRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteHyperflexHxapDatacenterExecute(r)
-}
-
-/*
- * DeleteHyperflexHxapDatacenter Delete a 'hyperflex.HxapDatacenter' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiDeleteHyperflexHxapDatacenterRequest
- */
-func (a *HyperflexApiService) DeleteHyperflexHxapDatacenter(ctx _context.Context, moid string) ApiDeleteHyperflexHxapDatacenterRequest {
-	return ApiDeleteHyperflexHxapDatacenterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- */
-func (a *HyperflexApiService) DeleteHyperflexHxapDatacenterExecute(r ApiDeleteHyperflexHxapDatacenterRequest) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexHxapDatacenter")
-	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDatacenters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type ApiDeleteHyperflexHxapVirtualMachineNetworkInterfaceRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiDeleteHyperflexHxapVirtualMachineNetworkInterfaceRequest) Execute() (*_nethttp.Response, error) {
-	return r.ApiService.DeleteHyperflexHxapVirtualMachineNetworkInterfaceExecute(r)
-}
-
-/*
- * DeleteHyperflexHxapVirtualMachineNetworkInterface Delete a 'hyperflex.HxapVirtualMachineNetworkInterface' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiDeleteHyperflexHxapVirtualMachineNetworkInterfaceRequest
- */
-func (a *HyperflexApiService) DeleteHyperflexHxapVirtualMachineNetworkInterface(ctx _context.Context, moid string) ApiDeleteHyperflexHxapVirtualMachineNetworkInterfaceRequest {
-	return ApiDeleteHyperflexHxapVirtualMachineNetworkInterfaceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- */
-func (a *HyperflexApiService) DeleteHyperflexHxapVirtualMachineNetworkInterfaceExecute(r ApiDeleteHyperflexHxapVirtualMachineNetworkInterfaceRequest) (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexHxapVirtualMachineNetworkInterface")
-	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachineNetworkInterfaces/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
 type ApiDeleteHyperflexHxdpVersionRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -9898,6 +9584,146 @@ func (a *HyperflexApiService) DeleteHyperflexServerModelExecute(r ApiDeleteHyper
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteHyperflexServiceAuthTokenRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiDeleteHyperflexServiceAuthTokenRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteHyperflexServiceAuthTokenExecute(r)
+}
+
+/*
+ * DeleteHyperflexServiceAuthToken Delete a 'hyperflex.ServiceAuthToken' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiDeleteHyperflexServiceAuthTokenRequest
+ */
+func (a *HyperflexApiService) DeleteHyperflexServiceAuthToken(ctx _context.Context, moid string) ApiDeleteHyperflexServiceAuthTokenRequest {
+	return ApiDeleteHyperflexServiceAuthTokenRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *HyperflexApiService) DeleteHyperflexServiceAuthTokenExecute(r ApiDeleteHyperflexServiceAuthTokenRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexServiceAuthToken")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ServiceAuthTokens/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiDeleteHyperflexSoftwareDistributionComponentRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -10878,6 +10704,146 @@ func (a *HyperflexApiService) DeleteHyperflexVcenterConfigPolicyExecute(r ApiDel
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteHyperflexVmBackupInfoRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiDeleteHyperflexVmBackupInfoRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteHyperflexVmBackupInfoExecute(r)
+}
+
+/*
+ * DeleteHyperflexVmBackupInfo Delete a 'hyperflex.VmBackupInfo' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiDeleteHyperflexVmBackupInfoRequest
+ */
+func (a *HyperflexApiService) DeleteHyperflexVmBackupInfo(ctx _context.Context, moid string) ApiDeleteHyperflexVmBackupInfoRequest {
+	return ApiDeleteHyperflexVmBackupInfoRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *HyperflexApiService) DeleteHyperflexVmBackupInfoExecute(r ApiDeleteHyperflexVmBackupInfoRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexVmBackupInfo")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/VmBackupInfos/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiDeleteHyperflexVmImportOperationRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -11060,6 +11026,146 @@ func (a *HyperflexApiService) DeleteHyperflexVmRestoreOperationExecute(r ApiDele
 	}
 
 	localVarPath := localBasePath + "/api/v1/hyperflex/VmRestoreOperations/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiDeleteHyperflexVmSnapshotInfoRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiDeleteHyperflexVmSnapshotInfoRequest) Execute() (*_nethttp.Response, error) {
+	return r.ApiService.DeleteHyperflexVmSnapshotInfoExecute(r)
+}
+
+/*
+ * DeleteHyperflexVmSnapshotInfo Delete a 'hyperflex.VmSnapshotInfo' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiDeleteHyperflexVmSnapshotInfoRequest
+ */
+func (a *HyperflexApiService) DeleteHyperflexVmSnapshotInfo(ctx _context.Context, moid string) ApiDeleteHyperflexVmSnapshotInfoRequest {
+	return ApiDeleteHyperflexVmSnapshotInfoRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *HyperflexApiService) DeleteHyperflexVmSnapshotInfoExecute(r ApiDeleteHyperflexVmSnapshotInfoRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.DeleteHyperflexVmSnapshotInfo")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/VmSnapshotInfos/{Moid}"
 	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -13093,393 +13199,6 @@ func (a *HyperflexApiService) GetHyperflexCapabilityInfoListExecute(r ApiGetHype
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetHyperflexCiscoHypervisorManagerByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexCiscoHypervisorManagerByMoidRequest) Execute() (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexCiscoHypervisorManagerByMoidExecute(r)
-}
-
-/*
- * GetHyperflexCiscoHypervisorManagerByMoid Read a 'hyperflex.CiscoHypervisorManager' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexCiscoHypervisorManagerByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexCiscoHypervisorManagerByMoid(ctx _context.Context, moid string) ApiGetHyperflexCiscoHypervisorManagerByMoidRequest {
-	return ApiGetHyperflexCiscoHypervisorManagerByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexCiscoHypervisorManager
- */
-func (a *HyperflexApiService) GetHyperflexCiscoHypervisorManagerByMoidExecute(r ApiGetHyperflexCiscoHypervisorManagerByMoidRequest) (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexCiscoHypervisorManager
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexCiscoHypervisorManagerByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/CiscoHypervisorManagers/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexCiscoHypervisorManagerListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Filter(filter string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Orderby(orderby string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Top(top int32) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Skip(skip int32) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Select_(select_ string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Expand(expand string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Apply(apply string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Count(count bool) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Inlinecount(inlinecount string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) At(at string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Tags(tags string) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexCiscoHypervisorManagerListRequest) Execute() (HyperflexCiscoHypervisorManagerResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexCiscoHypervisorManagerListExecute(r)
-}
-
-/*
- * GetHyperflexCiscoHypervisorManagerList Read a 'hyperflex.CiscoHypervisorManager' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexCiscoHypervisorManagerListRequest
- */
-func (a *HyperflexApiService) GetHyperflexCiscoHypervisorManagerList(ctx _context.Context) ApiGetHyperflexCiscoHypervisorManagerListRequest {
-	return ApiGetHyperflexCiscoHypervisorManagerListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexCiscoHypervisorManagerResponse
- */
-func (a *HyperflexApiService) GetHyperflexCiscoHypervisorManagerListExecute(r ApiGetHyperflexCiscoHypervisorManagerListRequest) (HyperflexCiscoHypervisorManagerResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexCiscoHypervisorManagerResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexCiscoHypervisorManagerList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/CiscoHypervisorManagers"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiGetHyperflexClusterBackupPolicyByMoidRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -13879,6 +13598,393 @@ func (a *HyperflexApiService) GetHyperflexClusterBackupPolicyDeploymentListExecu
 	}
 
 	localVarPath := localBasePath + "/api/v1/hyperflex/ClusterBackupPolicyDeployments"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.filter != nil {
+		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
+	}
+	if r.orderby != nil {
+		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
+	}
+	if r.top != nil {
+		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
+	}
+	if r.select_ != nil {
+		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
+	}
+	if r.expand != nil {
+		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
+	}
+	if r.apply != nil {
+		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
+	}
+	if r.count != nil {
+		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
+	}
+	if r.inlinecount != nil {
+		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
+	}
+	if r.at != nil {
+		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
+	}
+	if r.tags != nil {
+		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexClusterBackupPolicyInventoryByMoidRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiGetHyperflexClusterBackupPolicyInventoryByMoidRequest) Execute() (HyperflexClusterBackupPolicyInventory, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexClusterBackupPolicyInventoryByMoidExecute(r)
+}
+
+/*
+ * GetHyperflexClusterBackupPolicyInventoryByMoid Read a 'hyperflex.ClusterBackupPolicyInventory' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiGetHyperflexClusterBackupPolicyInventoryByMoidRequest
+ */
+func (a *HyperflexApiService) GetHyperflexClusterBackupPolicyInventoryByMoid(ctx _context.Context, moid string) ApiGetHyperflexClusterBackupPolicyInventoryByMoidRequest {
+	return ApiGetHyperflexClusterBackupPolicyInventoryByMoidRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexClusterBackupPolicyInventory
+ */
+func (a *HyperflexApiService) GetHyperflexClusterBackupPolicyInventoryByMoidExecute(r ApiGetHyperflexClusterBackupPolicyInventoryByMoidRequest) (HyperflexClusterBackupPolicyInventory, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexClusterBackupPolicyInventory
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexClusterBackupPolicyInventoryByMoid")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ClusterBackupPolicyInventories/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexClusterBackupPolicyInventoryListRequest struct {
+	ctx         _context.Context
+	ApiService  *HyperflexApiService
+	filter      *string
+	orderby     *string
+	top         *int32
+	skip        *int32
+	select_     *string
+	expand      *string
+	apply       *string
+	count       *bool
+	inlinecount *string
+	at          *string
+	tags        *string
+}
+
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Filter(filter string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.filter = &filter
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Orderby(orderby string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.orderby = &orderby
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Top(top int32) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.top = &top
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Skip(skip int32) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.skip = &skip
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Select_(select_ string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.select_ = &select_
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Expand(expand string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.expand = &expand
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Apply(apply string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.apply = &apply
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Count(count bool) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.count = &count
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Inlinecount(inlinecount string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.inlinecount = &inlinecount
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) At(at string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.at = &at
+	return r
+}
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Tags(tags string) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) Execute() (HyperflexClusterBackupPolicyInventoryResponse, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexClusterBackupPolicyInventoryListExecute(r)
+}
+
+/*
+ * GetHyperflexClusterBackupPolicyInventoryList Read a 'hyperflex.ClusterBackupPolicyInventory' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiGetHyperflexClusterBackupPolicyInventoryListRequest
+ */
+func (a *HyperflexApiService) GetHyperflexClusterBackupPolicyInventoryList(ctx _context.Context) ApiGetHyperflexClusterBackupPolicyInventoryListRequest {
+	return ApiGetHyperflexClusterBackupPolicyInventoryListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexClusterBackupPolicyInventoryResponse
+ */
+func (a *HyperflexApiService) GetHyperflexClusterBackupPolicyInventoryListExecute(r ApiGetHyperflexClusterBackupPolicyInventoryListRequest) (HyperflexClusterBackupPolicyInventoryResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexClusterBackupPolicyInventoryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexClusterBackupPolicyInventoryList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ClusterBackupPolicyInventories"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -22768,4263 +22874,6 @@ func (a *HyperflexApiService) GetHyperflexHealthListExecute(r ApiGetHyperflexHea
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiGetHyperflexHxapClusterByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapClusterByMoidRequest) Execute() (HyperflexHxapCluster, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapClusterByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapClusterByMoid Read a 'hyperflex.HxapCluster' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapClusterByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapClusterByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapClusterByMoidRequest {
-	return ApiGetHyperflexHxapClusterByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapCluster
- */
-func (a *HyperflexApiService) GetHyperflexHxapClusterByMoidExecute(r ApiGetHyperflexHxapClusterByMoidRequest) (HyperflexHxapCluster, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapCluster
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapClusterByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapClusters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapClusterListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapClusterListRequest) Filter(filter string) ApiGetHyperflexHxapClusterListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Orderby(orderby string) ApiGetHyperflexHxapClusterListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Top(top int32) ApiGetHyperflexHxapClusterListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Skip(skip int32) ApiGetHyperflexHxapClusterListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Select_(select_ string) ApiGetHyperflexHxapClusterListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Expand(expand string) ApiGetHyperflexHxapClusterListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Apply(apply string) ApiGetHyperflexHxapClusterListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Count(count bool) ApiGetHyperflexHxapClusterListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapClusterListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) At(at string) ApiGetHyperflexHxapClusterListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapClusterListRequest) Tags(tags string) ApiGetHyperflexHxapClusterListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapClusterListRequest) Execute() (HyperflexHxapClusterResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapClusterListExecute(r)
-}
-
-/*
- * GetHyperflexHxapClusterList Read a 'hyperflex.HxapCluster' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapClusterListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapClusterList(ctx _context.Context) ApiGetHyperflexHxapClusterListRequest {
-	return ApiGetHyperflexHxapClusterListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapClusterResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapClusterListExecute(r ApiGetHyperflexHxapClusterListRequest) (HyperflexHxapClusterResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapClusterResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapClusterList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapClusters"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapDatacenterByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapDatacenterByMoidRequest) Execute() (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapDatacenterByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapDatacenterByMoid Read a 'hyperflex.HxapDatacenter' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapDatacenterByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapDatacenterByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapDatacenterByMoidRequest {
-	return ApiGetHyperflexHxapDatacenterByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDatacenter
- */
-func (a *HyperflexApiService) GetHyperflexHxapDatacenterByMoidExecute(r ApiGetHyperflexHxapDatacenterByMoidRequest) (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDatacenter
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapDatacenterByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDatacenters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapDatacenterListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapDatacenterListRequest) Filter(filter string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Orderby(orderby string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Top(top int32) ApiGetHyperflexHxapDatacenterListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Skip(skip int32) ApiGetHyperflexHxapDatacenterListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Select_(select_ string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Expand(expand string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Apply(apply string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Count(count bool) ApiGetHyperflexHxapDatacenterListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) At(at string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapDatacenterListRequest) Tags(tags string) ApiGetHyperflexHxapDatacenterListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapDatacenterListRequest) Execute() (HyperflexHxapDatacenterResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapDatacenterListExecute(r)
-}
-
-/*
- * GetHyperflexHxapDatacenterList Read a 'hyperflex.HxapDatacenter' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapDatacenterListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapDatacenterList(ctx _context.Context) ApiGetHyperflexHxapDatacenterListRequest {
-	return ApiGetHyperflexHxapDatacenterListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDatacenterResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapDatacenterListExecute(r ApiGetHyperflexHxapDatacenterListRequest) (HyperflexHxapDatacenterResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDatacenterResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapDatacenterList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDatacenters"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapDvUplinkByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapDvUplinkByMoidRequest) Execute() (HyperflexHxapDvUplink, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapDvUplinkByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapDvUplinkByMoid Read a 'hyperflex.HxapDvUplink' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapDvUplinkByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvUplinkByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapDvUplinkByMoidRequest {
-	return ApiGetHyperflexHxapDvUplinkByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDvUplink
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvUplinkByMoidExecute(r ApiGetHyperflexHxapDvUplinkByMoidRequest) (HyperflexHxapDvUplink, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDvUplink
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapDvUplinkByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDvUplinks/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapDvUplinkListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Filter(filter string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Orderby(orderby string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Top(top int32) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Skip(skip int32) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Select_(select_ string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Expand(expand string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Apply(apply string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Count(count bool) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) At(at string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Tags(tags string) ApiGetHyperflexHxapDvUplinkListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapDvUplinkListRequest) Execute() (HyperflexHxapDvUplinkResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapDvUplinkListExecute(r)
-}
-
-/*
- * GetHyperflexHxapDvUplinkList Read a 'hyperflex.HxapDvUplink' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapDvUplinkListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvUplinkList(ctx _context.Context) ApiGetHyperflexHxapDvUplinkListRequest {
-	return ApiGetHyperflexHxapDvUplinkListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDvUplinkResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvUplinkListExecute(r ApiGetHyperflexHxapDvUplinkListRequest) (HyperflexHxapDvUplinkResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDvUplinkResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapDvUplinkList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDvUplinks"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapDvswitchByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapDvswitchByMoidRequest) Execute() (HyperflexHxapDvswitch, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapDvswitchByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapDvswitchByMoid Read a 'hyperflex.HxapDvswitch' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapDvswitchByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvswitchByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapDvswitchByMoidRequest {
-	return ApiGetHyperflexHxapDvswitchByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDvswitch
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvswitchByMoidExecute(r ApiGetHyperflexHxapDvswitchByMoidRequest) (HyperflexHxapDvswitch, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDvswitch
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapDvswitchByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDvswitches/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapDvswitchListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapDvswitchListRequest) Filter(filter string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Orderby(orderby string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Top(top int32) ApiGetHyperflexHxapDvswitchListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Skip(skip int32) ApiGetHyperflexHxapDvswitchListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Select_(select_ string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Expand(expand string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Apply(apply string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Count(count bool) ApiGetHyperflexHxapDvswitchListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) At(at string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapDvswitchListRequest) Tags(tags string) ApiGetHyperflexHxapDvswitchListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapDvswitchListRequest) Execute() (HyperflexHxapDvswitchResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapDvswitchListExecute(r)
-}
-
-/*
- * GetHyperflexHxapDvswitchList Read a 'hyperflex.HxapDvswitch' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapDvswitchListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvswitchList(ctx _context.Context) ApiGetHyperflexHxapDvswitchListRequest {
-	return ApiGetHyperflexHxapDvswitchListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDvswitchResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapDvswitchListExecute(r ApiGetHyperflexHxapDvswitchListRequest) (HyperflexHxapDvswitchResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDvswitchResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapDvswitchList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDvswitches"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapHostByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapHostByMoidRequest) Execute() (HyperflexHxapHost, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapHostByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapHostByMoid Read a 'hyperflex.HxapHost' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapHostByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapHostByMoidRequest {
-	return ApiGetHyperflexHxapHostByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHost
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostByMoidExecute(r ApiGetHyperflexHxapHostByMoidRequest) (HyperflexHxapHost, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHost
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapHostByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHosts/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapHostInterfaceByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapHostInterfaceByMoidRequest) Execute() (HyperflexHxapHostInterface, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapHostInterfaceByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapHostInterfaceByMoid Read a 'hyperflex.HxapHostInterface' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapHostInterfaceByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostInterfaceByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapHostInterfaceByMoidRequest {
-	return ApiGetHyperflexHxapHostInterfaceByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHostInterface
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostInterfaceByMoidExecute(r ApiGetHyperflexHxapHostInterfaceByMoidRequest) (HyperflexHxapHostInterface, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHostInterface
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapHostInterfaceByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHostInterfaces/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapHostInterfaceListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Filter(filter string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Orderby(orderby string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Top(top int32) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Skip(skip int32) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Select_(select_ string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Expand(expand string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Apply(apply string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Count(count bool) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) At(at string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Tags(tags string) ApiGetHyperflexHxapHostInterfaceListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapHostInterfaceListRequest) Execute() (HyperflexHxapHostInterfaceResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapHostInterfaceListExecute(r)
-}
-
-/*
- * GetHyperflexHxapHostInterfaceList Read a 'hyperflex.HxapHostInterface' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapHostInterfaceListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostInterfaceList(ctx _context.Context) ApiGetHyperflexHxapHostInterfaceListRequest {
-	return ApiGetHyperflexHxapHostInterfaceListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHostInterfaceResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostInterfaceListExecute(r ApiGetHyperflexHxapHostInterfaceListRequest) (HyperflexHxapHostInterfaceResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHostInterfaceResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapHostInterfaceList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHostInterfaces"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapHostListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapHostListRequest) Filter(filter string) ApiGetHyperflexHxapHostListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Orderby(orderby string) ApiGetHyperflexHxapHostListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Top(top int32) ApiGetHyperflexHxapHostListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Skip(skip int32) ApiGetHyperflexHxapHostListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Select_(select_ string) ApiGetHyperflexHxapHostListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Expand(expand string) ApiGetHyperflexHxapHostListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Apply(apply string) ApiGetHyperflexHxapHostListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Count(count bool) ApiGetHyperflexHxapHostListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapHostListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) At(at string) ApiGetHyperflexHxapHostListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapHostListRequest) Tags(tags string) ApiGetHyperflexHxapHostListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapHostListRequest) Execute() (HyperflexHxapHostResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapHostListExecute(r)
-}
-
-/*
- * GetHyperflexHxapHostList Read a 'hyperflex.HxapHost' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapHostListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostList(ctx _context.Context) ApiGetHyperflexHxapHostListRequest {
-	return ApiGetHyperflexHxapHostListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHostResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostListExecute(r ApiGetHyperflexHxapHostListRequest) (HyperflexHxapHostResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHostResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapHostList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHosts"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapHostVswitchByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapHostVswitchByMoidRequest) Execute() (HyperflexHxapHostVswitch, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapHostVswitchByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapHostVswitchByMoid Read a 'hyperflex.HxapHostVswitch' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapHostVswitchByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostVswitchByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapHostVswitchByMoidRequest {
-	return ApiGetHyperflexHxapHostVswitchByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHostVswitch
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostVswitchByMoidExecute(r ApiGetHyperflexHxapHostVswitchByMoidRequest) (HyperflexHxapHostVswitch, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHostVswitch
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapHostVswitchByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHostVswitches/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapHostVswitchListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Filter(filter string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Orderby(orderby string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Top(top int32) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Skip(skip int32) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Select_(select_ string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Expand(expand string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Apply(apply string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Count(count bool) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) At(at string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Tags(tags string) ApiGetHyperflexHxapHostVswitchListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapHostVswitchListRequest) Execute() (HyperflexHxapHostVswitchResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapHostVswitchListExecute(r)
-}
-
-/*
- * GetHyperflexHxapHostVswitchList Read a 'hyperflex.HxapHostVswitch' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapHostVswitchListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostVswitchList(ctx _context.Context) ApiGetHyperflexHxapHostVswitchListRequest {
-	return ApiGetHyperflexHxapHostVswitchListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHostVswitchResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapHostVswitchListExecute(r ApiGetHyperflexHxapHostVswitchListRequest) (HyperflexHxapHostVswitchResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHostVswitchResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapHostVswitchList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHostVswitches"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapNetworkByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapNetworkByMoidRequest) Execute() (HyperflexHxapNetwork, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapNetworkByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapNetworkByMoid Read a 'hyperflex.HxapNetwork' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapNetworkByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapNetworkByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapNetworkByMoidRequest {
-	return ApiGetHyperflexHxapNetworkByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapNetwork
- */
-func (a *HyperflexApiService) GetHyperflexHxapNetworkByMoidExecute(r ApiGetHyperflexHxapNetworkByMoidRequest) (HyperflexHxapNetwork, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapNetwork
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapNetworkByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapNetworks/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapNetworkListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapNetworkListRequest) Filter(filter string) ApiGetHyperflexHxapNetworkListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Orderby(orderby string) ApiGetHyperflexHxapNetworkListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Top(top int32) ApiGetHyperflexHxapNetworkListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Skip(skip int32) ApiGetHyperflexHxapNetworkListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Select_(select_ string) ApiGetHyperflexHxapNetworkListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Expand(expand string) ApiGetHyperflexHxapNetworkListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Apply(apply string) ApiGetHyperflexHxapNetworkListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Count(count bool) ApiGetHyperflexHxapNetworkListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapNetworkListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) At(at string) ApiGetHyperflexHxapNetworkListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapNetworkListRequest) Tags(tags string) ApiGetHyperflexHxapNetworkListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapNetworkListRequest) Execute() (HyperflexHxapNetworkResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapNetworkListExecute(r)
-}
-
-/*
- * GetHyperflexHxapNetworkList Read a 'hyperflex.HxapNetwork' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapNetworkListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapNetworkList(ctx _context.Context) ApiGetHyperflexHxapNetworkListRequest {
-	return ApiGetHyperflexHxapNetworkListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapNetworkResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapNetworkListExecute(r ApiGetHyperflexHxapNetworkListRequest) (HyperflexHxapNetworkResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapNetworkResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapNetworkList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapNetworks"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapVirtualDiskByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapVirtualDiskByMoidRequest) Execute() (HyperflexHxapVirtualDisk, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapVirtualDiskByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapVirtualDiskByMoid Read a 'hyperflex.HxapVirtualDisk' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapVirtualDiskByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualDiskByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapVirtualDiskByMoidRequest {
-	return ApiGetHyperflexHxapVirtualDiskByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualDisk
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualDiskByMoidExecute(r ApiGetHyperflexHxapVirtualDiskByMoidRequest) (HyperflexHxapVirtualDisk, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualDisk
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapVirtualDiskByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualDisks/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapVirtualDiskListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Filter(filter string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Orderby(orderby string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Top(top int32) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Skip(skip int32) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Select_(select_ string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Expand(expand string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Apply(apply string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Count(count bool) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) At(at string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Tags(tags string) ApiGetHyperflexHxapVirtualDiskListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapVirtualDiskListRequest) Execute() (HyperflexHxapVirtualDiskResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapVirtualDiskListExecute(r)
-}
-
-/*
- * GetHyperflexHxapVirtualDiskList Read a 'hyperflex.HxapVirtualDisk' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapVirtualDiskListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualDiskList(ctx _context.Context) ApiGetHyperflexHxapVirtualDiskListRequest {
-	return ApiGetHyperflexHxapVirtualDiskListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualDiskResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualDiskListExecute(r ApiGetHyperflexHxapVirtualDiskListRequest) (HyperflexHxapVirtualDiskResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualDiskResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapVirtualDiskList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualDisks"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapVirtualMachineByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapVirtualMachineByMoidRequest) Execute() (HyperflexHxapVirtualMachine, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapVirtualMachineByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapVirtualMachineByMoid Read a 'hyperflex.HxapVirtualMachine' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapVirtualMachineByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapVirtualMachineByMoidRequest {
-	return ApiGetHyperflexHxapVirtualMachineByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualMachine
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineByMoidExecute(r ApiGetHyperflexHxapVirtualMachineByMoidRequest) (HyperflexHxapVirtualMachine, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualMachine
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapVirtualMachineByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachines/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapVirtualMachineListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Filter(filter string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Orderby(orderby string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Top(top int32) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Skip(skip int32) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Select_(select_ string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Expand(expand string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Apply(apply string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Count(count bool) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) At(at string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Tags(tags string) ApiGetHyperflexHxapVirtualMachineListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapVirtualMachineListRequest) Execute() (HyperflexHxapVirtualMachineResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapVirtualMachineListExecute(r)
-}
-
-/*
- * GetHyperflexHxapVirtualMachineList Read a 'hyperflex.HxapVirtualMachine' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapVirtualMachineListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineList(ctx _context.Context) ApiGetHyperflexHxapVirtualMachineListRequest {
-	return ApiGetHyperflexHxapVirtualMachineListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualMachineResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineListExecute(r ApiGetHyperflexHxapVirtualMachineListRequest) (HyperflexHxapVirtualMachineResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualMachineResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapVirtualMachineList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachines"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapVirtualMachineNetworkInterfaceByMoidRequest struct {
-	ctx        _context.Context
-	ApiService *HyperflexApiService
-	moid       string
-}
-
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceByMoidRequest) Execute() (HyperflexHxapVirtualMachineNetworkInterface, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapVirtualMachineNetworkInterfaceByMoidExecute(r)
-}
-
-/*
- * GetHyperflexHxapVirtualMachineNetworkInterfaceByMoid Read a 'hyperflex.HxapVirtualMachineNetworkInterface' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiGetHyperflexHxapVirtualMachineNetworkInterfaceByMoidRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineNetworkInterfaceByMoid(ctx _context.Context, moid string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceByMoidRequest {
-	return ApiGetHyperflexHxapVirtualMachineNetworkInterfaceByMoidRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualMachineNetworkInterface
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineNetworkInterfaceByMoidExecute(r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceByMoidRequest) (HyperflexHxapVirtualMachineNetworkInterface, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualMachineNetworkInterface
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapVirtualMachineNetworkInterfaceByMoid")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachineNetworkInterfaces/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest struct {
-	ctx         _context.Context
-	ApiService  *HyperflexApiService
-	filter      *string
-	orderby     *string
-	top         *int32
-	skip        *int32
-	select_     *string
-	expand      *string
-	apply       *string
-	count       *bool
-	inlinecount *string
-	at          *string
-	tags        *string
-}
-
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Filter(filter string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.filter = &filter
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Orderby(orderby string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.orderby = &orderby
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Top(top int32) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.top = &top
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Skip(skip int32) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.skip = &skip
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Select_(select_ string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.select_ = &select_
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Expand(expand string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.expand = &expand
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Apply(apply string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.apply = &apply
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Count(count bool) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.count = &count
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.inlinecount = &inlinecount
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) At(at string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.at = &at
-	return r
-}
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Tags(tags string) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	r.tags = &tags
-	return r
-}
-
-func (r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) Execute() (HyperflexHxapVirtualMachineNetworkInterfaceResponse, *_nethttp.Response, error) {
-	return r.ApiService.GetHyperflexHxapVirtualMachineNetworkInterfaceListExecute(r)
-}
-
-/*
- * GetHyperflexHxapVirtualMachineNetworkInterfaceList Read a 'hyperflex.HxapVirtualMachineNetworkInterface' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineNetworkInterfaceList(ctx _context.Context) ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest {
-	return ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualMachineNetworkInterfaceResponse
- */
-func (a *HyperflexApiService) GetHyperflexHxapVirtualMachineNetworkInterfaceListExecute(r ApiGetHyperflexHxapVirtualMachineNetworkInterfaceListRequest) (HyperflexHxapVirtualMachineNetworkInterfaceResponse, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualMachineNetworkInterfaceResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHxapVirtualMachineNetworkInterfaceList")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachineNetworkInterfaces"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.filter != nil {
-		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
-	}
-	if r.orderby != nil {
-		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
-	}
-	if r.top != nil {
-		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
-	}
-	if r.skip != nil {
-		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
-	}
-	if r.select_ != nil {
-		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
-	}
-	if r.expand != nil {
-		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
-	}
-	if r.apply != nil {
-		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
-	}
-	if r.count != nil {
-		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
-	}
-	if r.inlinecount != nil {
-		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
-	}
-	if r.at != nil {
-		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
-	}
-	if r.tags != nil {
-		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiGetHyperflexHxdpVersionByMoidRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -27273,6 +23122,780 @@ func (a *HyperflexApiService) GetHyperflexHxdpVersionListExecute(r ApiGetHyperfl
 	}
 
 	localVarPath := localBasePath + "/api/v1/hyperflex/HxdpVersions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.filter != nil {
+		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
+	}
+	if r.orderby != nil {
+		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
+	}
+	if r.top != nil {
+		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
+	}
+	if r.select_ != nil {
+		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
+	}
+	if r.expand != nil {
+		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
+	}
+	if r.apply != nil {
+		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
+	}
+	if r.count != nil {
+		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
+	}
+	if r.inlinecount != nil {
+		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
+	}
+	if r.at != nil {
+		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
+	}
+	if r.tags != nil {
+		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexHypervisorHostByMoidRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiGetHyperflexHypervisorHostByMoidRequest) Execute() (HyperflexHypervisorHost, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexHypervisorHostByMoidExecute(r)
+}
+
+/*
+ * GetHyperflexHypervisorHostByMoid Read a 'hyperflex.HypervisorHost' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiGetHyperflexHypervisorHostByMoidRequest
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorHostByMoid(ctx _context.Context, moid string) ApiGetHyperflexHypervisorHostByMoidRequest {
+	return ApiGetHyperflexHypervisorHostByMoidRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorHost
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorHostByMoidExecute(r ApiGetHyperflexHypervisorHostByMoidRequest) (HyperflexHypervisorHost, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorHost
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHypervisorHostByMoid")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorHosts/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexHypervisorHostListRequest struct {
+	ctx         _context.Context
+	ApiService  *HyperflexApiService
+	filter      *string
+	orderby     *string
+	top         *int32
+	skip        *int32
+	select_     *string
+	expand      *string
+	apply       *string
+	count       *bool
+	inlinecount *string
+	at          *string
+	tags        *string
+}
+
+func (r ApiGetHyperflexHypervisorHostListRequest) Filter(filter string) ApiGetHyperflexHypervisorHostListRequest {
+	r.filter = &filter
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Orderby(orderby string) ApiGetHyperflexHypervisorHostListRequest {
+	r.orderby = &orderby
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Top(top int32) ApiGetHyperflexHypervisorHostListRequest {
+	r.top = &top
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Skip(skip int32) ApiGetHyperflexHypervisorHostListRequest {
+	r.skip = &skip
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Select_(select_ string) ApiGetHyperflexHypervisorHostListRequest {
+	r.select_ = &select_
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Expand(expand string) ApiGetHyperflexHypervisorHostListRequest {
+	r.expand = &expand
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Apply(apply string) ApiGetHyperflexHypervisorHostListRequest {
+	r.apply = &apply
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Count(count bool) ApiGetHyperflexHypervisorHostListRequest {
+	r.count = &count
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHypervisorHostListRequest {
+	r.inlinecount = &inlinecount
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) At(at string) ApiGetHyperflexHypervisorHostListRequest {
+	r.at = &at
+	return r
+}
+func (r ApiGetHyperflexHypervisorHostListRequest) Tags(tags string) ApiGetHyperflexHypervisorHostListRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r ApiGetHyperflexHypervisorHostListRequest) Execute() (HyperflexHypervisorHostResponse, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexHypervisorHostListExecute(r)
+}
+
+/*
+ * GetHyperflexHypervisorHostList Read a 'hyperflex.HypervisorHost' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiGetHyperflexHypervisorHostListRequest
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorHostList(ctx _context.Context) ApiGetHyperflexHypervisorHostListRequest {
+	return ApiGetHyperflexHypervisorHostListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorHostResponse
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorHostListExecute(r ApiGetHyperflexHypervisorHostListRequest) (HyperflexHypervisorHostResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorHostResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHypervisorHostList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorHosts"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.filter != nil {
+		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
+	}
+	if r.orderby != nil {
+		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
+	}
+	if r.top != nil {
+		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
+	}
+	if r.select_ != nil {
+		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
+	}
+	if r.expand != nil {
+		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
+	}
+	if r.apply != nil {
+		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
+	}
+	if r.count != nil {
+		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
+	}
+	if r.inlinecount != nil {
+		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
+	}
+	if r.at != nil {
+		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
+	}
+	if r.tags != nil {
+		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexHypervisorVirtualMachineByMoidRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiGetHyperflexHypervisorVirtualMachineByMoidRequest) Execute() (HyperflexHypervisorVirtualMachine, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexHypervisorVirtualMachineByMoidExecute(r)
+}
+
+/*
+ * GetHyperflexHypervisorVirtualMachineByMoid Read a 'hyperflex.HypervisorVirtualMachine' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiGetHyperflexHypervisorVirtualMachineByMoidRequest
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorVirtualMachineByMoid(ctx _context.Context, moid string) ApiGetHyperflexHypervisorVirtualMachineByMoidRequest {
+	return ApiGetHyperflexHypervisorVirtualMachineByMoidRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorVirtualMachine
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorVirtualMachineByMoidExecute(r ApiGetHyperflexHypervisorVirtualMachineByMoidRequest) (HyperflexHypervisorVirtualMachine, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorVirtualMachine
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHypervisorVirtualMachineByMoid")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorVirtualMachines/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexHypervisorVirtualMachineListRequest struct {
+	ctx         _context.Context
+	ApiService  *HyperflexApiService
+	filter      *string
+	orderby     *string
+	top         *int32
+	skip        *int32
+	select_     *string
+	expand      *string
+	apply       *string
+	count       *bool
+	inlinecount *string
+	at          *string
+	tags        *string
+}
+
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Filter(filter string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.filter = &filter
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Orderby(orderby string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.orderby = &orderby
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Top(top int32) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.top = &top
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Skip(skip int32) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.skip = &skip
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Select_(select_ string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.select_ = &select_
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Expand(expand string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.expand = &expand
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Apply(apply string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.apply = &apply
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Count(count bool) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.count = &count
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Inlinecount(inlinecount string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.inlinecount = &inlinecount
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) At(at string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.at = &at
+	return r
+}
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Tags(tags string) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r ApiGetHyperflexHypervisorVirtualMachineListRequest) Execute() (HyperflexHypervisorVirtualMachineResponse, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexHypervisorVirtualMachineListExecute(r)
+}
+
+/*
+ * GetHyperflexHypervisorVirtualMachineList Read a 'hyperflex.HypervisorVirtualMachine' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiGetHyperflexHypervisorVirtualMachineListRequest
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorVirtualMachineList(ctx _context.Context) ApiGetHyperflexHypervisorVirtualMachineListRequest {
+	return ApiGetHyperflexHypervisorVirtualMachineListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorVirtualMachineResponse
+ */
+func (a *HyperflexApiService) GetHyperflexHypervisorVirtualMachineListExecute(r ApiGetHyperflexHypervisorVirtualMachineListRequest) (HyperflexHypervisorVirtualMachineResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorVirtualMachineResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexHypervisorVirtualMachineList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorVirtualMachines"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -29347,6 +25970,393 @@ func (a *HyperflexApiService) GetHyperflexNodeProfileListExecute(r ApiGetHyperfl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiGetHyperflexProtectedClusterByMoidRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiGetHyperflexProtectedClusterByMoidRequest) Execute() (HyperflexProtectedCluster, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexProtectedClusterByMoidExecute(r)
+}
+
+/*
+ * GetHyperflexProtectedClusterByMoid Read a 'hyperflex.ProtectedCluster' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiGetHyperflexProtectedClusterByMoidRequest
+ */
+func (a *HyperflexApiService) GetHyperflexProtectedClusterByMoid(ctx _context.Context, moid string) ApiGetHyperflexProtectedClusterByMoidRequest {
+	return ApiGetHyperflexProtectedClusterByMoidRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexProtectedCluster
+ */
+func (a *HyperflexApiService) GetHyperflexProtectedClusterByMoidExecute(r ApiGetHyperflexProtectedClusterByMoidRequest) (HyperflexProtectedCluster, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexProtectedCluster
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexProtectedClusterByMoid")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ProtectedClusters/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexProtectedClusterListRequest struct {
+	ctx         _context.Context
+	ApiService  *HyperflexApiService
+	filter      *string
+	orderby     *string
+	top         *int32
+	skip        *int32
+	select_     *string
+	expand      *string
+	apply       *string
+	count       *bool
+	inlinecount *string
+	at          *string
+	tags        *string
+}
+
+func (r ApiGetHyperflexProtectedClusterListRequest) Filter(filter string) ApiGetHyperflexProtectedClusterListRequest {
+	r.filter = &filter
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Orderby(orderby string) ApiGetHyperflexProtectedClusterListRequest {
+	r.orderby = &orderby
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Top(top int32) ApiGetHyperflexProtectedClusterListRequest {
+	r.top = &top
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Skip(skip int32) ApiGetHyperflexProtectedClusterListRequest {
+	r.skip = &skip
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Select_(select_ string) ApiGetHyperflexProtectedClusterListRequest {
+	r.select_ = &select_
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Expand(expand string) ApiGetHyperflexProtectedClusterListRequest {
+	r.expand = &expand
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Apply(apply string) ApiGetHyperflexProtectedClusterListRequest {
+	r.apply = &apply
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Count(count bool) ApiGetHyperflexProtectedClusterListRequest {
+	r.count = &count
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Inlinecount(inlinecount string) ApiGetHyperflexProtectedClusterListRequest {
+	r.inlinecount = &inlinecount
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) At(at string) ApiGetHyperflexProtectedClusterListRequest {
+	r.at = &at
+	return r
+}
+func (r ApiGetHyperflexProtectedClusterListRequest) Tags(tags string) ApiGetHyperflexProtectedClusterListRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r ApiGetHyperflexProtectedClusterListRequest) Execute() (HyperflexProtectedClusterResponse, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexProtectedClusterListExecute(r)
+}
+
+/*
+ * GetHyperflexProtectedClusterList Read a 'hyperflex.ProtectedCluster' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiGetHyperflexProtectedClusterListRequest
+ */
+func (a *HyperflexApiService) GetHyperflexProtectedClusterList(ctx _context.Context) ApiGetHyperflexProtectedClusterListRequest {
+	return ApiGetHyperflexProtectedClusterListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexProtectedClusterResponse
+ */
+func (a *HyperflexApiService) GetHyperflexProtectedClusterListExecute(r ApiGetHyperflexProtectedClusterListRequest) (HyperflexProtectedClusterResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexProtectedClusterResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexProtectedClusterList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ProtectedClusters"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.filter != nil {
+		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
+	}
+	if r.orderby != nil {
+		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
+	}
+	if r.top != nil {
+		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
+	}
+	if r.select_ != nil {
+		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
+	}
+	if r.expand != nil {
+		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
+	}
+	if r.apply != nil {
+		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
+	}
+	if r.count != nil {
+		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
+	}
+	if r.inlinecount != nil {
+		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
+	}
+	if r.at != nil {
+		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
+	}
+	if r.tags != nil {
+		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetHyperflexProxySettingPolicyByMoidRequest struct {
 	ctx        _context.Context
 	ApiService *HyperflexApiService
@@ -30756,6 +27766,393 @@ func (a *HyperflexApiService) GetHyperflexServerModelListExecute(r ApiGetHyperfl
 	}
 
 	localVarPath := localBasePath + "/api/v1/hyperflex/ServerModels"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.filter != nil {
+		localVarQueryParams.Add("$filter", parameterToString(*r.filter, ""))
+	}
+	if r.orderby != nil {
+		localVarQueryParams.Add("$orderby", parameterToString(*r.orderby, ""))
+	}
+	if r.top != nil {
+		localVarQueryParams.Add("$top", parameterToString(*r.top, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("$skip", parameterToString(*r.skip, ""))
+	}
+	if r.select_ != nil {
+		localVarQueryParams.Add("$select", parameterToString(*r.select_, ""))
+	}
+	if r.expand != nil {
+		localVarQueryParams.Add("$expand", parameterToString(*r.expand, ""))
+	}
+	if r.apply != nil {
+		localVarQueryParams.Add("$apply", parameterToString(*r.apply, ""))
+	}
+	if r.count != nil {
+		localVarQueryParams.Add("$count", parameterToString(*r.count, ""))
+	}
+	if r.inlinecount != nil {
+		localVarQueryParams.Add("$inlinecount", parameterToString(*r.inlinecount, ""))
+	}
+	if r.at != nil {
+		localVarQueryParams.Add("at", parameterToString(*r.at, ""))
+	}
+	if r.tags != nil {
+		localVarQueryParams.Add("tags", parameterToString(*r.tags, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexServiceAuthTokenByMoidRequest struct {
+	ctx        _context.Context
+	ApiService *HyperflexApiService
+	moid       string
+}
+
+func (r ApiGetHyperflexServiceAuthTokenByMoidRequest) Execute() (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexServiceAuthTokenByMoidExecute(r)
+}
+
+/*
+ * GetHyperflexServiceAuthTokenByMoid Read a 'hyperflex.ServiceAuthToken' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiGetHyperflexServiceAuthTokenByMoidRequest
+ */
+func (a *HyperflexApiService) GetHyperflexServiceAuthTokenByMoid(ctx _context.Context, moid string) ApiGetHyperflexServiceAuthTokenByMoidRequest {
+	return ApiGetHyperflexServiceAuthTokenByMoidRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexServiceAuthToken
+ */
+func (a *HyperflexApiService) GetHyperflexServiceAuthTokenByMoidExecute(r ApiGetHyperflexServiceAuthTokenByMoidRequest) (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexServiceAuthToken
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexServiceAuthTokenByMoid")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ServiceAuthTokens/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "text/csv", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHyperflexServiceAuthTokenListRequest struct {
+	ctx         _context.Context
+	ApiService  *HyperflexApiService
+	filter      *string
+	orderby     *string
+	top         *int32
+	skip        *int32
+	select_     *string
+	expand      *string
+	apply       *string
+	count       *bool
+	inlinecount *string
+	at          *string
+	tags        *string
+}
+
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Filter(filter string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.filter = &filter
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Orderby(orderby string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.orderby = &orderby
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Top(top int32) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.top = &top
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Skip(skip int32) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.skip = &skip
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Select_(select_ string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.select_ = &select_
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Expand(expand string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.expand = &expand
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Apply(apply string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.apply = &apply
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Count(count bool) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.count = &count
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Inlinecount(inlinecount string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.inlinecount = &inlinecount
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) At(at string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.at = &at
+	return r
+}
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Tags(tags string) ApiGetHyperflexServiceAuthTokenListRequest {
+	r.tags = &tags
+	return r
+}
+
+func (r ApiGetHyperflexServiceAuthTokenListRequest) Execute() (HyperflexServiceAuthTokenResponse, *_nethttp.Response, error) {
+	return r.ApiService.GetHyperflexServiceAuthTokenListExecute(r)
+}
+
+/*
+ * GetHyperflexServiceAuthTokenList Read a 'hyperflex.ServiceAuthToken' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @return ApiGetHyperflexServiceAuthTokenListRequest
+ */
+func (a *HyperflexApiService) GetHyperflexServiceAuthTokenList(ctx _context.Context) ApiGetHyperflexServiceAuthTokenListRequest {
+	return ApiGetHyperflexServiceAuthTokenListRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexServiceAuthTokenResponse
+ */
+func (a *HyperflexApiService) GetHyperflexServiceAuthTokenListExecute(r ApiGetHyperflexServiceAuthTokenListRequest) (HyperflexServiceAuthTokenResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexServiceAuthTokenResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.GetHyperflexServiceAuthTokenList")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ServiceAuthTokens"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -36823,176 +34220,6 @@ func (a *HyperflexApiService) PatchHyperflexCapabilityInfoExecute(r ApiPatchHype
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPatchHyperflexCiscoHypervisorManagerRequest struct {
-	ctx                             _context.Context
-	ApiService                      *HyperflexApiService
-	moid                            string
-	hyperflexCiscoHypervisorManager *HyperflexCiscoHypervisorManager
-	ifMatch                         *string
-}
-
-func (r ApiPatchHyperflexCiscoHypervisorManagerRequest) HyperflexCiscoHypervisorManager(hyperflexCiscoHypervisorManager HyperflexCiscoHypervisorManager) ApiPatchHyperflexCiscoHypervisorManagerRequest {
-	r.hyperflexCiscoHypervisorManager = &hyperflexCiscoHypervisorManager
-	return r
-}
-func (r ApiPatchHyperflexCiscoHypervisorManagerRequest) IfMatch(ifMatch string) ApiPatchHyperflexCiscoHypervisorManagerRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiPatchHyperflexCiscoHypervisorManagerRequest) Execute() (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	return r.ApiService.PatchHyperflexCiscoHypervisorManagerExecute(r)
-}
-
-/*
- * PatchHyperflexCiscoHypervisorManager Update a 'hyperflex.CiscoHypervisorManager' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiPatchHyperflexCiscoHypervisorManagerRequest
- */
-func (a *HyperflexApiService) PatchHyperflexCiscoHypervisorManager(ctx _context.Context, moid string) ApiPatchHyperflexCiscoHypervisorManagerRequest {
-	return ApiPatchHyperflexCiscoHypervisorManagerRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexCiscoHypervisorManager
- */
-func (a *HyperflexApiService) PatchHyperflexCiscoHypervisorManagerExecute(r ApiPatchHyperflexCiscoHypervisorManagerRequest) (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexCiscoHypervisorManager
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexCiscoHypervisorManager")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/CiscoHypervisorManagers/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexCiscoHypervisorManager == nil {
-		return localVarReturnValue, nil, reportError("hyperflexCiscoHypervisorManager is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexCiscoHypervisorManager
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiPatchHyperflexClusterRequest struct {
 	ctx              _context.Context
 	ApiService       *HyperflexApiService
@@ -39373,856 +36600,6 @@ func (a *HyperflexApiService) PatchHyperflexHealthCheckPackageChecksumExecute(r 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPatchHyperflexHxapClusterRequest struct {
-	ctx                  _context.Context
-	ApiService           *HyperflexApiService
-	moid                 string
-	hyperflexHxapCluster *HyperflexHxapCluster
-	ifMatch              *string
-}
-
-func (r ApiPatchHyperflexHxapClusterRequest) HyperflexHxapCluster(hyperflexHxapCluster HyperflexHxapCluster) ApiPatchHyperflexHxapClusterRequest {
-	r.hyperflexHxapCluster = &hyperflexHxapCluster
-	return r
-}
-func (r ApiPatchHyperflexHxapClusterRequest) IfMatch(ifMatch string) ApiPatchHyperflexHxapClusterRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiPatchHyperflexHxapClusterRequest) Execute() (HyperflexHxapCluster, *_nethttp.Response, error) {
-	return r.ApiService.PatchHyperflexHxapClusterExecute(r)
-}
-
-/*
- * PatchHyperflexHxapCluster Update a 'hyperflex.HxapCluster' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiPatchHyperflexHxapClusterRequest
- */
-func (a *HyperflexApiService) PatchHyperflexHxapCluster(ctx _context.Context, moid string) ApiPatchHyperflexHxapClusterRequest {
-	return ApiPatchHyperflexHxapClusterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapCluster
- */
-func (a *HyperflexApiService) PatchHyperflexHxapClusterExecute(r ApiPatchHyperflexHxapClusterRequest) (HyperflexHxapCluster, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapCluster
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHxapCluster")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapClusters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapCluster == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapCluster is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapCluster
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPatchHyperflexHxapDatacenterRequest struct {
-	ctx                     _context.Context
-	ApiService              *HyperflexApiService
-	moid                    string
-	hyperflexHxapDatacenter *HyperflexHxapDatacenter
-	ifMatch                 *string
-}
-
-func (r ApiPatchHyperflexHxapDatacenterRequest) HyperflexHxapDatacenter(hyperflexHxapDatacenter HyperflexHxapDatacenter) ApiPatchHyperflexHxapDatacenterRequest {
-	r.hyperflexHxapDatacenter = &hyperflexHxapDatacenter
-	return r
-}
-func (r ApiPatchHyperflexHxapDatacenterRequest) IfMatch(ifMatch string) ApiPatchHyperflexHxapDatacenterRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiPatchHyperflexHxapDatacenterRequest) Execute() (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	return r.ApiService.PatchHyperflexHxapDatacenterExecute(r)
-}
-
-/*
- * PatchHyperflexHxapDatacenter Update a 'hyperflex.HxapDatacenter' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiPatchHyperflexHxapDatacenterRequest
- */
-func (a *HyperflexApiService) PatchHyperflexHxapDatacenter(ctx _context.Context, moid string) ApiPatchHyperflexHxapDatacenterRequest {
-	return ApiPatchHyperflexHxapDatacenterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDatacenter
- */
-func (a *HyperflexApiService) PatchHyperflexHxapDatacenterExecute(r ApiPatchHyperflexHxapDatacenterRequest) (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDatacenter
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHxapDatacenter")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDatacenters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapDatacenter == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapDatacenter is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapDatacenter
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPatchHyperflexHxapHostRequest struct {
-	ctx               _context.Context
-	ApiService        *HyperflexApiService
-	moid              string
-	hyperflexHxapHost *HyperflexHxapHost
-	ifMatch           *string
-}
-
-func (r ApiPatchHyperflexHxapHostRequest) HyperflexHxapHost(hyperflexHxapHost HyperflexHxapHost) ApiPatchHyperflexHxapHostRequest {
-	r.hyperflexHxapHost = &hyperflexHxapHost
-	return r
-}
-func (r ApiPatchHyperflexHxapHostRequest) IfMatch(ifMatch string) ApiPatchHyperflexHxapHostRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiPatchHyperflexHxapHostRequest) Execute() (HyperflexHxapHost, *_nethttp.Response, error) {
-	return r.ApiService.PatchHyperflexHxapHostExecute(r)
-}
-
-/*
- * PatchHyperflexHxapHost Update a 'hyperflex.HxapHost' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiPatchHyperflexHxapHostRequest
- */
-func (a *HyperflexApiService) PatchHyperflexHxapHost(ctx _context.Context, moid string) ApiPatchHyperflexHxapHostRequest {
-	return ApiPatchHyperflexHxapHostRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHost
- */
-func (a *HyperflexApiService) PatchHyperflexHxapHostExecute(r ApiPatchHyperflexHxapHostRequest) (HyperflexHxapHost, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHost
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHxapHost")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHosts/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapHost == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapHost is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapHost
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPatchHyperflexHxapVirtualDiskRequest struct {
-	ctx                      _context.Context
-	ApiService               *HyperflexApiService
-	moid                     string
-	hyperflexHxapVirtualDisk *HyperflexHxapVirtualDisk
-	ifMatch                  *string
-}
-
-func (r ApiPatchHyperflexHxapVirtualDiskRequest) HyperflexHxapVirtualDisk(hyperflexHxapVirtualDisk HyperflexHxapVirtualDisk) ApiPatchHyperflexHxapVirtualDiskRequest {
-	r.hyperflexHxapVirtualDisk = &hyperflexHxapVirtualDisk
-	return r
-}
-func (r ApiPatchHyperflexHxapVirtualDiskRequest) IfMatch(ifMatch string) ApiPatchHyperflexHxapVirtualDiskRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiPatchHyperflexHxapVirtualDiskRequest) Execute() (HyperflexHxapVirtualDisk, *_nethttp.Response, error) {
-	return r.ApiService.PatchHyperflexHxapVirtualDiskExecute(r)
-}
-
-/*
- * PatchHyperflexHxapVirtualDisk Update a 'hyperflex.HxapVirtualDisk' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiPatchHyperflexHxapVirtualDiskRequest
- */
-func (a *HyperflexApiService) PatchHyperflexHxapVirtualDisk(ctx _context.Context, moid string) ApiPatchHyperflexHxapVirtualDiskRequest {
-	return ApiPatchHyperflexHxapVirtualDiskRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualDisk
- */
-func (a *HyperflexApiService) PatchHyperflexHxapVirtualDiskExecute(r ApiPatchHyperflexHxapVirtualDiskRequest) (HyperflexHxapVirtualDisk, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualDisk
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHxapVirtualDisk")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualDisks/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapVirtualDisk == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapVirtualDisk is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapVirtualDisk
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPatchHyperflexHxapVirtualMachineRequest struct {
-	ctx                         _context.Context
-	ApiService                  *HyperflexApiService
-	moid                        string
-	hyperflexHxapVirtualMachine *HyperflexHxapVirtualMachine
-	ifMatch                     *string
-}
-
-func (r ApiPatchHyperflexHxapVirtualMachineRequest) HyperflexHxapVirtualMachine(hyperflexHxapVirtualMachine HyperflexHxapVirtualMachine) ApiPatchHyperflexHxapVirtualMachineRequest {
-	r.hyperflexHxapVirtualMachine = &hyperflexHxapVirtualMachine
-	return r
-}
-func (r ApiPatchHyperflexHxapVirtualMachineRequest) IfMatch(ifMatch string) ApiPatchHyperflexHxapVirtualMachineRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiPatchHyperflexHxapVirtualMachineRequest) Execute() (HyperflexHxapVirtualMachine, *_nethttp.Response, error) {
-	return r.ApiService.PatchHyperflexHxapVirtualMachineExecute(r)
-}
-
-/*
- * PatchHyperflexHxapVirtualMachine Update a 'hyperflex.HxapVirtualMachine' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiPatchHyperflexHxapVirtualMachineRequest
- */
-func (a *HyperflexApiService) PatchHyperflexHxapVirtualMachine(ctx _context.Context, moid string) ApiPatchHyperflexHxapVirtualMachineRequest {
-	return ApiPatchHyperflexHxapVirtualMachineRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualMachine
- */
-func (a *HyperflexApiService) PatchHyperflexHxapVirtualMachineExecute(r ApiPatchHyperflexHxapVirtualMachineRequest) (HyperflexHxapVirtualMachine, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualMachine
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHxapVirtualMachine")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachines/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapVirtualMachine == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapVirtualMachine is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapVirtualMachine
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiPatchHyperflexHxdpVersionRequest struct {
 	ctx                  _context.Context
 	ApiService           *HyperflexApiService
@@ -40309,6 +36686,346 @@ func (a *HyperflexApiService) PatchHyperflexHxdpVersionExecute(r ApiPatchHyperfl
 	}
 	// body params
 	localVarPostBody = r.hyperflexHxdpVersion
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPatchHyperflexHypervisorHostRequest struct {
+	ctx                     _context.Context
+	ApiService              *HyperflexApiService
+	moid                    string
+	hyperflexHypervisorHost *HyperflexHypervisorHost
+	ifMatch                 *string
+}
+
+func (r ApiPatchHyperflexHypervisorHostRequest) HyperflexHypervisorHost(hyperflexHypervisorHost HyperflexHypervisorHost) ApiPatchHyperflexHypervisorHostRequest {
+	r.hyperflexHypervisorHost = &hyperflexHypervisorHost
+	return r
+}
+func (r ApiPatchHyperflexHypervisorHostRequest) IfMatch(ifMatch string) ApiPatchHyperflexHypervisorHostRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiPatchHyperflexHypervisorHostRequest) Execute() (HyperflexHypervisorHost, *_nethttp.Response, error) {
+	return r.ApiService.PatchHyperflexHypervisorHostExecute(r)
+}
+
+/*
+ * PatchHyperflexHypervisorHost Update a 'hyperflex.HypervisorHost' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiPatchHyperflexHypervisorHostRequest
+ */
+func (a *HyperflexApiService) PatchHyperflexHypervisorHost(ctx _context.Context, moid string) ApiPatchHyperflexHypervisorHostRequest {
+	return ApiPatchHyperflexHypervisorHostRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorHost
+ */
+func (a *HyperflexApiService) PatchHyperflexHypervisorHostExecute(r ApiPatchHyperflexHypervisorHostRequest) (HyperflexHypervisorHost, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorHost
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHypervisorHost")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorHosts/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexHypervisorHost == nil {
+		return localVarReturnValue, nil, reportError("hyperflexHypervisorHost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexHypervisorHost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPatchHyperflexHypervisorVirtualMachineRequest struct {
+	ctx                               _context.Context
+	ApiService                        *HyperflexApiService
+	moid                              string
+	hyperflexHypervisorVirtualMachine *HyperflexHypervisorVirtualMachine
+	ifMatch                           *string
+}
+
+func (r ApiPatchHyperflexHypervisorVirtualMachineRequest) HyperflexHypervisorVirtualMachine(hyperflexHypervisorVirtualMachine HyperflexHypervisorVirtualMachine) ApiPatchHyperflexHypervisorVirtualMachineRequest {
+	r.hyperflexHypervisorVirtualMachine = &hyperflexHypervisorVirtualMachine
+	return r
+}
+func (r ApiPatchHyperflexHypervisorVirtualMachineRequest) IfMatch(ifMatch string) ApiPatchHyperflexHypervisorVirtualMachineRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiPatchHyperflexHypervisorVirtualMachineRequest) Execute() (HyperflexHypervisorVirtualMachine, *_nethttp.Response, error) {
+	return r.ApiService.PatchHyperflexHypervisorVirtualMachineExecute(r)
+}
+
+/*
+ * PatchHyperflexHypervisorVirtualMachine Update a 'hyperflex.HypervisorVirtualMachine' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiPatchHyperflexHypervisorVirtualMachineRequest
+ */
+func (a *HyperflexApiService) PatchHyperflexHypervisorVirtualMachine(ctx _context.Context, moid string) ApiPatchHyperflexHypervisorVirtualMachineRequest {
+	return ApiPatchHyperflexHypervisorVirtualMachineRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorVirtualMachine
+ */
+func (a *HyperflexApiService) PatchHyperflexHypervisorVirtualMachineExecute(r ApiPatchHyperflexHypervisorVirtualMachineRequest) (HyperflexHypervisorVirtualMachine, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorVirtualMachine
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexHypervisorVirtualMachine")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorVirtualMachines/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexHypervisorVirtualMachine == nil {
+		return localVarReturnValue, nil, reportError("hyperflexHypervisorVirtualMachine is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexHypervisorVirtualMachine
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -41583,6 +38300,176 @@ func (a *HyperflexApiService) PatchHyperflexServerModelExecute(r ApiPatchHyperfl
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPatchHyperflexServiceAuthTokenRequest struct {
+	ctx                       _context.Context
+	ApiService                *HyperflexApiService
+	moid                      string
+	hyperflexServiceAuthToken *HyperflexServiceAuthToken
+	ifMatch                   *string
+}
+
+func (r ApiPatchHyperflexServiceAuthTokenRequest) HyperflexServiceAuthToken(hyperflexServiceAuthToken HyperflexServiceAuthToken) ApiPatchHyperflexServiceAuthTokenRequest {
+	r.hyperflexServiceAuthToken = &hyperflexServiceAuthToken
+	return r
+}
+func (r ApiPatchHyperflexServiceAuthTokenRequest) IfMatch(ifMatch string) ApiPatchHyperflexServiceAuthTokenRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiPatchHyperflexServiceAuthTokenRequest) Execute() (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	return r.ApiService.PatchHyperflexServiceAuthTokenExecute(r)
+}
+
+/*
+ * PatchHyperflexServiceAuthToken Update a 'hyperflex.ServiceAuthToken' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiPatchHyperflexServiceAuthTokenRequest
+ */
+func (a *HyperflexApiService) PatchHyperflexServiceAuthToken(ctx _context.Context, moid string) ApiPatchHyperflexServiceAuthTokenRequest {
+	return ApiPatchHyperflexServiceAuthTokenRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexServiceAuthToken
+ */
+func (a *HyperflexApiService) PatchHyperflexServiceAuthTokenExecute(r ApiPatchHyperflexServiceAuthTokenRequest) (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexServiceAuthToken
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexServiceAuthToken")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ServiceAuthTokens/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexServiceAuthToken == nil {
+		return localVarReturnValue, nil, reportError("hyperflexServiceAuthToken is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexServiceAuthToken
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiPatchHyperflexSoftwareDistributionComponentRequest struct {
 	ctx                                    _context.Context
 	ApiService                             *HyperflexApiService
@@ -42263,6 +39150,176 @@ func (a *HyperflexApiService) PatchHyperflexSoftwareVersionPolicyExecute(r ApiPa
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPatchHyperflexStorageContainerRequest struct {
+	ctx                       _context.Context
+	ApiService                *HyperflexApiService
+	moid                      string
+	hyperflexStorageContainer *HyperflexStorageContainer
+	ifMatch                   *string
+}
+
+func (r ApiPatchHyperflexStorageContainerRequest) HyperflexStorageContainer(hyperflexStorageContainer HyperflexStorageContainer) ApiPatchHyperflexStorageContainerRequest {
+	r.hyperflexStorageContainer = &hyperflexStorageContainer
+	return r
+}
+func (r ApiPatchHyperflexStorageContainerRequest) IfMatch(ifMatch string) ApiPatchHyperflexStorageContainerRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiPatchHyperflexStorageContainerRequest) Execute() (HyperflexStorageContainer, *_nethttp.Response, error) {
+	return r.ApiService.PatchHyperflexStorageContainerExecute(r)
+}
+
+/*
+ * PatchHyperflexStorageContainer Update a 'hyperflex.StorageContainer' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiPatchHyperflexStorageContainerRequest
+ */
+func (a *HyperflexApiService) PatchHyperflexStorageContainer(ctx _context.Context, moid string) ApiPatchHyperflexStorageContainerRequest {
+	return ApiPatchHyperflexStorageContainerRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexStorageContainer
+ */
+func (a *HyperflexApiService) PatchHyperflexStorageContainerExecute(r ApiPatchHyperflexStorageContainerRequest) (HyperflexStorageContainer, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexStorageContainer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexStorageContainer")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/StorageContainers/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexStorageContainer == nil {
+		return localVarReturnValue, nil, reportError("hyperflexStorageContainer is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexStorageContainer
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiPatchHyperflexSysConfigPolicyRequest struct {
 	ctx                      _context.Context
 	ApiService               *HyperflexApiService
@@ -42773,6 +39830,176 @@ func (a *HyperflexApiService) PatchHyperflexVcenterConfigPolicyExecute(r ApiPatc
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPatchHyperflexVolumeRequest struct {
+	ctx             _context.Context
+	ApiService      *HyperflexApiService
+	moid            string
+	hyperflexVolume *HyperflexVolume
+	ifMatch         *string
+}
+
+func (r ApiPatchHyperflexVolumeRequest) HyperflexVolume(hyperflexVolume HyperflexVolume) ApiPatchHyperflexVolumeRequest {
+	r.hyperflexVolume = &hyperflexVolume
+	return r
+}
+func (r ApiPatchHyperflexVolumeRequest) IfMatch(ifMatch string) ApiPatchHyperflexVolumeRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiPatchHyperflexVolumeRequest) Execute() (HyperflexVolume, *_nethttp.Response, error) {
+	return r.ApiService.PatchHyperflexVolumeExecute(r)
+}
+
+/*
+ * PatchHyperflexVolume Update a 'hyperflex.Volume' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiPatchHyperflexVolumeRequest
+ */
+func (a *HyperflexApiService) PatchHyperflexVolume(ctx _context.Context, moid string) ApiPatchHyperflexVolumeRequest {
+	return ApiPatchHyperflexVolumeRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexVolume
+ */
+func (a *HyperflexApiService) PatchHyperflexVolumeExecute(r ApiPatchHyperflexVolumeRequest) (HyperflexVolume, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexVolume
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.PatchHyperflexVolume")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/Volumes/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexVolume == nil {
+		return localVarReturnValue, nil, reportError("hyperflexVolume is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexVolume
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateHyperflexAppCatalogRequest struct {
 	ctx                 _context.Context
 	ApiService          *HyperflexApiService
@@ -43199,176 +40426,6 @@ func (a *HyperflexApiService) UpdateHyperflexCapabilityInfoExecute(r ApiUpdateHy
 	}
 	// body params
 	localVarPostBody = r.hyperflexCapabilityInfo
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateHyperflexCiscoHypervisorManagerRequest struct {
-	ctx                             _context.Context
-	ApiService                      *HyperflexApiService
-	moid                            string
-	hyperflexCiscoHypervisorManager *HyperflexCiscoHypervisorManager
-	ifMatch                         *string
-}
-
-func (r ApiUpdateHyperflexCiscoHypervisorManagerRequest) HyperflexCiscoHypervisorManager(hyperflexCiscoHypervisorManager HyperflexCiscoHypervisorManager) ApiUpdateHyperflexCiscoHypervisorManagerRequest {
-	r.hyperflexCiscoHypervisorManager = &hyperflexCiscoHypervisorManager
-	return r
-}
-func (r ApiUpdateHyperflexCiscoHypervisorManagerRequest) IfMatch(ifMatch string) ApiUpdateHyperflexCiscoHypervisorManagerRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiUpdateHyperflexCiscoHypervisorManagerRequest) Execute() (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	return r.ApiService.UpdateHyperflexCiscoHypervisorManagerExecute(r)
-}
-
-/*
- * UpdateHyperflexCiscoHypervisorManager Update a 'hyperflex.CiscoHypervisorManager' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiUpdateHyperflexCiscoHypervisorManagerRequest
- */
-func (a *HyperflexApiService) UpdateHyperflexCiscoHypervisorManager(ctx _context.Context, moid string) ApiUpdateHyperflexCiscoHypervisorManagerRequest {
-	return ApiUpdateHyperflexCiscoHypervisorManagerRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexCiscoHypervisorManager
- */
-func (a *HyperflexApiService) UpdateHyperflexCiscoHypervisorManagerExecute(r ApiUpdateHyperflexCiscoHypervisorManagerRequest) (HyperflexCiscoHypervisorManager, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexCiscoHypervisorManager
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexCiscoHypervisorManager")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/CiscoHypervisorManagers/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexCiscoHypervisorManager == nil {
-		return localVarReturnValue, nil, reportError("hyperflexCiscoHypervisorManager is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexCiscoHypervisorManager
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -45833,856 +42890,6 @@ func (a *HyperflexApiService) UpdateHyperflexHealthCheckPackageChecksumExecute(r
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateHyperflexHxapClusterRequest struct {
-	ctx                  _context.Context
-	ApiService           *HyperflexApiService
-	moid                 string
-	hyperflexHxapCluster *HyperflexHxapCluster
-	ifMatch              *string
-}
-
-func (r ApiUpdateHyperflexHxapClusterRequest) HyperflexHxapCluster(hyperflexHxapCluster HyperflexHxapCluster) ApiUpdateHyperflexHxapClusterRequest {
-	r.hyperflexHxapCluster = &hyperflexHxapCluster
-	return r
-}
-func (r ApiUpdateHyperflexHxapClusterRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHxapClusterRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiUpdateHyperflexHxapClusterRequest) Execute() (HyperflexHxapCluster, *_nethttp.Response, error) {
-	return r.ApiService.UpdateHyperflexHxapClusterExecute(r)
-}
-
-/*
- * UpdateHyperflexHxapCluster Update a 'hyperflex.HxapCluster' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiUpdateHyperflexHxapClusterRequest
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapCluster(ctx _context.Context, moid string) ApiUpdateHyperflexHxapClusterRequest {
-	return ApiUpdateHyperflexHxapClusterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapCluster
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapClusterExecute(r ApiUpdateHyperflexHxapClusterRequest) (HyperflexHxapCluster, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapCluster
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHxapCluster")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapClusters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapCluster == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapCluster is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapCluster
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateHyperflexHxapDatacenterRequest struct {
-	ctx                     _context.Context
-	ApiService              *HyperflexApiService
-	moid                    string
-	hyperflexHxapDatacenter *HyperflexHxapDatacenter
-	ifMatch                 *string
-}
-
-func (r ApiUpdateHyperflexHxapDatacenterRequest) HyperflexHxapDatacenter(hyperflexHxapDatacenter HyperflexHxapDatacenter) ApiUpdateHyperflexHxapDatacenterRequest {
-	r.hyperflexHxapDatacenter = &hyperflexHxapDatacenter
-	return r
-}
-func (r ApiUpdateHyperflexHxapDatacenterRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHxapDatacenterRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiUpdateHyperflexHxapDatacenterRequest) Execute() (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	return r.ApiService.UpdateHyperflexHxapDatacenterExecute(r)
-}
-
-/*
- * UpdateHyperflexHxapDatacenter Update a 'hyperflex.HxapDatacenter' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiUpdateHyperflexHxapDatacenterRequest
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapDatacenter(ctx _context.Context, moid string) ApiUpdateHyperflexHxapDatacenterRequest {
-	return ApiUpdateHyperflexHxapDatacenterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapDatacenter
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapDatacenterExecute(r ApiUpdateHyperflexHxapDatacenterRequest) (HyperflexHxapDatacenter, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapDatacenter
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHxapDatacenter")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapDatacenters/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapDatacenter == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapDatacenter is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapDatacenter
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateHyperflexHxapHostRequest struct {
-	ctx               _context.Context
-	ApiService        *HyperflexApiService
-	moid              string
-	hyperflexHxapHost *HyperflexHxapHost
-	ifMatch           *string
-}
-
-func (r ApiUpdateHyperflexHxapHostRequest) HyperflexHxapHost(hyperflexHxapHost HyperflexHxapHost) ApiUpdateHyperflexHxapHostRequest {
-	r.hyperflexHxapHost = &hyperflexHxapHost
-	return r
-}
-func (r ApiUpdateHyperflexHxapHostRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHxapHostRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiUpdateHyperflexHxapHostRequest) Execute() (HyperflexHxapHost, *_nethttp.Response, error) {
-	return r.ApiService.UpdateHyperflexHxapHostExecute(r)
-}
-
-/*
- * UpdateHyperflexHxapHost Update a 'hyperflex.HxapHost' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiUpdateHyperflexHxapHostRequest
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapHost(ctx _context.Context, moid string) ApiUpdateHyperflexHxapHostRequest {
-	return ApiUpdateHyperflexHxapHostRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapHost
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapHostExecute(r ApiUpdateHyperflexHxapHostRequest) (HyperflexHxapHost, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapHost
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHxapHost")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapHosts/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapHost == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapHost is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapHost
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateHyperflexHxapVirtualDiskRequest struct {
-	ctx                      _context.Context
-	ApiService               *HyperflexApiService
-	moid                     string
-	hyperflexHxapVirtualDisk *HyperflexHxapVirtualDisk
-	ifMatch                  *string
-}
-
-func (r ApiUpdateHyperflexHxapVirtualDiskRequest) HyperflexHxapVirtualDisk(hyperflexHxapVirtualDisk HyperflexHxapVirtualDisk) ApiUpdateHyperflexHxapVirtualDiskRequest {
-	r.hyperflexHxapVirtualDisk = &hyperflexHxapVirtualDisk
-	return r
-}
-func (r ApiUpdateHyperflexHxapVirtualDiskRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHxapVirtualDiskRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiUpdateHyperflexHxapVirtualDiskRequest) Execute() (HyperflexHxapVirtualDisk, *_nethttp.Response, error) {
-	return r.ApiService.UpdateHyperflexHxapVirtualDiskExecute(r)
-}
-
-/*
- * UpdateHyperflexHxapVirtualDisk Update a 'hyperflex.HxapVirtualDisk' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiUpdateHyperflexHxapVirtualDiskRequest
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapVirtualDisk(ctx _context.Context, moid string) ApiUpdateHyperflexHxapVirtualDiskRequest {
-	return ApiUpdateHyperflexHxapVirtualDiskRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualDisk
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapVirtualDiskExecute(r ApiUpdateHyperflexHxapVirtualDiskRequest) (HyperflexHxapVirtualDisk, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualDisk
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHxapVirtualDisk")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualDisks/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapVirtualDisk == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapVirtualDisk is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapVirtualDisk
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateHyperflexHxapVirtualMachineRequest struct {
-	ctx                         _context.Context
-	ApiService                  *HyperflexApiService
-	moid                        string
-	hyperflexHxapVirtualMachine *HyperflexHxapVirtualMachine
-	ifMatch                     *string
-}
-
-func (r ApiUpdateHyperflexHxapVirtualMachineRequest) HyperflexHxapVirtualMachine(hyperflexHxapVirtualMachine HyperflexHxapVirtualMachine) ApiUpdateHyperflexHxapVirtualMachineRequest {
-	r.hyperflexHxapVirtualMachine = &hyperflexHxapVirtualMachine
-	return r
-}
-func (r ApiUpdateHyperflexHxapVirtualMachineRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHxapVirtualMachineRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-func (r ApiUpdateHyperflexHxapVirtualMachineRequest) Execute() (HyperflexHxapVirtualMachine, *_nethttp.Response, error) {
-	return r.ApiService.UpdateHyperflexHxapVirtualMachineExecute(r)
-}
-
-/*
- * UpdateHyperflexHxapVirtualMachine Update a 'hyperflex.HxapVirtualMachine' resource.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param moid The unique Moid identifier of a resource instance.
- * @return ApiUpdateHyperflexHxapVirtualMachineRequest
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapVirtualMachine(ctx _context.Context, moid string) ApiUpdateHyperflexHxapVirtualMachineRequest {
-	return ApiUpdateHyperflexHxapVirtualMachineRequest{
-		ApiService: a,
-		ctx:        ctx,
-		moid:       moid,
-	}
-}
-
-/*
- * Execute executes the request
- * @return HyperflexHxapVirtualMachine
- */
-func (a *HyperflexApiService) UpdateHyperflexHxapVirtualMachineExecute(r ApiUpdateHyperflexHxapVirtualMachineRequest) (HyperflexHxapVirtualMachine, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  HyperflexHxapVirtualMachine
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHxapVirtualMachine")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v1/hyperflex/HxapVirtualMachines/{Moid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.hyperflexHxapVirtualMachine == nil {
-		return localVarReturnValue, nil, reportError("hyperflexHxapVirtualMachine is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
-	}
-	// body params
-	localVarPostBody = r.hyperflexHxapVirtualMachine
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v Error
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		var v Error
-		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-		if err != nil {
-			newErr.error = err.Error()
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		newErr.model = v
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type ApiUpdateHyperflexHxdpVersionRequest struct {
 	ctx                  _context.Context
 	ApiService           *HyperflexApiService
@@ -46769,6 +42976,346 @@ func (a *HyperflexApiService) UpdateHyperflexHxdpVersionExecute(r ApiUpdateHyper
 	}
 	// body params
 	localVarPostBody = r.hyperflexHxdpVersion
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateHyperflexHypervisorHostRequest struct {
+	ctx                     _context.Context
+	ApiService              *HyperflexApiService
+	moid                    string
+	hyperflexHypervisorHost *HyperflexHypervisorHost
+	ifMatch                 *string
+}
+
+func (r ApiUpdateHyperflexHypervisorHostRequest) HyperflexHypervisorHost(hyperflexHypervisorHost HyperflexHypervisorHost) ApiUpdateHyperflexHypervisorHostRequest {
+	r.hyperflexHypervisorHost = &hyperflexHypervisorHost
+	return r
+}
+func (r ApiUpdateHyperflexHypervisorHostRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHypervisorHostRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiUpdateHyperflexHypervisorHostRequest) Execute() (HyperflexHypervisorHost, *_nethttp.Response, error) {
+	return r.ApiService.UpdateHyperflexHypervisorHostExecute(r)
+}
+
+/*
+ * UpdateHyperflexHypervisorHost Update a 'hyperflex.HypervisorHost' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiUpdateHyperflexHypervisorHostRequest
+ */
+func (a *HyperflexApiService) UpdateHyperflexHypervisorHost(ctx _context.Context, moid string) ApiUpdateHyperflexHypervisorHostRequest {
+	return ApiUpdateHyperflexHypervisorHostRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorHost
+ */
+func (a *HyperflexApiService) UpdateHyperflexHypervisorHostExecute(r ApiUpdateHyperflexHypervisorHostRequest) (HyperflexHypervisorHost, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorHost
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHypervisorHost")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorHosts/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexHypervisorHost == nil {
+		return localVarReturnValue, nil, reportError("hyperflexHypervisorHost is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexHypervisorHost
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateHyperflexHypervisorVirtualMachineRequest struct {
+	ctx                               _context.Context
+	ApiService                        *HyperflexApiService
+	moid                              string
+	hyperflexHypervisorVirtualMachine *HyperflexHypervisorVirtualMachine
+	ifMatch                           *string
+}
+
+func (r ApiUpdateHyperflexHypervisorVirtualMachineRequest) HyperflexHypervisorVirtualMachine(hyperflexHypervisorVirtualMachine HyperflexHypervisorVirtualMachine) ApiUpdateHyperflexHypervisorVirtualMachineRequest {
+	r.hyperflexHypervisorVirtualMachine = &hyperflexHypervisorVirtualMachine
+	return r
+}
+func (r ApiUpdateHyperflexHypervisorVirtualMachineRequest) IfMatch(ifMatch string) ApiUpdateHyperflexHypervisorVirtualMachineRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiUpdateHyperflexHypervisorVirtualMachineRequest) Execute() (HyperflexHypervisorVirtualMachine, *_nethttp.Response, error) {
+	return r.ApiService.UpdateHyperflexHypervisorVirtualMachineExecute(r)
+}
+
+/*
+ * UpdateHyperflexHypervisorVirtualMachine Update a 'hyperflex.HypervisorVirtualMachine' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiUpdateHyperflexHypervisorVirtualMachineRequest
+ */
+func (a *HyperflexApiService) UpdateHyperflexHypervisorVirtualMachine(ctx _context.Context, moid string) ApiUpdateHyperflexHypervisorVirtualMachineRequest {
+	return ApiUpdateHyperflexHypervisorVirtualMachineRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexHypervisorVirtualMachine
+ */
+func (a *HyperflexApiService) UpdateHyperflexHypervisorVirtualMachineExecute(r ApiUpdateHyperflexHypervisorVirtualMachineRequest) (HyperflexHypervisorVirtualMachine, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexHypervisorVirtualMachine
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexHypervisorVirtualMachine")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/HypervisorVirtualMachines/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexHypervisorVirtualMachine == nil {
+		return localVarReturnValue, nil, reportError("hyperflexHypervisorVirtualMachine is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexHypervisorVirtualMachine
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -48043,6 +44590,176 @@ func (a *HyperflexApiService) UpdateHyperflexServerModelExecute(r ApiUpdateHyper
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiUpdateHyperflexServiceAuthTokenRequest struct {
+	ctx                       _context.Context
+	ApiService                *HyperflexApiService
+	moid                      string
+	hyperflexServiceAuthToken *HyperflexServiceAuthToken
+	ifMatch                   *string
+}
+
+func (r ApiUpdateHyperflexServiceAuthTokenRequest) HyperflexServiceAuthToken(hyperflexServiceAuthToken HyperflexServiceAuthToken) ApiUpdateHyperflexServiceAuthTokenRequest {
+	r.hyperflexServiceAuthToken = &hyperflexServiceAuthToken
+	return r
+}
+func (r ApiUpdateHyperflexServiceAuthTokenRequest) IfMatch(ifMatch string) ApiUpdateHyperflexServiceAuthTokenRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiUpdateHyperflexServiceAuthTokenRequest) Execute() (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	return r.ApiService.UpdateHyperflexServiceAuthTokenExecute(r)
+}
+
+/*
+ * UpdateHyperflexServiceAuthToken Update a 'hyperflex.ServiceAuthToken' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiUpdateHyperflexServiceAuthTokenRequest
+ */
+func (a *HyperflexApiService) UpdateHyperflexServiceAuthToken(ctx _context.Context, moid string) ApiUpdateHyperflexServiceAuthTokenRequest {
+	return ApiUpdateHyperflexServiceAuthTokenRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexServiceAuthToken
+ */
+func (a *HyperflexApiService) UpdateHyperflexServiceAuthTokenExecute(r ApiUpdateHyperflexServiceAuthTokenRequest) (HyperflexServiceAuthToken, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexServiceAuthToken
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexServiceAuthToken")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/ServiceAuthTokens/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexServiceAuthToken == nil {
+		return localVarReturnValue, nil, reportError("hyperflexServiceAuthToken is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexServiceAuthToken
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateHyperflexSoftwareDistributionComponentRequest struct {
 	ctx                                    _context.Context
 	ApiService                             *HyperflexApiService
@@ -48723,6 +45440,176 @@ func (a *HyperflexApiService) UpdateHyperflexSoftwareVersionPolicyExecute(r ApiU
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiUpdateHyperflexStorageContainerRequest struct {
+	ctx                       _context.Context
+	ApiService                *HyperflexApiService
+	moid                      string
+	hyperflexStorageContainer *HyperflexStorageContainer
+	ifMatch                   *string
+}
+
+func (r ApiUpdateHyperflexStorageContainerRequest) HyperflexStorageContainer(hyperflexStorageContainer HyperflexStorageContainer) ApiUpdateHyperflexStorageContainerRequest {
+	r.hyperflexStorageContainer = &hyperflexStorageContainer
+	return r
+}
+func (r ApiUpdateHyperflexStorageContainerRequest) IfMatch(ifMatch string) ApiUpdateHyperflexStorageContainerRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiUpdateHyperflexStorageContainerRequest) Execute() (HyperflexStorageContainer, *_nethttp.Response, error) {
+	return r.ApiService.UpdateHyperflexStorageContainerExecute(r)
+}
+
+/*
+ * UpdateHyperflexStorageContainer Update a 'hyperflex.StorageContainer' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiUpdateHyperflexStorageContainerRequest
+ */
+func (a *HyperflexApiService) UpdateHyperflexStorageContainer(ctx _context.Context, moid string) ApiUpdateHyperflexStorageContainerRequest {
+	return ApiUpdateHyperflexStorageContainerRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexStorageContainer
+ */
+func (a *HyperflexApiService) UpdateHyperflexStorageContainerExecute(r ApiUpdateHyperflexStorageContainerRequest) (HyperflexStorageContainer, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexStorageContainer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexStorageContainer")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/StorageContainers/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexStorageContainer == nil {
+		return localVarReturnValue, nil, reportError("hyperflexStorageContainer is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexStorageContainer
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateHyperflexSysConfigPolicyRequest struct {
 	ctx                      _context.Context
 	ApiService               *HyperflexApiService
@@ -49149,6 +46036,176 @@ func (a *HyperflexApiService) UpdateHyperflexVcenterConfigPolicyExecute(r ApiUpd
 	}
 	// body params
 	localVarPostBody = r.hyperflexVcenterConfigPolicy
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v Error
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		var v Error
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateHyperflexVolumeRequest struct {
+	ctx             _context.Context
+	ApiService      *HyperflexApiService
+	moid            string
+	hyperflexVolume *HyperflexVolume
+	ifMatch         *string
+}
+
+func (r ApiUpdateHyperflexVolumeRequest) HyperflexVolume(hyperflexVolume HyperflexVolume) ApiUpdateHyperflexVolumeRequest {
+	r.hyperflexVolume = &hyperflexVolume
+	return r
+}
+func (r ApiUpdateHyperflexVolumeRequest) IfMatch(ifMatch string) ApiUpdateHyperflexVolumeRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiUpdateHyperflexVolumeRequest) Execute() (HyperflexVolume, *_nethttp.Response, error) {
+	return r.ApiService.UpdateHyperflexVolumeExecute(r)
+}
+
+/*
+ * UpdateHyperflexVolume Update a 'hyperflex.Volume' resource.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param moid The unique Moid identifier of a resource instance.
+ * @return ApiUpdateHyperflexVolumeRequest
+ */
+func (a *HyperflexApiService) UpdateHyperflexVolume(ctx _context.Context, moid string) ApiUpdateHyperflexVolumeRequest {
+	return ApiUpdateHyperflexVolumeRequest{
+		ApiService: a,
+		ctx:        ctx,
+		moid:       moid,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return HyperflexVolume
+ */
+func (a *HyperflexApiService) UpdateHyperflexVolumeExecute(r ApiUpdateHyperflexVolumeRequest) (HyperflexVolume, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HyperflexVolume
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HyperflexApiService.UpdateHyperflexVolume")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/hyperflex/Volumes/{Moid}"
+	localVarPath = strings.Replace(localVarPath, "{"+"Moid"+"}", _neturl.PathEscape(parameterToString(r.moid, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.hyperflexVolume == nil {
+		return localVarReturnValue, nil, reportError("hyperflexVolume is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json", "application/json-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "")
+	}
+	// body params
+	localVarPostBody = r.hyperflexVolume
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

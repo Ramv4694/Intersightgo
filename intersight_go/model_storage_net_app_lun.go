@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-10-09T21:18:32Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
  *
- * API version: 1.0.9-4809
+ * API version: 0.0.1-37430
  * Contact: intersight@cisco.com
  */
 
@@ -23,16 +23,25 @@ type StorageNetAppLun struct {
 	// The fully-qualified name of the instantiated, concrete type. This property is used as a discriminator to identify the type of the payload when marshaling and unmarshaling data.
 	ClassId string `json:"ClassId"`
 	// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property.
-	ObjectType string `json:"ObjectType"`
+	ObjectType            string                                  `json:"ObjectType"`
+	AvgPerformanceMetrics *StorageNetAppPerformanceMetricsAverage `json:"AvgPerformanceMetrics,omitempty"`
+	// Unique identifier of Lun across data center.
+	Key *string `json:"Key,omitempty"`
+	// Reports if the LUN is mapped to one or more initiator groups.
+	Mapped *bool `json:"Mapped,omitempty"`
 	// The operating system (OS) type for this LUN. * `Linux` - Family of open source Unix-like operating systems based on the Linux kernel. * `AIX` - Advanced Interactive Executive (AIX). * `HP-UX` - HP-UX is implementation of the Unix operating system, based on Unix System V. * `Hyper-V` - Windows Server 2008 or Windows Server 2012 Hyper-V. * `OpenVMS` - OpenVMS is multi-user, multiprocessing virtual memory-based operating system. * `Solaris` - Solaris is a Unix operating system. * `NetWare` - NetWare is a computer network operating system. * `VMware` - An enterprise-class, type-1 hypervisor developed by VMware for deploying and serving virtual computers. * `Windows` - Single-partition Windows disk using the Master Boot Record (MBR) partitioning style. * `Xen` - Xen is a type-1 hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently.
 	OsType *string `json:"OsType,omitempty"`
+	// Path where the LUN is mounted.
+	Path *string `json:"Path,omitempty"`
 	// Serial number for the provisioned LUN.
 	Serial *string `json:"Serial,omitempty"`
-	// The administrative state of a LUN. * `offline` - The LUN is administratively offline, or a more detailed offline reason is not available. * `online` - The LUN is online.
+	// The administrative state of a LUN. * `offline` - The LUN is administratively offline, or a more detailed offline reason is not available. * `online` - The state of the LUN is online.
 	State *string `json:"State,omitempty"`
-	// UUID of the LUN.
+	// Universally unique identifier of the LUN.
 	Uuid  *string                           `json:"Uuid,omitempty"`
 	Array *StorageNetAppClusterRelationship `json:"Array,omitempty"`
+	// An array of relationships to storageNetAppLunEvent resources.
+	Events []StorageNetAppLunEventRelationship `json:"Events,omitempty"`
 	// An array of relationships to storageNetAppInitiatorGroup resources.
 	Host                 []StorageNetAppInitiatorGroupRelationship `json:"Host,omitempty"`
 	StorageContainer     *StorageNetAppVolumeRelationship          `json:"StorageContainer,omitempty"`
@@ -120,6 +129,102 @@ func (o *StorageNetAppLun) SetObjectType(v string) {
 	o.ObjectType = v
 }
 
+// GetAvgPerformanceMetrics returns the AvgPerformanceMetrics field value if set, zero value otherwise.
+func (o *StorageNetAppLun) GetAvgPerformanceMetrics() StorageNetAppPerformanceMetricsAverage {
+	if o == nil || o.AvgPerformanceMetrics == nil {
+		var ret StorageNetAppPerformanceMetricsAverage
+		return ret
+	}
+	return *o.AvgPerformanceMetrics
+}
+
+// GetAvgPerformanceMetricsOk returns a tuple with the AvgPerformanceMetrics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppLun) GetAvgPerformanceMetricsOk() (*StorageNetAppPerformanceMetricsAverage, bool) {
+	if o == nil || o.AvgPerformanceMetrics == nil {
+		return nil, false
+	}
+	return o.AvgPerformanceMetrics, true
+}
+
+// HasAvgPerformanceMetrics returns a boolean if a field has been set.
+func (o *StorageNetAppLun) HasAvgPerformanceMetrics() bool {
+	if o != nil && o.AvgPerformanceMetrics != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAvgPerformanceMetrics gets a reference to the given StorageNetAppPerformanceMetricsAverage and assigns it to the AvgPerformanceMetrics field.
+func (o *StorageNetAppLun) SetAvgPerformanceMetrics(v StorageNetAppPerformanceMetricsAverage) {
+	o.AvgPerformanceMetrics = &v
+}
+
+// GetKey returns the Key field value if set, zero value otherwise.
+func (o *StorageNetAppLun) GetKey() string {
+	if o == nil || o.Key == nil {
+		var ret string
+		return ret
+	}
+	return *o.Key
+}
+
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppLun) GetKeyOk() (*string, bool) {
+	if o == nil || o.Key == nil {
+		return nil, false
+	}
+	return o.Key, true
+}
+
+// HasKey returns a boolean if a field has been set.
+func (o *StorageNetAppLun) HasKey() bool {
+	if o != nil && o.Key != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKey gets a reference to the given string and assigns it to the Key field.
+func (o *StorageNetAppLun) SetKey(v string) {
+	o.Key = &v
+}
+
+// GetMapped returns the Mapped field value if set, zero value otherwise.
+func (o *StorageNetAppLun) GetMapped() bool {
+	if o == nil || o.Mapped == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Mapped
+}
+
+// GetMappedOk returns a tuple with the Mapped field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppLun) GetMappedOk() (*bool, bool) {
+	if o == nil || o.Mapped == nil {
+		return nil, false
+	}
+	return o.Mapped, true
+}
+
+// HasMapped returns a boolean if a field has been set.
+func (o *StorageNetAppLun) HasMapped() bool {
+	if o != nil && o.Mapped != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMapped gets a reference to the given bool and assigns it to the Mapped field.
+func (o *StorageNetAppLun) SetMapped(v bool) {
+	o.Mapped = &v
+}
+
 // GetOsType returns the OsType field value if set, zero value otherwise.
 func (o *StorageNetAppLun) GetOsType() string {
 	if o == nil || o.OsType == nil {
@@ -150,6 +255,38 @@ func (o *StorageNetAppLun) HasOsType() bool {
 // SetOsType gets a reference to the given string and assigns it to the OsType field.
 func (o *StorageNetAppLun) SetOsType(v string) {
 	o.OsType = &v
+}
+
+// GetPath returns the Path field value if set, zero value otherwise.
+func (o *StorageNetAppLun) GetPath() string {
+	if o == nil || o.Path == nil {
+		var ret string
+		return ret
+	}
+	return *o.Path
+}
+
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StorageNetAppLun) GetPathOk() (*string, bool) {
+	if o == nil || o.Path == nil {
+		return nil, false
+	}
+	return o.Path, true
+}
+
+// HasPath returns a boolean if a field has been set.
+func (o *StorageNetAppLun) HasPath() bool {
+	if o != nil && o.Path != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPath gets a reference to the given string and assigns it to the Path field.
+func (o *StorageNetAppLun) SetPath(v string) {
+	o.Path = &v
 }
 
 // GetSerial returns the Serial field value if set, zero value otherwise.
@@ -280,6 +417,39 @@ func (o *StorageNetAppLun) SetArray(v StorageNetAppClusterRelationship) {
 	o.Array = &v
 }
 
+// GetEvents returns the Events field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StorageNetAppLun) GetEvents() []StorageNetAppLunEventRelationship {
+	if o == nil {
+		var ret []StorageNetAppLunEventRelationship
+		return ret
+	}
+	return o.Events
+}
+
+// GetEventsOk returns a tuple with the Events field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StorageNetAppLun) GetEventsOk() (*[]StorageNetAppLunEventRelationship, bool) {
+	if o == nil || o.Events == nil {
+		return nil, false
+	}
+	return &o.Events, true
+}
+
+// HasEvents returns a boolean if a field has been set.
+func (o *StorageNetAppLun) HasEvents() bool {
+	if o != nil && o.Events != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvents gets a reference to the given []StorageNetAppLunEventRelationship and assigns it to the Events field.
+func (o *StorageNetAppLun) SetEvents(v []StorageNetAppLunEventRelationship) {
+	o.Events = v
+}
+
 // GetHost returns the Host field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *StorageNetAppLun) GetHost() []StorageNetAppInitiatorGroupRelationship {
 	if o == nil {
@@ -361,8 +531,20 @@ func (o StorageNetAppLun) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ObjectType"] = o.ObjectType
 	}
+	if o.AvgPerformanceMetrics != nil {
+		toSerialize["AvgPerformanceMetrics"] = o.AvgPerformanceMetrics
+	}
+	if o.Key != nil {
+		toSerialize["Key"] = o.Key
+	}
+	if o.Mapped != nil {
+		toSerialize["Mapped"] = o.Mapped
+	}
 	if o.OsType != nil {
 		toSerialize["OsType"] = o.OsType
+	}
+	if o.Path != nil {
+		toSerialize["Path"] = o.Path
 	}
 	if o.Serial != nil {
 		toSerialize["Serial"] = o.Serial
@@ -375,6 +557,9 @@ func (o StorageNetAppLun) MarshalJSON() ([]byte, error) {
 	}
 	if o.Array != nil {
 		toSerialize["Array"] = o.Array
+	}
+	if o.Events != nil {
+		toSerialize["Events"] = o.Events
 	}
 	if o.Host != nil {
 		toSerialize["Host"] = o.Host
@@ -395,16 +580,25 @@ func (o *StorageNetAppLun) UnmarshalJSON(bytes []byte) (err error) {
 		// The fully-qualified name of the instantiated, concrete type. This property is used as a discriminator to identify the type of the payload when marshaling and unmarshaling data.
 		ClassId string `json:"ClassId"`
 		// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property.
-		ObjectType string `json:"ObjectType"`
+		ObjectType            string                                  `json:"ObjectType"`
+		AvgPerformanceMetrics *StorageNetAppPerformanceMetricsAverage `json:"AvgPerformanceMetrics,omitempty"`
+		// Unique identifier of Lun across data center.
+		Key *string `json:"Key,omitempty"`
+		// Reports if the LUN is mapped to one or more initiator groups.
+		Mapped *bool `json:"Mapped,omitempty"`
 		// The operating system (OS) type for this LUN. * `Linux` - Family of open source Unix-like operating systems based on the Linux kernel. * `AIX` - Advanced Interactive Executive (AIX). * `HP-UX` - HP-UX is implementation of the Unix operating system, based on Unix System V. * `Hyper-V` - Windows Server 2008 or Windows Server 2012 Hyper-V. * `OpenVMS` - OpenVMS is multi-user, multiprocessing virtual memory-based operating system. * `Solaris` - Solaris is a Unix operating system. * `NetWare` - NetWare is a computer network operating system. * `VMware` - An enterprise-class, type-1 hypervisor developed by VMware for deploying and serving virtual computers. * `Windows` - Single-partition Windows disk using the Master Boot Record (MBR) partitioning style. * `Xen` - Xen is a type-1 hypervisor, providing services that allow multiple computer operating systems to execute on the same computer hardware concurrently.
 		OsType *string `json:"OsType,omitempty"`
+		// Path where the LUN is mounted.
+		Path *string `json:"Path,omitempty"`
 		// Serial number for the provisioned LUN.
 		Serial *string `json:"Serial,omitempty"`
-		// The administrative state of a LUN. * `offline` - The LUN is administratively offline, or a more detailed offline reason is not available. * `online` - The LUN is online.
+		// The administrative state of a LUN. * `offline` - The LUN is administratively offline, or a more detailed offline reason is not available. * `online` - The state of the LUN is online.
 		State *string `json:"State,omitempty"`
-		// UUID of the LUN.
+		// Universally unique identifier of the LUN.
 		Uuid  *string                           `json:"Uuid,omitempty"`
 		Array *StorageNetAppClusterRelationship `json:"Array,omitempty"`
+		// An array of relationships to storageNetAppLunEvent resources.
+		Events []StorageNetAppLunEventRelationship `json:"Events,omitempty"`
 		// An array of relationships to storageNetAppInitiatorGroup resources.
 		Host             []StorageNetAppInitiatorGroupRelationship `json:"Host,omitempty"`
 		StorageContainer *StorageNetAppVolumeRelationship          `json:"StorageContainer,omitempty"`
@@ -417,11 +611,16 @@ func (o *StorageNetAppLun) UnmarshalJSON(bytes []byte) (err error) {
 		varStorageNetAppLun := _StorageNetAppLun{}
 		varStorageNetAppLun.ClassId = varStorageNetAppLunWithoutEmbeddedStruct.ClassId
 		varStorageNetAppLun.ObjectType = varStorageNetAppLunWithoutEmbeddedStruct.ObjectType
+		varStorageNetAppLun.AvgPerformanceMetrics = varStorageNetAppLunWithoutEmbeddedStruct.AvgPerformanceMetrics
+		varStorageNetAppLun.Key = varStorageNetAppLunWithoutEmbeddedStruct.Key
+		varStorageNetAppLun.Mapped = varStorageNetAppLunWithoutEmbeddedStruct.Mapped
 		varStorageNetAppLun.OsType = varStorageNetAppLunWithoutEmbeddedStruct.OsType
+		varStorageNetAppLun.Path = varStorageNetAppLunWithoutEmbeddedStruct.Path
 		varStorageNetAppLun.Serial = varStorageNetAppLunWithoutEmbeddedStruct.Serial
 		varStorageNetAppLun.State = varStorageNetAppLunWithoutEmbeddedStruct.State
 		varStorageNetAppLun.Uuid = varStorageNetAppLunWithoutEmbeddedStruct.Uuid
 		varStorageNetAppLun.Array = varStorageNetAppLunWithoutEmbeddedStruct.Array
+		varStorageNetAppLun.Events = varStorageNetAppLunWithoutEmbeddedStruct.Events
 		varStorageNetAppLun.Host = varStorageNetAppLunWithoutEmbeddedStruct.Host
 		varStorageNetAppLun.StorageContainer = varStorageNetAppLunWithoutEmbeddedStruct.StorageContainer
 		*o = StorageNetAppLun(varStorageNetAppLun)
@@ -443,11 +642,16 @@ func (o *StorageNetAppLun) UnmarshalJSON(bytes []byte) (err error) {
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "ClassId")
 		delete(additionalProperties, "ObjectType")
+		delete(additionalProperties, "AvgPerformanceMetrics")
+		delete(additionalProperties, "Key")
+		delete(additionalProperties, "Mapped")
 		delete(additionalProperties, "OsType")
+		delete(additionalProperties, "Path")
 		delete(additionalProperties, "Serial")
 		delete(additionalProperties, "State")
 		delete(additionalProperties, "Uuid")
 		delete(additionalProperties, "Array")
+		delete(additionalProperties, "Events")
 		delete(additionalProperties, "Host")
 		delete(additionalProperties, "StorageContainer")
 
