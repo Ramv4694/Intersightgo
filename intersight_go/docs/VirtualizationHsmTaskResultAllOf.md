@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **ClassId** | **string** | The fully-qualified name of the instantiated, concrete type. This property is used as a discriminator to identify the type of the payload when marshaling and unmarshaling data. | [default to "virtualization.HsmTaskResult"]
 **ObjectType** | **string** | The fully-qualified name of the instantiated, concrete type. The value should be the same as the &#39;ClassId&#39; property. | [default to "virtualization.HsmTaskResult"]
 **Action** | Pointer to **string** | Depicts the action performed in the task. | [optional] 
-**Description** | Pointer to **string** | Information about of the task. | [optional] 
 **Hosts** | Pointer to **[]string** |  | [optional] 
 **Messages** | Pointer to **[]string** |  | [optional] 
-**OperationStatusCode** | Pointer to **int64** | Status code information about the task. | [optional] 
 **Progress** | Pointer to **int64** | Progress information of the task. | [optional] 
 **StartTime** | Pointer to **time.Time** | Time of starting the task. | [optional] 
 **Status** | Pointer to **string** | Depicts information about the status of the task. | [optional] 
+**TargetVersion** | Pointer to **string** | Version availebale on Server. | [optional] 
+**TargetVersionName** | Pointer to **string** | Information about of version used in task. | [optional] 
 **TaskId** | Pointer to **string** | Depicts information about mapped HSM task. | [optional] 
 **RegisteredDevice** | Pointer to [**AssetDeviceRegistrationRelationship**](asset.DeviceRegistration.Relationship.md) |  | [optional] 
 
@@ -101,31 +101,6 @@ SetAction sets Action field to given value.
 
 HasAction returns a boolean if a field has been set.
 
-### GetDescription
-
-`func (o *VirtualizationHsmTaskResultAllOf) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *VirtualizationHsmTaskResultAllOf) GetDescriptionOk() (*string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetDescription
-
-`func (o *VirtualizationHsmTaskResultAllOf) SetDescription(v string)`
-
-SetDescription sets Description field to given value.
-
-### HasDescription
-
-`func (o *VirtualizationHsmTaskResultAllOf) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
 ### GetHosts
 
 `func (o *VirtualizationHsmTaskResultAllOf) GetHosts() []string`
@@ -196,31 +171,6 @@ HasMessages returns a boolean if a field has been set.
 `func (o *VirtualizationHsmTaskResultAllOf) UnsetMessages()`
 
 UnsetMessages ensures that no value is present for Messages, not even an explicit nil
-### GetOperationStatusCode
-
-`func (o *VirtualizationHsmTaskResultAllOf) GetOperationStatusCode() int64`
-
-GetOperationStatusCode returns the OperationStatusCode field if non-nil, zero value otherwise.
-
-### GetOperationStatusCodeOk
-
-`func (o *VirtualizationHsmTaskResultAllOf) GetOperationStatusCodeOk() (*int64, bool)`
-
-GetOperationStatusCodeOk returns a tuple with the OperationStatusCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOperationStatusCode
-
-`func (o *VirtualizationHsmTaskResultAllOf) SetOperationStatusCode(v int64)`
-
-SetOperationStatusCode sets OperationStatusCode field to given value.
-
-### HasOperationStatusCode
-
-`func (o *VirtualizationHsmTaskResultAllOf) HasOperationStatusCode() bool`
-
-HasOperationStatusCode returns a boolean if a field has been set.
-
 ### GetProgress
 
 `func (o *VirtualizationHsmTaskResultAllOf) GetProgress() int64`
@@ -295,6 +245,56 @@ SetStatus sets Status field to given value.
 `func (o *VirtualizationHsmTaskResultAllOf) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetTargetVersion
+
+`func (o *VirtualizationHsmTaskResultAllOf) GetTargetVersion() string`
+
+GetTargetVersion returns the TargetVersion field if non-nil, zero value otherwise.
+
+### GetTargetVersionOk
+
+`func (o *VirtualizationHsmTaskResultAllOf) GetTargetVersionOk() (*string, bool)`
+
+GetTargetVersionOk returns a tuple with the TargetVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetVersion
+
+`func (o *VirtualizationHsmTaskResultAllOf) SetTargetVersion(v string)`
+
+SetTargetVersion sets TargetVersion field to given value.
+
+### HasTargetVersion
+
+`func (o *VirtualizationHsmTaskResultAllOf) HasTargetVersion() bool`
+
+HasTargetVersion returns a boolean if a field has been set.
+
+### GetTargetVersionName
+
+`func (o *VirtualizationHsmTaskResultAllOf) GetTargetVersionName() string`
+
+GetTargetVersionName returns the TargetVersionName field if non-nil, zero value otherwise.
+
+### GetTargetVersionNameOk
+
+`func (o *VirtualizationHsmTaskResultAllOf) GetTargetVersionNameOk() (*string, bool)`
+
+GetTargetVersionNameOk returns a tuple with the TargetVersionName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTargetVersionName
+
+`func (o *VirtualizationHsmTaskResultAllOf) SetTargetVersionName(v string)`
+
+SetTargetVersionName sets TargetVersionName field to given value.
+
+### HasTargetVersionName
+
+`func (o *VirtualizationHsmTaskResultAllOf) HasTargetVersionName() bool`
+
+HasTargetVersionName returns a boolean if a field has been set.
 
 ### GetTaskId
 

@@ -1,9 +1,9 @@
 /*
  * Cisco Intersight
  *
- * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-24T09:42:08Z.
+ * Cisco Intersight is a management platform delivered as a service with embedded analytics for your Cisco and 3rd party IT infrastructure. This platform offers an intelligent level of management that enables IT organizations to analyze, simplify, and automate their environments in more advanced ways than the prior generations of tools. Cisco Intersight provides an integrated and intuitive management experience for resources in the traditional data center as well as at the edge. With flexible deployment options to address complex security needs, getting started with Intersight is quick and easy. Cisco Intersight has deep integration with Cisco UCS and HyperFlex systems allowing for remote deployment, configuration, and ongoing maintenance. The model-based deployment works for a single system in a remote location or hundreds of systems in a data center and enables rapid, standardized configuration and deployment. It also streamlines maintaining those systems whether you are working with small or very large configurations. The Intersight OpenAPI document defines the complete set of properties that are returned in the HTTP response. From that perspective, a client can expect that no additional properties are returned, unless these properties are explicitly defined in the OpenAPI document. However, when a client uses an older version of the Intersight OpenAPI document, the server may send additional properties because the software is more recent than the client. In that case, the client may receive properties that it does not know about. Some generated SDKs perform a strict validation of the HTTP response body against the OpenAPI document. This document was created on 2021-12-27T12:26:28Z.
  *
- * API version: 0.0.1-37430
+ * API version: 0.0.1-37434
  * Contact: intersight@cisco.com
  */
 
@@ -26,19 +26,19 @@ type VirtualizationHsmTaskResult struct {
 	// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property.
 	ObjectType string `json:"ObjectType"`
 	// Depicts the action performed in the task.
-	Action *string `json:"Action,omitempty"`
-	// Information about of the task.
-	Description *string  `json:"Description,omitempty"`
-	Hosts       []string `json:"Hosts,omitempty"`
-	Messages    []string `json:"Messages,omitempty"`
-	// Status code information about the task.
-	OperationStatusCode *int64 `json:"OperationStatusCode,omitempty"`
+	Action   *string  `json:"Action,omitempty"`
+	Hosts    []string `json:"Hosts,omitempty"`
+	Messages []string `json:"Messages,omitempty"`
 	// Progress information of the task.
 	Progress *int64 `json:"Progress,omitempty"`
 	// Time of starting the task.
 	StartTime *time.Time `json:"StartTime,omitempty"`
 	// Depicts information about the status of the task.
 	Status *string `json:"Status,omitempty"`
+	// Version availebale on Server.
+	TargetVersion *string `json:"TargetVersion,omitempty"`
+	// Information about of version used in task.
+	TargetVersionName *string `json:"TargetVersionName,omitempty"`
 	// Depicts information about mapped HSM task.
 	TaskId               *string                              `json:"TaskId,omitempty"`
 	RegisteredDevice     *AssetDeviceRegistrationRelationship `json:"RegisteredDevice,omitempty"`
@@ -150,38 +150,6 @@ func (o *VirtualizationHsmTaskResult) SetAction(v string) {
 	o.Action = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *VirtualizationHsmTaskResult) GetDescription() string {
-	if o == nil || o.Description == nil {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualizationHsmTaskResult) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *VirtualizationHsmTaskResult) HasDescription() bool {
-	if o != nil && o.Description != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *VirtualizationHsmTaskResult) SetDescription(v string) {
-	o.Description = &v
-}
-
 // GetHosts returns the Hosts field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *VirtualizationHsmTaskResult) GetHosts() []string {
 	if o == nil {
@@ -246,38 +214,6 @@ func (o *VirtualizationHsmTaskResult) HasMessages() bool {
 // SetMessages gets a reference to the given []string and assigns it to the Messages field.
 func (o *VirtualizationHsmTaskResult) SetMessages(v []string) {
 	o.Messages = v
-}
-
-// GetOperationStatusCode returns the OperationStatusCode field value if set, zero value otherwise.
-func (o *VirtualizationHsmTaskResult) GetOperationStatusCode() int64 {
-	if o == nil || o.OperationStatusCode == nil {
-		var ret int64
-		return ret
-	}
-	return *o.OperationStatusCode
-}
-
-// GetOperationStatusCodeOk returns a tuple with the OperationStatusCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *VirtualizationHsmTaskResult) GetOperationStatusCodeOk() (*int64, bool) {
-	if o == nil || o.OperationStatusCode == nil {
-		return nil, false
-	}
-	return o.OperationStatusCode, true
-}
-
-// HasOperationStatusCode returns a boolean if a field has been set.
-func (o *VirtualizationHsmTaskResult) HasOperationStatusCode() bool {
-	if o != nil && o.OperationStatusCode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOperationStatusCode gets a reference to the given int64 and assigns it to the OperationStatusCode field.
-func (o *VirtualizationHsmTaskResult) SetOperationStatusCode(v int64) {
-	o.OperationStatusCode = &v
 }
 
 // GetProgress returns the Progress field value if set, zero value otherwise.
@@ -376,6 +312,70 @@ func (o *VirtualizationHsmTaskResult) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetTargetVersion returns the TargetVersion field value if set, zero value otherwise.
+func (o *VirtualizationHsmTaskResult) GetTargetVersion() string {
+	if o == nil || o.TargetVersion == nil {
+		var ret string
+		return ret
+	}
+	return *o.TargetVersion
+}
+
+// GetTargetVersionOk returns a tuple with the TargetVersion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualizationHsmTaskResult) GetTargetVersionOk() (*string, bool) {
+	if o == nil || o.TargetVersion == nil {
+		return nil, false
+	}
+	return o.TargetVersion, true
+}
+
+// HasTargetVersion returns a boolean if a field has been set.
+func (o *VirtualizationHsmTaskResult) HasTargetVersion() bool {
+	if o != nil && o.TargetVersion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetVersion gets a reference to the given string and assigns it to the TargetVersion field.
+func (o *VirtualizationHsmTaskResult) SetTargetVersion(v string) {
+	o.TargetVersion = &v
+}
+
+// GetTargetVersionName returns the TargetVersionName field value if set, zero value otherwise.
+func (o *VirtualizationHsmTaskResult) GetTargetVersionName() string {
+	if o == nil || o.TargetVersionName == nil {
+		var ret string
+		return ret
+	}
+	return *o.TargetVersionName
+}
+
+// GetTargetVersionNameOk returns a tuple with the TargetVersionName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *VirtualizationHsmTaskResult) GetTargetVersionNameOk() (*string, bool) {
+	if o == nil || o.TargetVersionName == nil {
+		return nil, false
+	}
+	return o.TargetVersionName, true
+}
+
+// HasTargetVersionName returns a boolean if a field has been set.
+func (o *VirtualizationHsmTaskResult) HasTargetVersionName() bool {
+	if o != nil && o.TargetVersionName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetVersionName gets a reference to the given string and assigns it to the TargetVersionName field.
+func (o *VirtualizationHsmTaskResult) SetTargetVersionName(v string) {
+	o.TargetVersionName = &v
+}
+
 // GetTaskId returns the TaskId field value if set, zero value otherwise.
 func (o *VirtualizationHsmTaskResult) GetTaskId() string {
 	if o == nil || o.TaskId == nil {
@@ -459,17 +459,11 @@ func (o VirtualizationHsmTaskResult) MarshalJSON() ([]byte, error) {
 	if o.Action != nil {
 		toSerialize["Action"] = o.Action
 	}
-	if o.Description != nil {
-		toSerialize["Description"] = o.Description
-	}
 	if o.Hosts != nil {
 		toSerialize["Hosts"] = o.Hosts
 	}
 	if o.Messages != nil {
 		toSerialize["Messages"] = o.Messages
-	}
-	if o.OperationStatusCode != nil {
-		toSerialize["OperationStatusCode"] = o.OperationStatusCode
 	}
 	if o.Progress != nil {
 		toSerialize["Progress"] = o.Progress
@@ -479,6 +473,12 @@ func (o VirtualizationHsmTaskResult) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["Status"] = o.Status
+	}
+	if o.TargetVersion != nil {
+		toSerialize["TargetVersion"] = o.TargetVersion
+	}
+	if o.TargetVersionName != nil {
+		toSerialize["TargetVersionName"] = o.TargetVersionName
 	}
 	if o.TaskId != nil {
 		toSerialize["TaskId"] = o.TaskId
@@ -501,19 +501,19 @@ func (o *VirtualizationHsmTaskResult) UnmarshalJSON(bytes []byte) (err error) {
 		// The fully-qualified name of the instantiated, concrete type. The value should be the same as the 'ClassId' property.
 		ObjectType string `json:"ObjectType"`
 		// Depicts the action performed in the task.
-		Action *string `json:"Action,omitempty"`
-		// Information about of the task.
-		Description *string  `json:"Description,omitempty"`
-		Hosts       []string `json:"Hosts,omitempty"`
-		Messages    []string `json:"Messages,omitempty"`
-		// Status code information about the task.
-		OperationStatusCode *int64 `json:"OperationStatusCode,omitempty"`
+		Action   *string  `json:"Action,omitempty"`
+		Hosts    []string `json:"Hosts,omitempty"`
+		Messages []string `json:"Messages,omitempty"`
 		// Progress information of the task.
 		Progress *int64 `json:"Progress,omitempty"`
 		// Time of starting the task.
 		StartTime *time.Time `json:"StartTime,omitempty"`
 		// Depicts information about the status of the task.
 		Status *string `json:"Status,omitempty"`
+		// Version availebale on Server.
+		TargetVersion *string `json:"TargetVersion,omitempty"`
+		// Information about of version used in task.
+		TargetVersionName *string `json:"TargetVersionName,omitempty"`
 		// Depicts information about mapped HSM task.
 		TaskId           *string                              `json:"TaskId,omitempty"`
 		RegisteredDevice *AssetDeviceRegistrationRelationship `json:"RegisteredDevice,omitempty"`
@@ -527,13 +527,13 @@ func (o *VirtualizationHsmTaskResult) UnmarshalJSON(bytes []byte) (err error) {
 		varVirtualizationHsmTaskResult.ClassId = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.ClassId
 		varVirtualizationHsmTaskResult.ObjectType = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.ObjectType
 		varVirtualizationHsmTaskResult.Action = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.Action
-		varVirtualizationHsmTaskResult.Description = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.Description
 		varVirtualizationHsmTaskResult.Hosts = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.Hosts
 		varVirtualizationHsmTaskResult.Messages = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.Messages
-		varVirtualizationHsmTaskResult.OperationStatusCode = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.OperationStatusCode
 		varVirtualizationHsmTaskResult.Progress = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.Progress
 		varVirtualizationHsmTaskResult.StartTime = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.StartTime
 		varVirtualizationHsmTaskResult.Status = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.Status
+		varVirtualizationHsmTaskResult.TargetVersion = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.TargetVersion
+		varVirtualizationHsmTaskResult.TargetVersionName = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.TargetVersionName
 		varVirtualizationHsmTaskResult.TaskId = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.TaskId
 		varVirtualizationHsmTaskResult.RegisteredDevice = varVirtualizationHsmTaskResultWithoutEmbeddedStruct.RegisteredDevice
 		*o = VirtualizationHsmTaskResult(varVirtualizationHsmTaskResult)
@@ -556,13 +556,13 @@ func (o *VirtualizationHsmTaskResult) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "ClassId")
 		delete(additionalProperties, "ObjectType")
 		delete(additionalProperties, "Action")
-		delete(additionalProperties, "Description")
 		delete(additionalProperties, "Hosts")
 		delete(additionalProperties, "Messages")
-		delete(additionalProperties, "OperationStatusCode")
 		delete(additionalProperties, "Progress")
 		delete(additionalProperties, "StartTime")
 		delete(additionalProperties, "Status")
+		delete(additionalProperties, "TargetVersion")
+		delete(additionalProperties, "TargetVersionName")
 		delete(additionalProperties, "TaskId")
 		delete(additionalProperties, "RegisteredDevice")
 
